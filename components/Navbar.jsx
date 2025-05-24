@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { Mail, User, Bell, PanelRightOpen } from "lucide-react";
-import logo from "@/assets/images/logo.jpg";
+import { Mail, User, Bell } from "lucide-react";
+
 import ThemeToggle from "./ThemeToggle";
 import Link from "next/link";
 import { Button } from "./ui/button";
@@ -33,17 +33,19 @@ export default function Navbar() {
   aria-label="Main Navigation"
 >
   <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-4 sm:px-6 md:px-10">
-    {/* Logo */}
-    <Link href="/" className="flex items-center gap-3 group">
-      <Image
-        src={logo}
-        alt="Logo"
-        className="h-10 w-10 rounded-full shadow-lg group-hover:scale-105 transition-transform"
-      />
-      <span className="text-sky-900 dark:text-white font-extrabold text-xl tracking-wide uppercase select-none group-hover:text-sky-500 transition-colors">
-        MCityX
-      </span>
-    </Link>
+   <Link href="/" className="flex items-center gap-3 group px-2 py-1">
+  <Image
+    src="/logo.png"
+    alt="Logo"
+    width={48}   // increased size for better visibility
+    height={48}
+    className="rounded-full shadow-lg group-hover:scale-110 transition-transform"
+  />
+  <span className="text-sky-900 dark:text-white font-extrabold text-xl tracking-wide uppercase select-none group-hover:text-sky-500 transition-colors">
+    MCityX
+  </span>
+</Link>
+
 
     {/* Mobile controls: Dark Mode Toggle + Hamburger */}
     <div className="lg:hidden flex items-center space-x-4">

@@ -1,40 +1,130 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+import { Lato, Noto_Sans_JP } from "next/font/google";
+
+// Load Google Fonts with next/font for optimal performance
+const lato = Lato({
   subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const notoSansJP = Noto_Sans_JP({
+  subsets: ["japanese"],
+  weight: ["400", "700"],
+  display: "swap",
 });
 
 export const metadata = {
-  title: "Mcityx, Your Home for getting experience in man city stats, results, schedule and more",
-  description: "Awesome Sportsteam app for Man City Fans",
-   icons: {
-    icon: "/logo.ico", // or use .png, .svg
-  },
+  title: "MCityX - Manchester City Fan Site",
+  description:
+    "Latest results, stats, trophies, news, and more about Manchester City.",
   verification: {
-    google: "ca-pub-8971104795657349"
-  }
+    other: {
+      "google-adsense-account": "ca-pub-8971104795657349",
+    },
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
+  openGraph: {
+    title: "MCityX - Manchester City Fan Site",
+    description:
+      "Latest results, stats, trophies, news, and more about Manchester City.",
+    url: "https://mcityx.vercel.app",
+    siteName: "MCityX",
+    images: [
+      {
+        url: "https://mcityx.vercel.app/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "MCityX Logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@MCityX",
+    title: "MCityX - Manchester City Fan Site",
+    description:
+      "Latest results, stats, trophies, news, and more about Manchester City.",
+    image: "https://mcityx.vercel.app/twitter-image.png",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="index, follow" />
+
+        {/* Adsense verification */}
+        <meta
+          name="google-adsense-account"
+          content={metadata.verification.other["google-adsense-account"]}
+        />
+
+        {/* Open Graph */}
+        <meta property="og:title" content={metadata.openGraph.title} />
+        <meta property="og:description" content={metadata.openGraph.description} />
+        <meta property="og:url" content={metadata.openGraph.url} />
+        <meta property="og:site_name" content={metadata.openGraph.siteName} />
+        <meta property="og:locale" content={metadata.openGraph.locale} />
+        <meta property="og:type" content={metadata.openGraph.type} />
+        <meta property="og:image" content={metadata.openGraph.images[0].url} />
+        <meta
+          property="og:image:width"
+          content={metadata.openGraph.images[0].width.toString()}
+        />
+        <meta
+          property="og:image:height"
+          content={metadata.openGraph.images[0].height.toString()}
+        />
+        <meta property="og:image:alt" content={metadata.openGraph.images[0].alt} />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content={metadata.twitter.card} />
+        <meta name="twitter:site" content={metadata.twitter.site} />
+        <meta name="twitter:title" content={metadata.twitter.title} />
+        <meta name="twitter:description" content={metadata.twitter.description} />
+        <meta name="twitter:image" content={metadata.twitter.image} />
+
+        {/* Favicon */}
+        <link rel="icon" href={metadata.icons.icon} />
+
+        {/* Structured Data JSON-LD for Google Search */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "MCityX",
+              url: "https://mcityx.vercel.app",
+              logo: "https://mcityx.vercel.app/logo.png",
+            }),
+          }}
+        />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`antialiased font-sans ${lato.className} ${notoSansJP.className}`}
+        style={{
+          fontFamily:
+            "'Lato', 'Noto Sans JP', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif",
+        }}
       >
-        <ScrollToTop/>
-        <Navbar/>
+        <ScrollToTop />
+        <Navbar />
         {children}
-      <Footer/>
+        <Footer />
       </body>
     </html>
   );

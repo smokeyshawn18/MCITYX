@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link";
-import logo from "../assets/images/logo.jpg";
+
 import Image from "next/image";
 
 
@@ -53,7 +53,10 @@ function Footer() {
         <aside className="text-center md:text-left flex flex-col items-center md:items-start space-y-4">
           <Link href="/" onClick={scrollToTop} className="relative">
             <Image
-              src={logo}
+              src="/logo.png"
+                width={100}    // For example, 40px width
+  height={100}   // And 40px height (matches your h-10 w-10 tailwind classes)
+  quality={100}
               alt="Logo"
               className="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 rounded-full shadow-xl transform hover:scale-110 transition-transform duration-300"
             />
