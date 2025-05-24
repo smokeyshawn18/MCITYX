@@ -3,21 +3,6 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
 
-import { Lato, Noto_Sans_JP } from "next/font/google";
-
-// Load Google Fonts with next/font for optimal performance
-const lato = Lato({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
-});
-
-const notoSansJP = Noto_Sans_JP({
-  subsets: ["japanese"],
-  weight: ["400", "700"],
-  display: "swap",
-});
-
 export const metadata = {
   title: "MCityX - Manchester City Fan Site",
   description:
@@ -115,10 +100,10 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-        className={`antialiased font-sans ${lato.className} ${notoSansJP.className}`}
+        className="antialiased font-sans"
         style={{
           fontFamily:
-            "'Lato', 'Noto Sans JP', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif",
+            "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Noto Sans JP', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif",
         }}
       >
         <ScrollToTop />
