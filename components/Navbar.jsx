@@ -69,7 +69,7 @@ export default function Navbar() {
               aria-current={isActive ? "page" : undefined}
               className={`relative font-semibold px-3 py-2 rounded-md transition-all duration-200 outline-none focus:ring-2 ring-sky-400
                 ${isActive
-                  ? "text-sky-700 dark:text-sky-200 bg-sky-100 dark:bg-sky-900 after:absolute after:left-0 after:bottom-0 after:w-full after:h-1 after:bg-sky-400"
+                  ? "text-sky-700 dark:text-sky-200 bg-sky-100 dark:bg-sky-900 after:absolute after:left-0 after:bottom-0 after:w-full "
                   : "text-gray-700 dark:text-white hover:bg-sky-200 dark:hover:bg-sky-800 hover:text-sky-700"
                 }`}
               onClick={handleNavLinkClick}

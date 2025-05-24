@@ -20,6 +20,9 @@ export const metadata = {
    icons: {
     icon: "/logo.ico", // or use .png, .svg
   },
+  verification: {
+    google: "ca-pub-8971104795657349"
+  }
 };
 
 export default function RootLayout({ children }) {

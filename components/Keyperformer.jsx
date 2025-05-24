@@ -484,10 +484,10 @@ const KeyPerformers = () => {
                   {/* League Stats */}
                   <div className="bg-gray-50 p-4 rounded-xl mb-4">
                     <div className="flex items-center mb-2">
-                      <img
+                      <Image
                         src={premierLeagueLogo}
                         alt="Premier League"
-                        className="w-8 h-8 mr-2"
+                        className="w-10 h-8 mr-2"
                       />
                       <span className="text-[#3D195B] font-semibold">
                         Premier League
@@ -559,7 +559,7 @@ const KeyPerformers = () => {
                   {/* National Stats */}
                   <div className="bg-gray-50 p-4 rounded-xl mb-4">
                     <div className="flex items-center mb-2">
-                      <img
+                      <Image
                         src={player.nimg}
                         alt="National Team"
                         className="w-8 h-8 mr-2"
@@ -595,7 +595,7 @@ const KeyPerformers = () => {
                   </div>
                   <div className="bg-gray-50 p-4 rounded-xl mb-4">
                     <div className="flex items-center mb-2">
-                      <img
+                      <Image
                         src={Fa}
                         alt="Premier League"
                         className="w-8 h-8 mr-2 rounded-lg"
