@@ -1,11 +1,11 @@
 "use client"
 import HomeKit from "../assets/images/homekit.webp"
 import AwayKit from "../assets/images/awaykit.webp";
-import Third from "../assets/images/thirdkit.webp";
+import Third from "../assets/images/thirdkit.jpg";
 import Fourth from "../assets/images/fourth.webp";
-import GK1 from "../assets/images/gk1.png";
-import GK2 from "../assets/images/gk2.png";
-import GK3 from "../assets/images/gk3.webp";
+import GK1 from "../assets/images/gk1.jpg";
+import GK2 from "../assets/images/gk2.jpg";
+
 import PumaLogo from "../assets/images/puma.png"; // Import Puma logo
 import Image from "next/image";
 
@@ -15,43 +15,43 @@ const Kit = () => {
   const kits = [
     {
       name: "Home Kit",
-      image: HomeKit,
+      image: "/assets/images/homekit.webp",
       sponsor: "Etihad Airways",
       shopLink: "https://shop.mancity.com/en/kits/", // Add official shop link
     },
-    {
-      name: "Away Kit",
-      image: AwayKit,
-      sponsor: "Etihad Airways",
-      shopLink: "https://shop.mancity.com/en/kits/",
-    },
+    // {
+    //   name: "Away Kit",
+    //   image: "/assets/images/awaykit.webp",
+    //   sponsor: "Etihad Airways",
+    //   shopLink: "https://shop.mancity.com/en/kits/",
+    // },
     {
       name: "Third Kit",
-      image: Third,
+      image: "/assets/images/thirdkit.jpg",
       sponsor: "Etihad Airways",
       shopLink: "https://shop.mancity.com/en/kits/",
     },
-    {
-      name: "Definitely City - Kit",
-      image: Fourth,
-      sponsor: "Etihad Airways",
-      shopLink: "https://shop.mancity.com/en/kits/",
-    },
+    // {
+    //   name: "Definitely City - Kit",
+    //   image: Fourth,
+    //   sponsor: "Etihad Airways",
+    //   shopLink: "https://shop.mancity.com/en/kits/",
+    // },
     {
       name: "GoalKeeper-1",
-      image: GK1,
+      image: "/assets/images/gk1.jpg",
       sponsor: "Etihad Airways",
       shopLink: "https://shop.mancity.com/en/kits/",
     },
     {
       name: "GoalKeeper-2",
-      image: GK2,
+      image: "/assets/images/gk2.jpg",
       sponsor: "Etihad Airways",
       shopLink: "https://shop.mancity.com/en/kits/",
     },
     {
       name: "GoalKeeper-3",
-      image: GK3,
+      image: "/assets/images/gk3.jpg",
       sponsor: "Etihad Airways",
       shopLink: "https://shop.mancity.com/en/kits/",
     },
@@ -72,11 +72,16 @@ const Kit = () => {
             onClick={() => window.open(kit.shopLink, "_blank")} // Navigate to shop link
           >
             <div className="w-64 h-64 overflow-hidden rounded-full border-2 border-gray-300 transform transition-transform duration-300 hover:scale-110 hover:shadow-lg">
-              <Image
-                src={kit.image}
-                alt={`Manchester City Kit ${kit.name}`}
-                className="w-full h-full object-cover rounded-full"
-              />
+           <div className="relative w-full h-full rounded-full overflow-hidden">
+  <Image
+    src={kit.image}
+    alt={`Manchester City Kit ${kit.name}`}
+    fill
+    quality={100}
+    className="object-cover"
+  />
+</div>
+
             </div>
             <div className="mt-4">
               <h3 className="text-xl font-bold">{kit.name}</h3>

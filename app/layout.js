@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata = {
   title: "MCityX - Manchester City Fan Site",
@@ -44,12 +45,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+   <ClerkProvider>
+     <html lang="en">
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
+
 
         {/* Adsense verification */}
         <meta
@@ -85,6 +88,9 @@ export default function RootLayout({ children }) {
         {/* Favicon */}
         <link rel="icon" href={metadata.icons.icon} />
 
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8971104795657349"
+     crossorigin="anonymous"/>
+
         {/* Structured Data JSON-LD for Google Search */}
         <script
           type="application/ld+json"
@@ -112,5 +118,6 @@ export default function RootLayout({ children }) {
         <Footer />
       </body>
     </html>
+   </ClerkProvider>
   );
 }

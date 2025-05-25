@@ -6,16 +6,19 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 
+
 const Schedule = () => {
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedMatchId, setSelectedMatchId] = useState(null);
+  const [showPrediction, setShowPrediction] = useState(false);
 
   useEffect(() => {
     fetch("/api/matches")
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Sorry, we are currently unable to load matches due to request limits. Please try again later.");
+          throw new Error("Season 2024/25 has ended! @smokeyshawn18");
         }
         return response.json();
       })
@@ -54,7 +57,7 @@ const Schedule = () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
         setError(
-          "Sorry, we are currently unable to load matches due to request limits. Please try again later."
+           "Season 2024/25 has ended! @smokeyshawn18"
         );
         setLoading(false);
       });
@@ -88,6 +91,16 @@ const Schedule = () => {
     return `${days} days to go`;
   };
 
+  // Toggle predicted lineup display
+  const togglePrediction = (matchId) => {
+    if (selectedMatchId === matchId && showPrediction) {
+      setShowPrediction(false);
+    } else {
+      setSelectedMatchId(matchId);
+      setShowPrediction(true);
+    }
+  };
+
   return (
     <section className="min-h-screen bg-sky-100 dark:bg-gray-950 dark:text-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -96,7 +109,7 @@ const Schedule = () => {
           Upcoming Matches
         </h1>
 
-        {error ? (
+      {error ? (
           <div className="max-w-md mx-auto">
             <div className="rounded-lg border border-red-400 bg-red-50 p-4 text-center">
               <p className="text-red-700 font-semibold">{error}</p>
@@ -110,7 +123,10 @@ const Schedule = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {matches.map((match) => {
               const { homeTeam, awayTeam, utcDate, competition } = match;
-
+              const matchDate = new Date(utcDate);
+              const now = new Date();
+              const canPredict = matchDate > now;
+              
               return (
                 <div
                   key={match.id}
@@ -187,16 +203,25 @@ const Schedule = () => {
                       </div>
                     </div>
 
-                    {/* Match Details Button */}
-                    <Button className="w-full bg-[#1E90FF] dark:bg-[#3A6EA5] hover:bg-[#1A4268] dark:hover:bg-[#103554] text-white py-2 px-4 rounded-lg font-bold transition-all duration-200 flex items-center justify-center gap-2 hover:scale-105">
-                      Match Details
-                    </Button>
+                    {/* Buttons */}
+                    <div className="flex flex-col gap-2">
+                      {/* Match Details Button */}
+                      <Button className="w-full bg-[#1E90FF] dark:bg-[#3A6EA5] hover:bg-[#1A4268] dark:hover:bg-[#103554] text-white py-2 px-4 rounded-lg font-bold transition-all duration-200 flex items-center justify-center gap-2 hover:scale-105">
+                        Match Details
+                      </Button>
+                      
+                   
+                    </div>
+                    
+        
                   </div>
                 </div>
               );
             })}
           </div>
-        ) : (
+        )
+    
+         : (
           <div className="text-center text-black/80 dark:text-white/80 py-20">
             <p className="text-lg font-medium">No upcoming matches scheduled.</p>
           </div>

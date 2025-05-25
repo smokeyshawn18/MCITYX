@@ -1,13 +1,14 @@
 "use client";
-import { useState } from "react";
-import { Mail, User, Bell } from "lucide-react";
 
-import ThemeToggle from "./ThemeToggle";
+import { useState, useEffect, useRef } from "react";
+import { useUser, SignInButton, SignOutButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
+import Image from "next/image";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { MdClose } from "react-icons/md";
+import ThemeToggle from "./ThemeToggle";
 import { Button } from "./ui/button";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
-import {GiHamburgerMenu} from "react-icons/gi"
 
 const navItems = [
   "Home",
@@ -20,146 +21,202 @@ const navItems = [
 ];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isSignedIn, user } = useUser();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const userDropdownRef = useRef(null);
   const pathname = usePathname();
 
-  const handleNavLinkClick = () => {
-    setIsOpen(false);
+  // Close user dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        userDropdownRef.current &&
+        !userDropdownRef.current.contains(event.target)
+      ) {
+        setUserDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Generate href from label
+  const getHref = (label) =>
+    label === "Home" ? "/" : `/${label.replace(/\s+/g, "-").toLowerCase()}`;
+
+  // Check active link
+  const isActive = (href) => {
+    if (href === "/" && pathname === "/") return true;
+    return href !== "/" && pathname.startsWith(href);
   };
 
   return (
-<nav
-  className="bg-white dark:bg-[#1ea0d4] sticky top-0 z-50 shadow-xl border-b border-sky-200 dark:border-sky-900 transition-colors duration-300 font-inter"
-  aria-label="Main Navigation"
->
-  <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-4 sm:px-6 md:px-10">
-   <Link href="/" className="flex items-center gap-3 group px-2 py-1">
-  <Image
-    src="/logo.png"
-    alt="Logo"
-    width={48}   // increased size for better visibility
-    height={48}
-    className="rounded-full shadow-lg group-hover:scale-110 transition-transform"
-  />
-  <span className="text-sky-900 dark:text-white font-extrabold text-xl tracking-wide uppercase select-none group-hover:text-sky-500 transition-colors">
-    MCityX
-  </span>
-</Link>
+    <nav className="bg-sky-100 dark:bg-gray-900 sticky top-0 z-50 shadow-md font-sans">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16 items-center">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 group">
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={50}
+              height={40}
+              className="rounded-full group-hover:scale-105 transition-transform duration-300"
+              priority
+            />
+            <span className="hidden sm:inline-block text-[#00285E] dark:text-sky-300 font-bold text-xl tracking-wide uppercase">
+              MCityX
+            </span>
+          </Link>
 
-
-    {/* Mobile controls: Dark Mode Toggle + Hamburger */}
-    <div className="lg:hidden flex items-center space-x-4">
-      <ThemeToggle />
-      <Button
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle menu"
-        className="flex justify-center items-center w-9 h-9 focus:outline-none"
-      >
-        <GiHamburgerMenu className="w-6 h-6 text-sky-200 dark:text-black" />
-      </Button>
-    </div>
-
-    {/* Desktop Navigation */}
-    <ul className="hidden lg:flex items-center gap-6">
-      {navItems.map((label) => {
-        const href = label === "Home" ? "/" : `/${label.replace(/\s+/g, "-").toLowerCase()}`;
-        const isActive = pathname === href;
-        return (
-          <li key={label}>
-            <Link
-              href={href}
-              aria-current={isActive ? "page" : undefined}
-              className={`relative font-semibold px-3 py-2 rounded-md transition-all duration-200 outline-none focus:ring-2 ring-sky-400
-                ${isActive
-                  ? "text-sky-700 dark:text-sky-200 bg-sky-100 dark:bg-sky-900 after:absolute after:left-0 after:bottom-0 after:w-full "
-                  : "text-gray-700 dark:text-white hover:bg-sky-200 dark:hover:bg-sky-800 hover:text-sky-700"
-                }`}
-              onClick={handleNavLinkClick}
-            >
-              {label}
-            </Link>
-          </li>
-        );
-      })}
-      {/* Icons */}
-      <li>
-        <Bell className="w-6 h-6 text-sky-700 dark:text-white cursor-pointer hover:text-sky-400 transition-colors" />
-      </li>
-      <li>
-        <Mail className="w-6 h-6 text-sky-700 dark:text-white cursor-pointer hover:text-sky-400 transition-colors" />
-      </li>
-      {/* User Dropdown */}
-      <li className="relative group">
-        <User className="w-7 h-7 text-sky-700 dark:text-white cursor-pointer hover:text-sky-400 transition-colors" />
-        <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-900 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-50">
-          <Link href="/profile" className="block px-4 py-2 hover:bg-sky-100 dark:hover:bg-sky-800">Profile</Link>
-          <Link href="/settings" className="block px-4 py-2 hover:bg-sky-100 dark:hover:bg-sky-800">Settings</Link>
-          <button className="w-full text-left px-4 py-2 hover:bg-sky-100 dark:hover:bg-sky-800">Logout</button>
-        </div>
-      </li>
-      {/* Desktop Theme Toggle - hidden on mobile */}
-      <li className="hidden lg:block">
-        <ThemeToggle className="ml-2" />
-      </li>
-    </ul>
-  </div>
-
-  {/* Mobile Menu */}
-  <div
-    className={`lg:hidden fixed inset-0 bg-[#1ea0d4] dark:bg-gray-900 transition-transform duration-300 z-40 ${
-      isOpen ? "translate-x-0" : "-translate-x-full"
-    }`}
-    tabIndex={isOpen ? 0 : -1}
-    aria-modal="true"
-    role="dialog"
-  >
-    <div className="w-72 h-full bg-[#1ea0d4] dark:bg-gray-900 text-white p-6 flex flex-col space-y-6 relative shadow-2xl rounded-r-2xl">
-      {/* Close Button */}
-      <button
-        onClick={() => setIsOpen(false)}
-        className="absolute top-4 right-4 text-white text-3xl font-bold focus:outline-none hover:text-sky-300 transition"
-        aria-label="Close menu"
-      >
-        &times;
-      </button>
-
-      {/* Navigation Links */}
-      <ul className="flex flex-col gap-4 mt-8">
-        {navItems.map((label) => {
-          const href = label === "Home" ? "/" : `/${label.replace(/\s+/g, "-").toLowerCase()}`;
-          const isActive = pathname === href;
-          return (
-            <li key={label}>
-              <Link
-                href={href}
-                aria-current={isActive ? "page" : undefined}
-                className={`block font-semibold text-lg py-2 px-3 rounded-md transition-all duration-200 outline-none focus:ring-2 ring-sky-400
-                  ${isActive
-                    ? "underline underline-offset-4 bg-sky-900 dark:bg-sky-800"
-                    : "hover:bg-sky-800 dark:hover:bg-sky-700 hover:underline hover:underline-offset-4"
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center space-x-6 flex-1 justify-center">
+            {navItems.map((item) => {
+              const href = getHref(item);
+              return (
+                <Link
+                  key={item}
+                  href={href}
+                  className={`px-3 py-2 rounded-md font-medium transition-colors duration-200 ${
+                    isActive(href)
+                      ? "bg-sky-600 text-white dark:bg-sky-400 dark:text-gray-900"
+                      : "text-sky-800 dark:text-sky-200 hover:bg-sky-200 dark:hover:bg-gray-700"
                   }`}
-                onClick={handleNavLinkClick}
-              >
-                {label}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+                  aria-current={isActive(href) ? "page" : undefined}
+                >
+                  {item}
+                </Link>
+              );
+            })}
+          </div>
 
-      {/* Bottom Icons */}
-      <div className="flex space-x-6 mt-auto pt-4 border-t border-white/20">
-        <Bell className="w-6 h-6 cursor-pointer hover:text-sky-300 transition-colors" />
-        <Mail className="w-6 h-6 cursor-pointer hover:text-sky-300 transition-colors" />
-        <User className="w-7 h-7 cursor-pointer hover:text-sky-300 transition-colors" />
-        <ThemeToggle />
+          {/* Right side: user & theme toggle */}
+          <div className="flex items-center space-x-3">
+            <ThemeToggle />
+
+            {isSignedIn ? (
+              <div className="relative" ref={userDropdownRef}>
+                <button
+                  onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                  aria-haspopup="true"
+                  aria-expanded={userDropdownOpen}
+                  className="flex items-center gap-2 focus:outline-none rounded"
+                >
+                  <UserButton
+                    appearance={{
+                      elements: {
+                        userButtonAvatarBox: "w-8 h-8 rounded-full",
+                      },
+                    }}
+                  />
+                  <span className="hidden sm:inline text-sky-800 dark:text-sky-200 font-medium truncate max-w-[140px]">
+                    {user?.firstName || user?.email || "User"}
+                  </span>
+                </button>
+
+                {userDropdownOpen && (
+                  <div
+                    role="menu"
+                    className="absolute right-0 mt-2 w-44 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md shadow-lg py-1 z-50"
+                  >
+                    <Link
+                      href="/profile"
+                      className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600"
+                      role="menuitem"
+                      onClick={() => setUserDropdownOpen(false)}
+                    >
+                      Profile
+                    </Link>
+                    <Link
+                      href="/settings"
+                      className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600"
+                      role="menuitem"
+                      onClick={() => setUserDropdownOpen(false)}
+                    >
+                      Settings
+                    </Link>
+                    <SignOutButton>
+                      <button
+                        className="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-600"
+                        role="menuitem"
+                        onClick={() => setUserDropdownOpen(false)}
+                      >
+                        Logout
+                      </button>
+                    </SignOutButton>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <SignInButton mode="modal">
+                <Button className="bg-sky-500 hover:bg-sky-600 text-white font-semibold">
+                  Sign In
+                </Button>
+              </SignInButton>
+            )}
+
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
+              className="md:hidden p-2 rounded-md hover:bg-sky-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
+            >
+              {mobileMenuOpen ? (
+                <MdClose className="w-6 h-6 text-sky-800 dark:text-sky-200" />
+              ) : (
+                <GiHamburgerMenu className="w-6 h-6 text-sky-800 dark:text-sky-200" />
+              )}
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</nav>
 
-
-
-
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-sky-50 dark:bg-gray-800 px-4 py-3 border-t border-sky-300 dark:border-gray-700">
+          <nav className="flex flex-col space-y-2">
+            {navItems.map((item) => {
+              const href = getHref(item);
+              return (
+                <Link
+                  key={item}
+                  href={href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block px-4 py-2 rounded-md font-medium transition-colors duration-200 ${
+                    isActive(href)
+                      ? "bg-sky-600 text-white dark:bg-sky-400 dark:text-gray-900"
+                      : "text-sky-800 dark:text-sky-200 hover:bg-sky-200 dark:hover:bg-gray-700"
+                  }`}
+                  aria-current={isActive(href) ? "page" : undefined}
+                >
+                  {item}
+                </Link>
+              );
+            })}
+            {isSignedIn ? (
+              <SignOutButton>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full text-left px-4 py-2 rounded-md bg-red-500 hover:bg-red-600 text-white font-semibold"
+                >
+                  Logout
+                </button>
+              </SignOutButton>
+            ) : (
+              <SignInButton mode="modal">
+                <Button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold"
+                >
+                  Sign In
+                </Button>
+              </SignInButton>
+            )}
+          </nav>
+        </div>
+      )}
+    </nav>
   );
 }

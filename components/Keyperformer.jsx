@@ -10,10 +10,10 @@ import {
 import { GoGoal } from "react-icons/go";
 // import Croatia from "../assets/images/cro.png";
 import England from "../assets/images/eng.png";
-import Norway from "../assets/images/norway.webp";
+
 // import Belgium from "../assets/images/belgium.png";
 // import Portugal from "../assets/images/portugal.webp";
-import player1Image from "../assets/images/haaland.jpg";
+
 // import player2Image from "../assets/images/kdb.jpg";
 // import Doku from "../assets/images/doku.jpg";
 // import player3Image from "../assets/images/silva.jpg";
@@ -64,8 +64,8 @@ const playersData = [
     },
     age: 24,
     position: "ST",
-    image: player1Image,
-    nimg: Norway,
+    image: "/assets/images/haaland.jpg",
+    nimg: "/assets/images/norway.webp",
   },
   {
     name: "Omar Marmoush",
@@ -98,8 +98,8 @@ const playersData = [
     },
     age: 25,
     position: "ST",
-    image: MarmoushImage,
-    nimg: Egypt,
+    image: "/assets/images/marmoush.webp",
+    nimg: "/assets/images/eg.webp",
   },
   {
     name: "Phil Foden",
@@ -132,8 +132,8 @@ const playersData = [
     },
     age: 24,
     position: "AM",
-    nimg: England,
-    image: PhilFoden,
+    nimg: "/assets/images/eng.png",
+    image: "/assets/images/fode.jpg",
   },
   // {
   //   name: "Jeremy Doku",
@@ -376,16 +376,23 @@ const KeyPerformers = () => {
               className="bg-white p-8 rounded-3xl shadow-lg border border-gray-200 transform hover:-translate-y-2 transition-transform duration-300"
             >
               <div className="flex flex-col items-center mb-6">
-                <Image
-                  src={player.image}
-                  alt={player.name}
-                  className="w-32 h-32 rounded-full object-cover border-4 border-black mb-4"
-                />
+             <div className="relative w-32 h-32 rounded-full border-4 border-black overflow-hidden mb-4">
+  <Image
+    src={player.image}
+    alt={player.name}
+    fill
+    quality={100}
+    className="object-cover"
+  />
+</div>
+
                 <div className="text-center">
                   <h3 className="text-2xl font-bold text-[#182d33] uppercase">
                     {player.name}
                   </h3>
                   <Image
+                  width={20} height={20}
+                  quality={100}
                     src={player.nimg}
                     alt="national flag"
                     className="w-10 h-8 mx-auto mb-5 mt-3"
@@ -486,6 +493,8 @@ const KeyPerformers = () => {
                     <div className="flex items-center mb-2">
                       <Image
                         src={premierLeagueLogo}
+                             width={20} height={20}
+                  quality={100}
                         alt="Premier League"
                         className="w-10 h-8 mr-2"
                       />
@@ -523,6 +532,8 @@ const KeyPerformers = () => {
                   <div className="bg-gray-50 p-4 rounded-xl mb-4">
                     <div className="flex items-center mb-2">
                       <Image
+                           width={20} height={20}
+                  quality={100}
                         src={championsLeagueLogo}
                         alt="Champions League"
                         className="w-8 h-8 mr-2"
@@ -558,16 +569,20 @@ const KeyPerformers = () => {
                   </div>
                   {/* National Stats */}
                   <div className="bg-gray-50 p-4 rounded-xl mb-4">
-                    <div className="flex items-center mb-2">
-                      <Image
-                        src={player.nimg}
-                        alt="National Team"
-                        className="w-8 h-8 mr-2"
-                      />
-                      <span className="text-[#3D195B] font-semibold">
-                        National Stats
-                      </span>
-                    </div>
+                  <div className="flex items-center mb-2">
+  <Image
+    width={20}
+    height={20}
+    quality={100}
+    src={player.nimg}
+    alt={`${player.name} National Team Badge`}
+    className="mr-2 object-contain"
+  />
+  <span className="text-[#3D195B] font-semibold">
+    National Stats
+  </span>
+</div>
+
                     <div className="flex justify-between mb-2">
                       <span className="text-gray-600 font-semibold">
                         Matches:
@@ -596,6 +611,8 @@ const KeyPerformers = () => {
                   <div className="bg-gray-50 p-4 rounded-xl mb-4">
                     <div className="flex items-center mb-2">
                       <Image
+                           width={20} height={20}
+                  quality={100}
                         src={Fa}
                         alt="Premier League"
                         className="w-8 h-8 mr-2 rounded-lg"
@@ -633,6 +650,8 @@ const KeyPerformers = () => {
                   <div className="bg-gray-50 p-4 rounded-xl mb-4">
                     <div className="flex items-center mb-2">
                       <Image
+                           width={20} height={20}
+                  quality={100}
                         src={Carabao}
                         alt="Carabao Cup"
                         className="w-8 h-8 mr-2"
@@ -670,6 +689,8 @@ const KeyPerformers = () => {
                   <div className="bg-gray-50 p-4 rounded-xl mb-4">
                     <div className="flex items-center mb-2">
                       <Image
+                           width={20} height={20}
+                  quality={100}
                         src={otherIcon}
                         alt="Other"
                         className="w-8 h-8 mr-2"

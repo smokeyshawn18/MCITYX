@@ -1,43 +1,16 @@
 "use client"
 import PlayerCard from "../../components/PlayerCasrd";
-import PhilFoden from "../../assets/images/fode.jpg";
-import ErlingHaaland from "../../assets/images/haaland.jpg";
-import KevinDeBruyne from "../../assets/images/kdb.jpg";
-import Rodrigo from "../../assets/images/rodriedit.png";
-import BernardoSilva from "../../assets/images/silvab.jpg";
-import Savinho from "../../assets/images/savio.png";
-import JackGrealish from "../../assets/images/jack.jpg";
-import IlkayGundogan from "../../assets/images/gundo.webp";
-import JeremyDoku from "../../assets/images/doku.jpg";
-import JoskoGvardiol from "../../assets/images/gv.jpg";
-import KyleWalker from "../../assets/images/claudio.webp";
-import MateoKovacic from "../../assets/images/kovacic.webp";
-import Rico from "../../assets/images/ricol.jpg";
-import Ruben from "../../assets/images/ruben.jpg";
-import Norway from "../../assets/images/norway.webp";
-import Belgium from "../../assets/images/belgium.png";
-import Portugal from "../../assets/images/portugal.webp";
-import Germany from "../../assets/images/germany.png";
-import England from "../../assets/images/eng.png";
-import Croatia from "../../assets/images/cro.png";
-import Spain from "../../assets/images/spain.png";
-import Brazil from "../../assets/images/brazil.png";
-import Stones from "../../assets/images/stones.jpg";
-import Ederson from "../../assets/images/ederson.webp";
-import Nunes from "../../assets/images/nunes.jpg";
-import James from "../../assets/images/james.webp";
-import Netherlands from "../../assets/images/ned.png";
-import Ake from "../../assets/images/ake.webp";
-import Akanji from "../../assets/images/akanji.jpg";
-import Swi from "../../assets/images/swi.png";
-import Stefan from "../../assets/images/ortega.jpg";
+
+
+
+
+
+
 import { FaHospital } from "react-icons/fa";
-import Bob from "../../assets/images/bob.jpg";
-import Mar from "../../assets/images/marmoush.webp";
+
 import Eg from "../../assets/images/eg.webp";
 import Arg from "../../assets/images/arg.webp";
-import Nico from "../../assets/images/nico.webp";
-import Orielly from "../../assets/images/oriely.webp";
+
 import Link from "next/link.js";
 // Sample player data
 const players = [
@@ -46,9 +19,9 @@ const players = [
     value: 200,
     position: "ST",
     number: 9,
-    country: Norway,
+    country: "/assets/images/norway.webp",
     age: 24,
-    image: ErlingHaaland,
+    image: "/assets/images/haaland.jpg",
     careerStats: {
       goals: 256,
       assists: 53,
@@ -73,9 +46,9 @@ const players = [
     position: "AM",
     value: 27,
     age: 33,
-    country: Belgium,
+    country: "/assets/images/belgium.png",
     number: 17,
-    image: KevinDeBruyne,
+    image: "/assets/images/kdb.jpg",
     careerStats: {
       goals: 177,
       assists: 304,
@@ -100,9 +73,9 @@ const players = [
     position: "AM",
     value: 45,
     number: 20,
-    country: Portugal,
+    country: "/assets/images/portugal.webp",
     age: 30,
-    image: BernardoSilva,
+    image: "/assets/images/silvab.jpg",
     careerStats: {
       goals: 107,
       assists: 114,
@@ -121,8 +94,8 @@ const players = [
     position: "CM",
     value: 7,
     age: 33,
-    country: Germany,
-    image: IlkayGundogan,
+    country: "/assets/images/germany.png",
+    image: "/assets/images/gundo.webp",
 
     careerStats: {
       goals: 107,
@@ -144,8 +117,8 @@ const players = [
     value: 130,
     age: 24,
     // fotmobRating: 7.2,
-    country: England,
-    image: PhilFoden,
+    country: "/assets/images/eng.png",
+    image: "/assets/images/fode.jpg",
     careerStats: {
       goals: 91,
       assists: 61,
@@ -164,8 +137,8 @@ const players = [
     position: "ST",
     value: 75,
     age: 26,
-    country: Eg,
-    image: Mar,
+    country: "/assets/images/eg.webp",
+    image: "/assets/images/marmoush.webp",
 
     careerStats: {
       goals: 41,
@@ -185,8 +158,8 @@ const players = [
     value: 35,
     number: 10,
     age: 29,
-    country: England,
-    image: JackGrealish,
+    country: "/assets/images/eng.png",
+    image: "/assets/images/jack.jpg",
     careerStats: {
       goals: 53,
       assists: 74,
@@ -211,8 +184,8 @@ const players = [
     position: "DM",
     value: 25,
     age: 30,
-    country: Croatia,
-    image: MateoKovacic,
+    country: "/assets/images/cro.png",
+    image: "/assets/images/kovacic.webp",
     careerStats: {
       goals: 32,
       assists: 55,
@@ -232,7 +205,7 @@ const players = [
     value: 130,
     age: 28,
     injury: "Torn ACL",
-    country: Spain,
+    country: "/assets/images/spain.png",
     injured: false,
     injuryDetails: {
       type: "Cruciate Ligament Injury",
@@ -240,7 +213,7 @@ const players = [
       tm: "Sept 22, 2024",
     },
     injuryIcon: FaHospital,
-    image: Rodrigo,
+    image: "/assets/images/rodriedit.png",
     careerStats: {
       goals: 35,
       assists: 39,
@@ -259,8 +232,8 @@ const players = [
     position: "LW",
     value: 55,
     age: 22,
-    country: Belgium,
-    image: JeremyDoku,
+    country: "/assets/images/belgium.png",
+    image: "/assets/images/doku.jpg",
     careerStats: {
       goals: 26,
       assists: 38,
@@ -279,8 +252,7 @@ const players = [
     position: "CB",
     value: 32,
     age: 30,
-    country: Netherlands,
-    image: Ake,
+    image: "/assets/images/ake.webp",
     careerStats: {
       goals: 27,
       assists: 13,
@@ -304,9 +276,9 @@ const players = [
     position: "CB",
     number: 5,
     value: 30,
-    country: England,
+    country: "/assets/images/eng.png",
     age: 30,
-    image: Stones,
+    image: "/assets/images/stones.jpg",
     careerStats: {
       goals: 21,
       assists: 10,
@@ -331,8 +303,8 @@ const players = [
     position: "LB",
     value: 75,
     age: 22,
-    country: Croatia,
-    image: JoskoGvardiol,
+    country: "/assets/images/cro.png",
+    image: "/assets/images/gv.jpg",
     careerStats: {
       goals: 16,
       assists: 9,
@@ -351,8 +323,8 @@ const players = [
     number: 87,
     value: 18,
     age: 21,
-    country: England,
-    image: James,
+    country: "/assets/images/eng.png",
+    image: "/assets/images/james.webp",
     careerStats: {
       goals: 14,
       assists: 7,
@@ -371,8 +343,8 @@ const players = [
     position: "CB",
     value: 32,
     age: 29,
-    country: Swi,
-    image: Akanji,
+    country: "/assets/images/swi.png",
+    image: "/assets/images/akanji.jpg",
     careerStats: {
       goals: 20,
       assists: 8,
@@ -397,8 +369,10 @@ const players = [
     position: "CB",
     value: 70,
     age: 28,
-    country: Portugal,
-    image: Ruben,
+    country: "/assets/images/portugal.webp",
+    image: "/assets/images/ruben.jpg",
+  
+  
     careerStats: {
       goals: 19,
       assists: 11,
@@ -424,8 +398,8 @@ const players = [
     position: "RW",
     value: 55,
     age: 20,
-    country: Brazil,
-    image: Savinho,
+    country: "/assets/images/brazil.png",
+    image: "/assets/images/savio.png",
     careerStats: {
       goals: 16,
       assists: 15,
@@ -442,10 +416,10 @@ const players = [
     name: "Matheus Nunes",
     position: "CM",
     number: 27,
-    country: Portugal,
+    country: "/assets/images/portugal.webp",
     value: 35,
     age: 26,
-    image: Nunes,
+    image: "/assets/images/nunes.jpg",
     careerStats: {
       goals: 11,
       assists: 15,
@@ -465,7 +439,7 @@ const players = [
     value: 40,
     age: 23,
     injury: "Torn ACL",
-    country: Spain,
+    country: "/assets/images/spain.png",
     injured: false,
     injuryDetails: {
       type: "Cruciate Ligament Injury",
@@ -473,7 +447,7 @@ const players = [
       tm: "Sept 22, 2024",
     },
     injuryIcon: FaHospital,
-    image: Nico,
+    image: "/assets/images/nico.webp",
     careerStats: {
       goals: 5,
       assists: 7,
@@ -493,8 +467,8 @@ const players = [
     value: 7,
     age: 20,
     // fotmobRating: 7.2,
-    country: England,
-    image: Orielly,
+    country: "/assets/images/eng.png",
+    image: "/assets/images/oriely.webp",
     careerStats: {
       goals: 0,
       assists: 0,
@@ -513,8 +487,8 @@ const players = [
     position: "RB",
     value: 40,
     age: 20,
-    country: England,
-    image: Rico,
+    country: "/assets/images/eng.png",
+    image: "/assets/images/ricol.jpg",
     careerStats: {
       goals: 3,
       assists: 5,
@@ -531,10 +505,10 @@ const players = [
     name: "Oscar Bobb",
     position: "RW",
     number: 52,
-    country: Norway,
+    country: "/assets/images/norway.webp",
     value: 25,
     age: 21,
-    image: Bob,
+    image: "/assets/images/bob.jpg",
     careerStats: {
       goals: 4,
       assists: 3,
@@ -559,9 +533,9 @@ const players = [
     position: "AM",
     number: 2,
     value: 18,
-    country: Arg,
+    country: "/assets/images/arg.webp",
     age: 19,
-    image: KyleWalker,
+    image: "/assets/images/claudio.webp",
     careerStats: {
       goals: 4,
       assists: 8,
@@ -586,8 +560,8 @@ const players = [
     position: "GK",
     value: 25,
     age: 31,
-    country: Brazil,
-    image: Ederson,
+    country: "/assets/images/brazil.png",
+    image: "/assets/images/ederson.webp",
     careerStats: {
       goalsConceded: 388,
       cleanSheets: 220,
@@ -606,8 +580,9 @@ const players = [
     position: "GK",
     value: 9,
     age: 31,
-    country: Germany,
-    image: Stefan,
+    country: "/assets/images/germany.png",
+ 
+    image: "/assets/images/ortega.jpg",
     careerStats: {
       goalsConceded: 414,
       cleanSheets: 92,

@@ -1,12 +1,7 @@
 "use client"
-import foundationImg from "../../assets/images/found.jpg";
-import renameImg from "../../assets/images/logo.svg";
-import firstTitleImg from "../../assets/images/firstpl.webp";
-import trebleImg from "../../assets/images/foundation.webp";
+
 import stadiumImg from "../../assets/images/etihad.jpg";
-import leagueCupImg from "../../assets/images/league.png";
-import Goat from "../../assets/images/pep.jpg";
-import Evolution from "../../assets/images/logoevo.jpg";
+
 // import TopScorers from "../../components/TopScorers";
 import Image from "next/image";
 
@@ -16,28 +11,28 @@ const timelineData = [
     title: "Foundation",
     description:
       "Manchester City’s roots began in East Manchester, starting as St Mark’s West Gorton.",
-    image: foundationImg,
+    image: "/assets/images/found.jpg",
     textColor: "#004C8C",
   },
   {
     year: "1894",
     title: "Renamed",
     description: "The club was renamed to Manchester City.",
-    image: renameImg,
+    image: "/assets/images/logo.svg",
     textColor: "#1C2C5B",
   },
   {
     year: "1968",
     title: "First League Title",
     description: "City wins their first league title.",
-    image: firstTitleImg,
+    image: "/assets/images/firstpl.webp",
     textColor: "#1C2C5B",
   },
   {
     year: "Logo evolution",
     title: "",
     description: "When did you start supporting Man City?",
-    image: Evolution,
+    image: "/assets/images/foundation.webp",
     textColor: "#1C2C5B",
   },
   {
@@ -45,7 +40,7 @@ const timelineData = [
     title: "Pep Guardiola",
     description:
       "Manchester City has won 18 trophies during Pep Guardiola’s era.",
-    image: Goat,
+    image: "/assets/images/pep.jpg",
     textColor: "#1C2C5B",
   },
   {
@@ -53,7 +48,7 @@ const timelineData = [
     title: "Treble Winners",
     description:
       "Manchester City wins the Premier League, FA Cup, and Champions League.",
-    image: trebleImg,
+    image: "/assets/images/foundation.webp",
     textColor: "#1C2C5B",
   },
   {
@@ -67,8 +62,8 @@ const timelineData = [
     year: "2020-2024",
     title: "Four in a row",
     description:
-      "Manchester City dominated the League Cup, winning it FOUR TIMES IN A ROW.",
-    image: leagueCupImg,
+      "Manchester City dominated the League, winning it FOUR TIMES IN A ROW.",
+    image: "/assets/images/league.png",
     textColor: "#1C2C5B",
   },
 ];
@@ -89,22 +84,31 @@ function History() {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
       {/* Timeline Cards */}
       {timelineData.map((item, index) => (
-        <div
-          key={index}
-          className="bg-white dark:bg-gray-900 text-[#004C8C] dark:text-white border border-[#004C8C] dark:border-gray-700 rounded-2xl shadow-lg p-8 transition duration-300 transform hover:scale-105 hover:shadow-2xl"
-        >
-          <Image
-            src={item.image}
-            alt={item.title}
-            className="w-full h-72 object-cover rounded-2xl mb-4"
-          />
-          <h3 className="text-2xl font-extrabold mb-2 text-[#1C2C5B] dark:text-white text-center">
-            {item.year}
-          </h3>
-          <p className="text-lg font-semibold text-center">
-            <strong className="uppercase">{item.title}-</strong> {item.description}
-          </p>
-        </div>
+      <div
+  key={index}
+  className="bg-white dark:bg-gray-900 text-[#004C8C] dark:text-white border border-[#004C8C] dark:border-gray-700 rounded-2xl shadow-md p-6 sm:p-8 transition-transform duration-300 hover:scale-105 hover:shadow-xl flex flex-col items-center"
+>
+  <div className="w-full max-w-[350px] h-[200px] rounded-2xl overflow-hidden mb-6">
+    <Image
+      src={item.image}
+      alt={item.title}
+      width={350}
+      height={100}
+      quality={100}
+      className="object-cover"
+    />
+  </div>
+  
+  <h3 className="text-3xl font-extrabold mb-3 text-[#1C2C5B] dark:text-white text-center tracking-wide">
+    {item.year}
+  </h3>
+  
+  <p className="text-base font-semibold text-center max-w-[320px] text-[#003865] dark:text-gray-300 leading-relaxed">
+    <span className="uppercase font-bold">{item.title}- </span>
+    {item.description}
+  </p>
+</div>
+
       ))}
     </div>
   </div>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://mcityx.vercel.app/news</loc><lastmod>2025-05-24T20:12:50.365Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://mcityx.vercel.app/history</loc><lastmod>2025-05-24T20:12:50.366Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://mcityx.vercel.app/player-card</loc><lastmod>2025-05-24T20:12:50.366Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://mcityx.vercel.app</loc><lastmod>2025-05-24T20:12:50.366Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://mcityx.vercel.app/schedule</loc><lastmod>2025-05-24T20:12:50.366Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://mcityx.vercel.app/trophy-cabinet</loc><lastmod>2025-05-24T20:12:50.366Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://mcityx.vercel.app/results</loc><lastmod>2025-05-24T20:12:50.366Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://mcityx.vercel.app</loc><lastmod>2025-05-25T19:36:58.826Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://mcityx.vercel.app/player-card</loc><lastmod>2025-05-25T19:36:58.826Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://mcityx.vercel.app/results</loc><lastmod>2025-05-25T19:36:58.827Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://mcityx.vercel.app/schedule</loc><lastmod>2025-05-25T19:36:58.827Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://mcityx.vercel.app/trophy-cabinet</loc><lastmod>2025-05-25T19:36:58.827Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://mcityx.vercel.app/history</loc><lastmod>2025-05-25T19:36:58.827Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://mcityx.vercel.app/news</loc><lastmod>2025-05-25T19:36:58.827Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

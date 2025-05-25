@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
-import PREMIER_LEAGUE_LOGO from '../assets/images/prem.webp'
+
 import Image from "next/image";
 
 // const PREMIER_LEAGUE_LOGO =
@@ -125,9 +125,10 @@ export default function ManCityStandings() {
               <TableCell className="text-left pl-4 font-semibold text-[#1A4268] dark:text-white flex items-center gap-2">
                 {s.competitionCode === "PL" && (
                   <Image
-                    src={PREMIER_LEAGUE_LOGO}
+                    src="/assets/images/prem.webp"
+                    width={20} height={20} quality={100}
                     alt="Premier League"
-                    className="w-6 h-6"
+                    className="object-contain"
                     loading="lazy"
                   />
                 )}

@@ -39,14 +39,17 @@ const PlayerCard = ({ player }) => {
 
   return (
   <div className="relative bg-white dark:bg-gray-950 shadow-lg rounded-lg overflow-hidden transform transition-transform hover:scale-105 hover:shadow-3xl duration-300 ease-in-out">
-  {/* Player Image */}
-  <div className="relative w-24 h-24 mx-auto mt-4 rounded-full overflow-hidden bg-[#6accf5] shadow-lg clip-star">
-    <Image
-      src={player.image}
-      alt={player.name}
-      className="absolute inset-0 w-full h-full object-cover origin-center"
-    />
-  </div>
+{/* Player Image */}
+<div className="relative w-24 h-24 mx-auto mt-4 rounded-full overflow-hidden bg-[#6accf5] shadow-lg clip-star">
+  <Image
+    src={player.image}
+    alt={player.name}
+    quality={100}
+    fill
+    className="object-cover"
+  />
+</div>
+
 
   {/* Player Info */}
   <div className="p-6 bg-white dark:bg-gray-950">
@@ -76,10 +79,12 @@ const PlayerCard = ({ player }) => {
     </p>
 
     <Image
-      src={player.country}
-      alt={player.country}
-      className="w-10 h-8 mx-auto mb-4"
-    />
+  src={player.country}
+  alt={player.country}
+  width={40}
+  height={32}
+  className="mx-auto mb-4 object-contain"
+/>
 
     <p className="text-[#10252b] dark:text-white mb-6 text-2xl font-bold text-center uppercase">
       {player.age}

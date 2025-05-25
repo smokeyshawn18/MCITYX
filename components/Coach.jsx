@@ -63,9 +63,16 @@ export default function CoachProfile() {
       <div className="w-full max-w-6xl bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 sm:p-10 flex flex-col lg:flex-row gap-8 lg:gap-12">
         {/* Left: Coach Profile */}
         <div className="flex flex-col items-center lg:items-start gap-4 flex-shrink-0 w-full lg:w-72">
-          <div className="relative w-36 h-36 sm:w-48 sm:h-48 rounded-full border-8 border-sky-300 dark:border-sky-500 shadow-lg overflow-hidden">
-            <Image src={Guardiola} alt="Pep Guardiola" className="object-cover w-full h-full" priority />
-          </div>
+         <div className="relative w-48 h-48 rounded-full border-8 border-sky-300 dark:border-sky-500 shadow-lg overflow-hidden">
+  <Image
+    src="/assets/images/pepp.jpg"
+    alt="Pep Guardiola"
+    fill
+    className="object-cover"
+    priority
+  />
+</div>
+
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white text-center lg:text-left">
             Pep Guardiola
           </h2>
