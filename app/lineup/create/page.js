@@ -1,6 +1,7 @@
 "use client"
+
 import LineupEditor from "@/components/LineupEditor";
-import { Button } from "@/components/ui/button";
+
 import { SignInButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 
@@ -34,7 +35,7 @@ export default function CreateLineup() {
         </h1>
      
         <LineupEditor />
-
+       
       </div>
     </div>
   );

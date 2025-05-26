@@ -3,10 +3,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { SignInButton, useUser } from '@clerk/nextjs';
 import Link from 'next/link';
-import { XCircle, Trash2, Shirt } from 'lucide-react';
+import { toPng } from 'html-to-image';
+import { XCircle, Trash2, Shirt, ArrowDownToLine } from 'lucide-react';
 import { Button } from './ui/button';
+import { downloadLineupImage } from '@/utils/downloadLineup';
 
 const MAX_PLAYERS = 11;
+
 
 const desktopPositions = {
   GK: { x: 50, y: 92 },
@@ -64,6 +67,9 @@ function useIsMobile(breakpoint = 640) {
 }
 
 export default function LineupEditor({ lineupId = null }) {
+
+
+
   const { user, isSignedIn } = useUser();
   const isMobile = useIsMobile();
 
@@ -77,6 +83,10 @@ export default function LineupEditor({ lineupId = null }) {
 
   const fieldRef = useRef(null);
   const editPanelRef = useRef(null);
+
+   const handleDownloadClick = () => {
+    downloadLineupImage(fieldRef.current);
+  };
 
   useEffect(() => {
     if (lineupId) loadLineup();
@@ -251,7 +261,7 @@ export default function LineupEditor({ lineupId = null }) {
         <p className='mb-4'> Please sign in to create or edit lineups.</p>
        
 
-        <Button className="bg-black text-white font-bold uppercase">
+        <Button className="bg-black text-white font-bold uppercase ">
            <SignInButton mode='modal'/>
         </Button>
        
@@ -301,11 +311,20 @@ export default function LineupEditor({ lineupId = null }) {
         ))}
       </div>
 
+   
       {/* Right: Edit Panel */}
       <div
         className="flex-grow max-w-lg mx-auto lg:mx-0 flex flex-col gap-6"
         ref={editPanelRef}
       >
+            <button
+  onClick={handleDownloadClick}
+  className="mt-6 px-5 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold rounded-xl shadow-lg hover:from-blue-700 hover:to-blue-600 transition-all duration-300 flex items-center gap-2"
+>
+  <ArrowDownToLine className="w-5 h-5" />
+  Download Lineup Field
+</button>
+
         <h2 className="text-2xl sm:text-3xl font-semibold mb-4 border-b border-gray-700 pb-2">
           Edit Lineup
         </h2>
