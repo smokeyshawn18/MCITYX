@@ -301,7 +301,7 @@ export default function LineupEditor({ lineupId = null }) {
               if (e.key === 'Enter' || e.key === ' ') setSelectedPlayerId(player.id);
             }}
           >
-            <div className="w-10 h-10 xs:w-12 xs:h-12 sm:w-16 sm:h-16 rounded-full bg-blue-600 border-4 border-white flex items-center justify-center font-bold text-base xs:text-lg sm:text-xl shadow-lg hover:bg-blue-700 transition">
+            <div className="w-10 h-10 xs:w-12 xs:h-12 sm:w-16 sm:h-16 rounded-full bg-[#3c87c5] border-4 border-white flex items-center justify-center font-bold text-base xs:text-lg sm:text-xl shadow-lg hover:bg-sky-700 transition">
               {player.number}
             </div>
             <div className="mt-1 text-xs xs:text-sm sm:text-base font-semibold text-white truncate max-w-[60px] xs:max-w-[80px] sm:max-w-[100px]">
