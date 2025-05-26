@@ -1,37 +1,42 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import { Clock, Loader2, PlayCircle } from "lucide-react";
+import { useRouter } from "next/navigation"; // Assuming Next.js app router
 
 const LiveMatches = () => {
   const [liveMatches, setLiveMatches] = useState([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
-useEffect(() => {
-  fetch("/api/matches")
-    .then(async (response) => {
-      if (!response.ok) {
-        const errorBody = await response.json().catch(() => ({}));
-        throw new Error(`Fetch failed: ${response.status} - ${errorBody.error || 'Unknown error'}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      if (data.matches && Array.isArray(data.matches)) {
-        const currentMatches = data.matches.filter(
-          (match) => match.status === "IN_PLAY" || match.status === "PAUSED"
-        );
-        setLiveMatches(currentMatches);
-      } else {
-        console.error("Matches data not as expected:", data);
-      }
-      setLoading(false);
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error.message);
-      setLoading(false);
-    });
-}, []);
-
+  useEffect(() => {
+    fetch("/api/matches")
+      .then(async (response) => {
+        if (!response.ok) {
+          const errorBody = await response.json().catch(() => ({}));
+          throw new Error(
+            `Fetch failed: ${response.status} - ${
+              errorBody.error || "Unknown error"
+            }`
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.matches && Array.isArray(data.matches)) {
+          const currentMatches = data.matches.filter(
+            (match) => match.status === "IN_PLAY" || match.status === "PAUSED"
+          );
+          setLiveMatches(currentMatches);
+        } else {
+          console.error("Matches data not as expected:", data);
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error.message);
+        setLoading(false);
+      });
+  }, []);
 
   // Format match time (assuming API provides lastUpdated or similar)
   const formatTime = (utcDate) => {
@@ -103,13 +108,11 @@ useEffect(() => {
                     {/* Competition and Time */}
                     <div className="space-y-4">
                       <div className="flex items-center justify-center gap-3">
-                        <div className="flex items-center gap-2">
-                          <img
-                            src={competition.emblem}
-                            alt={competition.name}
-                            className="w-20 h-20 object-contain"
-                          />
-                        </div>
+                        <img
+                          src={competition.emblem}
+                          alt={competition.name}
+                          className="w-20 h-20 object-contain"
+                        />
                       </div>
                       <div className="flex items-center justify-center gap-3">
                         <Clock className="w-5 h-5 text-[#1A4268]" />
@@ -119,15 +122,18 @@ useEffect(() => {
                       </div>
                       <div className="flex items-center justify-center">
                         <span className="text-[#1A4268] text-sm md:text-base font-bold bg-white/30 px-3 py-1 rounded-full">
-                          {status === "IN_PLAY"
-                            ? "Playing Now"
-                            : "Match Paused"}
+                          {status === "IN_PLAY" ? "Playing Now" : "Match Paused"}
                         </span>
                       </div>
                     </div>
 
                     {/* Button */}
-                    <button className="w-full bg-[#1E90FF] hover:bg-[#1A4268] text-white py-2 px-4 rounded-lg font-bold transition-all duration-200 flex items-center justify-center gap-2 hover:scale-105">
+                    <button
+                      className="w-full bg-[#1E90FF] hover:bg-[#1A4268] text-white py-2 px-4 rounded-lg font-bold transition-all duration-200 flex items-center justify-center gap-2 hover:scale-105"
+                      onClick={() => {
+                        // Optional: Implement live updates navigation or modal here
+                      }}
+                    >
                       Live Updates
                     </button>
                   </div>
@@ -136,8 +142,19 @@ useEffect(() => {
             })}
           </div>
         ) : (
-          <div className="text-center text-white/80 py-20">
-            <p className="text-lg font-medium">No live matches currently.</p>
+          <div className="max-w-md mx-auto bg-sky-100 text-black rounded-xl shadow-lg p-8 text-center  bg-opacity-90 dark:bg-gray-900 dark:text-white">
+            <p className="text-2xl font-semibold mb-4">
+              No live matches currently.
+            </p>
+            <p className="mb-8 ">
+              Stay tuned! Check out upcoming fixtures.
+            </p>
+            <button
+              onClick={() => router.push("/schedule")}
+              className="inline-block bg-[#1E90FF] hover:bg-[#1A4268] text-white font-semibold py-3 px-8 rounded-lg transition-transform duration-200 hover:scale-105"
+            >
+              View Fixtures
+            </button>
           </div>
         )}
       </div>

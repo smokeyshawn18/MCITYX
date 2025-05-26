@@ -36,7 +36,7 @@ const playersData = [
   {
     name: "Erling Haaland",
     matches: {
-      premierLeague: 30,
+      premierLeague: 31,
       championsLeague: 9,
       other: 1,
       Fa: 3,
@@ -45,7 +45,7 @@ const playersData = [
       nationalStats: 8,
     },
     goals: {
-      premierLeague: 21,
+      premierLeague: 22,
       championsLeague: 8,
       Fa: 1,
       frank: 0,
@@ -70,7 +70,7 @@ const playersData = [
   {
     name: "Omar Marmoush",
     matches: {
-      premierLeague: 16,
+      premierLeague: 17,
       championsLeague: 2,
       other: 0,
       Fa: 3,
@@ -104,7 +104,7 @@ const playersData = [
   {
     name: "Phil Foden",
     matches: {
-      premierLeague: 28,
+      premierLeague: 29,
       championsLeague: 9,
       other: 0,
       Fa: 5,

@@ -42,6 +42,7 @@ const PlayerCard = ({ player }) => {
 {/* Player Image */}
 <div className="relative w-24 h-24 mx-auto mt-4 rounded-full overflow-hidden bg-[#6accf5] shadow-lg clip-star">
   <Image
+  
     src={player.image}
     alt={player.name}
     quality={100}

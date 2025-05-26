@@ -5,6 +5,8 @@ import Image from "next/image";
 
 
 function Footer() {
+
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -159,3 +161,5 @@ function Footer() {
 }
 
 export default Footer;
+
+

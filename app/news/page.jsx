@@ -1,4 +1,5 @@
 "use client"
+
 import { useState, useEffect } from "react";
 
 function Happening() {
@@ -34,6 +35,8 @@ useEffect(() => {
       <h1 className="text-4xl sm:text-5xl font-bold text-sky-500  mb-10 text-center uppercase tracking-widest">
       News
       </h1>
+
+
 
       {loading ? (
         <p className="text-center text-gray-700 text-xl">Loading...</p>

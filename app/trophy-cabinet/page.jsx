@@ -8,6 +8,7 @@ import supercup from "../../assets/images/super.png";
 import fifa from "../../assets/images/fifaa.jpg";
 import carabao from "../../assets/images/carabao.webp";
 import Image from "next/image";
+
 // Add images for all trophies
 
 const TrophyCabinet = () => {
@@ -100,6 +101,7 @@ const TrophyCabinet = () => {
 
   return (
    <section className="py-16 bg-sky-100 dark:bg-gray-950">
+    
   <div className="container mx-auto">
     <h2 className="text-4xl text-sky-900 dark:text-white font-extrabold text-center mb-8 uppercase tracking-wider">
       Trophy Cabinet
