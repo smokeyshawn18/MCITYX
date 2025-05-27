@@ -1,5 +1,6 @@
 "use client"
 
+import ProtectedRoute from "@/components/ProtectedRoute";
 import { useState, useEffect } from "react";
 
 function Happening() {
@@ -31,7 +32,8 @@ useEffect(() => {
 
 
   return (
-    <div className="bg-sky-100 dark:bg-sky-950 dark:text-white p-8 sm:p-12   mx-0 max-w-full">
+  <ProtectedRoute>
+      <div className="bg-sky-100 dark:bg-sky-950 dark:text-white p-8 sm:p-12   mx-0 max-w-full">
       <h1 className="text-4xl sm:text-5xl font-bold text-sky-500  mb-10 text-center uppercase tracking-widest">
       News
       </h1>
@@ -88,6 +90,7 @@ useEffect(() => {
         </button>
       </div>
     </div>
+  </ProtectedRoute>
   );
 }
 

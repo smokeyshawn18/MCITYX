@@ -14,6 +14,12 @@ const nextConfig = {
         port: '',
         pathname: '/football/teams/**',
       },
+        {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+        port: '',
+        pathname: '/football/teams/**',
+      },
     ],
   },
 };

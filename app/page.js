@@ -13,6 +13,7 @@ import Kit from "@/components/Kit";
 import KeyPerformers from "@/components/Keyperformer";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
+import Assistant from "@/components/Assistant";
 
 
 
@@ -110,8 +111,12 @@ const Home = () => {
 
     <section className="bg-[#f0f8ff] dark:bg-gray-950 dark:text-white text-gray-800 py-12 lg:py-24">
     
-     
+      
       <div className="relative container mx-auto px-4 lg:px-8">
+     
+     
+     {/* <Assistant/> */}
+     <br/>
         <LiveMatches />
 
         <div className="relative h-80 sm:h-96 mb-4">

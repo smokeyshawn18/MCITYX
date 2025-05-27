@@ -3,7 +3,7 @@
 import LineupEditor from "@/components/LineupEditor";
 
 import { SignInButton, useUser } from "@clerk/nextjs";
-import Link from "next/link";
+
 
 
 export default function CreateLineup() {

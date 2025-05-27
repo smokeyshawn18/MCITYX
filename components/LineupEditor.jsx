@@ -2,11 +2,10 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { SignInButton, useUser } from '@clerk/nextjs';
-import Link from 'next/link';
-import { toPng } from 'html-to-image';
-import { XCircle, Trash2, Shirt, ArrowDownToLine } from 'lucide-react';
+import { XCircle, Shirt, ArrowDownToLine } from 'lucide-react';
 import { Button } from './ui/button';
 import { downloadLineupImage } from '@/utils/downloadLineup';
+
 
 const MAX_PLAYERS = 11;
 
