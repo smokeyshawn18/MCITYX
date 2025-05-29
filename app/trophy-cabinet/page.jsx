@@ -17,78 +17,56 @@ const TrophyCabinet = () => {
   const trophies = [
     {
       name: "Premier League",
-      image: premierLeague,
+      image: "/assets/images/pl.jpeg",
       wins: 10,
       years: [
-        "1936/37",
-        "1967/68",
-        "2011/12",
-        "2013/14",
-        "2017/18",
-        "2018/19",
-        "2020/21",
-        "2021/22",
-        "2022/23",
-        "2023/24",
+        "1936/37", "1967/68", "2011/12", "2013/14", "2017/18", 
+        "2018/19", "2020/21", "2021/22", "2022/23", "2023/24"
       ],
+      gradient: "from-sky-400 to-blue-600"
     },
-
     {
       name: "FA Cup",
-      image: faCup,
+      image: "/assets/images/fa-cup.jpg",
       wins: 7,
-      years: [
-        "1903/04",
-        "1933/34",
-        "1955/56",
-        "1968/69",
-        "2010/11",
-        "2018/19",
-        "2021/22",
-      ],
+      years: ["1903/04", "1933/34", "1955/56", "1968/69", "2010/11", "2018/19", "2021/22"],
+      gradient: "from-red-400 to-red-600"
     },
-
     {
       name: "Champions League",
-      image: champ,
+      image: "/assets/images/cl.jpg",
       wins: 1,
       years: ["2022/23"],
+      gradient: "from-purple-400 to-indigo-600"
     },
     {
-      name: "Fifa Club World Cup",
-      image: fifa,
+      name: "FIFA Club World Cup",
+      image: "/assets/images/fifaa.jpg",
       wins: 1,
       years: ["2023"],
+      gradient: "from-yellow-400 to-orange-500"
     },
-
     {
       name: "Community Shield",
-      image: shield,
+      image: "/assets/images/shield.jpg",
       wins: 7,
       years: ["1937", "1968", "1972", "2012", "2018", "2019", "2024"],
+      gradient: "from-gray-400 to-gray-600"
     },
     {
       name: "UEFA Super Cup",
-      image: supercup,
+      image: "/assets/images/super.png",
       wins: 1,
       years: ["2022/23"],
+      gradient: "from-blue-400 to-purple-600"
     },
     {
       name: "Carabao Cup",
-      image: carabao,
+      image: "/assets/images/carabao.webp",
       wins: 8,
-      years: [
-        "1969/70",
-        "1975/76",
-        "2013/14",
-        "2015/16",
-        "2017/18",
-        "2018/19",
-        "2019/20",
-        "2020/21",
-      ],
-    },
-    // Add all other trophies with their respective winning years in season format
+      years: ["1969/70", "1975/76", "2013/14", "2015/16", "2017/18", "2018/19", "2019/20", "2020/21"],
+      gradient: "from-green-400 to-teal-600"
+    }
   ];
 
   const handleClick = (trophy) => {
@@ -118,10 +96,12 @@ const TrophyCabinet = () => {
           onClick={() => handleClick(trophy)}
         >
           <Image
-         
+         width={400}
+         height={100}
+         quality={100}
             src={trophy.image}
             alt={trophy.name}
-            className="w-full h-56 object-cover rounded-t-lg transition-shadow duration-300 hover:shadow-2xl"
+            className=" object-cover rounded-t-lg transition-shadow duration-300 hover:shadow-2xl"
           />
           <div className="p-6 text-center">
             <h3 className="text-2xl font-bold text-[#004C8C] dark:text-white mb-2">
