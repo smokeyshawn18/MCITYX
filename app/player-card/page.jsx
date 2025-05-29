@@ -242,6 +242,7 @@ const players = [
     position: "CB",
     value: 32,
     age: 30,
+    country: "/assets/images/ned.png",
     image: "/assets/images/ake.webp",
     careerStats: {
       goals: 27,

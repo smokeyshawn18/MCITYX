@@ -1,242 +1,221 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Calendar, Clock, Loader2 } from "lucide-react";
+import { useState, useEffect, useMemo } from "react";
+import { Calendar, Loader2, RotateCcw } from "lucide-react";
 import Image from "next/image";
-
 import { Button } from "@/components/ui/button";
-import ManCityStandings from "@/components/PointsTable";
+import toast, { Toaster } from "react-hot-toast";
 
-import ManCitySchedule from "@/components/Schedule";
-import FifaCwcSchedule from "@/components/Schedule";
-
+// Import modular components
+import MatchCard from "./components/MatchCard";
+import { manualMatches, tabs, getDaysToGo } from "./components/manualMatches";
+import { formatDate, TIME_FORMATS, TimeToggle } from "./components/timeUtils";
 
 const Schedule = () => {
-  const [matches, setMatches] = useState([]);
+  const [apiMatches, setApiMatches] = useState([]);
+  const [selectedTab, setSelectedTab] = useState("fifa");
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [selectedMatchId, setSelectedMatchId] = useState(null);
-  const [showPrediction, setShowPrediction] = useState(false);
+  const [apiError, setApiError] = useState(false);
+  const [timeFormat, setTimeFormat] = useState(TIME_FORMATS.LOCAL_12);
 
-  // useEffect(() => {
-  //   fetch("/api/matches")
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error("Season 2024/25 has ended! @smokeyshawn18");
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       if (data.matches && Array.isArray(data.matches)) {
-  //         // Filter upcoming matches with status "TIMED"
-  //         const apiMatches = data.matches.filter(
-  //           (match) => match.status === "TIMED"
-  //         );
+  useEffect(() => {
+    const fetchMatches = async () => {
+      try {
+        const response = await fetch("/api/matches");
+        const data = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${data.message || 'Failed to fetch'}`);
+        }
 
-  //         // You can add manual matches here if needed, matching API structure
-  //         const manualMatches = [
-  //           // Example manual match structure:
-  //           // {
-  //           //   id: "99901",
-  //           //   homeTeam: { name: "Man City", crest: "/images/mcity.png" },
-  //           //   awayTeam: { name: "Crystal Palace", crest: "/images/crystal_palace.png" },
-  //           //   competition: { name: "Final", emblem: "/images/final_emblem.png" },
-  //           //   utcDate: "2025-05-17T14:00:00Z",
-  //           //   status: "TIMED",
-  //           // },
-  //         ];
+        const upcoming = Array.isArray(data?.matches)
+          ? data.matches.filter((m) => m.status === "TIMED")
+          : [];
+        
+        upcoming.sort((a, b) => new Date(a.utcDate) - new Date(b.utcDate));
+        setApiMatches(upcoming);
+        setApiError(false);
+        
+        if (upcoming.length > 0) {
+          toast.success(`Loaded ${upcoming.length} matches from API`);
+        }
+      } catch (error) {
+        console.error("API Error:", error);
+        setApiMatches([]);
+        setApiError(true);
+        toast.error("Could not connect to matches API");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  //         const allMatches = [...apiMatches, ...manualMatches];
+    fetchMatches();
+  }, []);
 
-  //         // Sort ascending by date
-  //         allMatches.sort((a, b) => new Date(a.utcDate) - new Date(b.utcDate));
+  // Categorize API matches by competition
+  const categorizeApiMatches = useMemo(() => {
+    const categorized = {
+      premier: [],
+      champions: []
+    };
 
-  //         setMatches(allMatches);
-  //         setError(null);
-  //       } else {
-  //         setError("Unexpected data format received from server.");
-  //       }
-  //       setLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //       setError(
-  //          "Season 2024/25 has ended! @smokeyshawn18"
-  //       );
-  //       setLoading(false);
-  //     });
-  // }, []);
+    apiMatches.forEach(match => {
+      const compName = match.competition.name.toLowerCase();
+      if (compName.includes("premier") || compName.includes("pl") || compName.includes("epl")) {
+        categorized.premier.push(match);
+      } else if (compName.includes("champions") || compName.includes("ucl") || compName.includes("cl")) {
+        categorized.champions.push(match);
+      }
+    });
 
-  // Format date nicely
-  // const formatDate = (dateString) => {
-  //   const date = new Date(dateString);
-  //   return date.toLocaleString("en-GB", {
-  //     weekday: "short",
-  //     month: "short",
-  //     day: "numeric",
-  //     hour: "2-digit",
-  //     minute: "2-digit",
-  //   });
-  // };
+    return categorized;
+  }, [apiMatches]);
 
-  // // Calculate countdown text
-  // const getDaysToGo = (utcDate) => {
-  //   const matchDate = new Date(utcDate);
-  //   const currentDate = new Date();
-  //   matchDate.setHours(0, 0, 0, 0);
-  //   currentDate.setHours(0, 0, 0, 0);
+  // Get matches for current tab
+  const getCurrentMatches = () => {
+    switch (selectedTab) {
+      case "fifa":
+        return manualMatches;
+      case "prem":
+        return categorizeApiMatches.premier;
+      case "champ":
+        return categorizeApiMatches.champions;
+      default:
+        return [];
+    }
+  };
 
-  //   const diff = matchDate.getTime() - currentDate.getTime();
-  //   const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+  const currentMatches = getCurrentMatches();
 
-  //   if (days === 0) return "Today";
-  //   if (days === 1) return "Tomorrow";
-  //   if (days < 0) return "Past Match";
-  //   return `${days} days to go`;
-  // };
-
-  // // Toggle predicted lineup display
-  // const togglePrediction = (matchId) => {
-  //   if (selectedMatchId === matchId && showPrediction) {
-  //     setShowPrediction(false);
-  //   } else {
-  //     setSelectedMatchId(matchId);
-  //     setShowPrediction(true);
-  //   }
-  // };
+  const renderEmptyState = () => {
+    const currentTab = tabs.find(t => t.key === selectedTab);
+    
+    return (
+      <div className="flex flex-col items-center justify-center py-16 px-4">
+        <div className="text-6xl mb-4">📅</div>
+        <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          No matches scheduled
+        </h3>
+        <p className="text-gray-500 dark:text-gray-400 text-center max-w-md">
+          {selectedTab === "fifa" 
+            ? "FIFA Club World Cup matches will appear here when scheduled."
+            : `${currentTab?.description} matches will appear here when available from the API.`
+          }
+        </p>
+        {(selectedTab === "prem" || selectedTab === "champ") && (
+          <Button 
+            onClick={() => window.location.reload()} 
+            className="mt-4 bg-sky-600 hover:bg-sky-700 text-white"
+          >
+            <RotateCcw className="w-4 h-4 mr-2" />
+            Refresh
+          </Button>
+        )}
+      </div>
+    );
+  };
 
   return (
-<section className="min-h-screen bg-sky-100 dark:bg-gray-950 dark:text-white py-12 px-4 sm:px-6 lg:px-8">
-   <FifaCwcSchedule/>
-</section>
- 
+    <section className="min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-indigo-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 py-8 px-4 sm:px-6 lg:px-8">
+      <Toaster position="top-center" reverseOrder={false} />
+      
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent mb-4 flex items-center justify-center gap-3">
+            <Calendar className="w-10 h-10 text-sky-600" />
+            Match Schedule
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400 text-lg">
+            Stay updated with upcoming matches across all competitions
+          </p>
+        </div>
 
-    // <section className="min-h-screen bg-sky-100 dark:bg-gray-950 dark:text-white py-12 px-4 sm:px-6 lg:px-8">
-    //   <div className="max-w-7xl mx-auto">
-    //     <h1 className="text-3xl md:text-4xl font-bold text-sky-800 dark:text-sky-200 text-center mb-12 flex items-center justify-center gap-3">
-    //       <Calendar className="w-8 h-8 text-[#1A4268] dark:text-sky-300" />
-    //       Upcoming Matches
-    //     </h1>
+        {/* Time Toggle */}
+        <div className="flex justify-end mb-6">
+          <TimeToggle timeFormat={timeFormat} setTimeFormat={setTimeFormat} />
+        </div>
 
-    //   {error ? (
-    //       <div className="max-w-md mx-auto">
-    //         <div className="rounded-lg border border-red-400 bg-red-50 p-4 text-center">
-    //           <p className="text-red-700 font-semibold">{error}</p>
-    //         </div>
-    //       </div>
-    //     ) : loading ? (
-    //       <div className="flex justify-center items-center min-h-[50vh]">
-    //         <Loader2 className="w-12 h-12 text-[#1A4268] dark:text-white animate-spin" />
-    //       </div>
-    //     ) : matches.length > 0 ? (
-    //       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    //         {matches.map((match) => {
-    //           const { homeTeam, awayTeam, utcDate, competition } = match;
-    //           const matchDate = new Date(utcDate);
-    //           const now = new Date();
-    //           const canPredict = matchDate > now;
-              
-    //           return (
-    //             <div
-    //               key={match.id}
-    //               className="bg-sky-100 dark:bg-gray-900 backdrop-blur-lg rounded-2xl p-6 border border-[#1A4268]/30 hover:border-[#1A4268]/70 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-    //             >
-    //               <div className="space-y-6">
-    //                 {/* Team Logos and VS */}
-    //                 <div className="flex items-center justify-between gap-4">
-    //                   <div className="flex-1 flex justify-center">
-    //                     <Image
-    //                       src={homeTeam.crest}
-    //                       alt={homeTeam.name}
-    //                       width={80}
-    //                       height={80}
-    //                       quality={100}
-    //                       className="object-contain rounded-full border-2 border-[#1A4268]/50"
-    //                       unoptimized={
-    //                         homeTeam.crest.startsWith("http") ? false : true
-    //                       }
-    //                     />
-    //                   </div>
+        {/* Enhanced Tabs */}
+        <div className="flex justify-center gap-2 sm:gap-6 mb-8 overflow-x-auto pb-2">
+          {tabs.map(({ key, label, img, color, description }) => {
+            const isActive = selectedTab === key;
+            const hasData = key === "fifa" ? manualMatches.length > 0 : 
+                           key === "prem" ? categorizeApiMatches.premier.length > 0 :
+                           categorizeApiMatches.champions.length > 0;
+            
+            return (
+              <button
+                key={key}
+                onClick={() => setSelectedTab(key)}
+                className={`group flex flex-col items-center gap-2 p-4 rounded-2xl transition-all duration-300 min-w-[120px] ${
+                  isActive
+                    ? `bg-gradient-to-br ${color} text-white shadow-xl scale-105`
+                    : "bg-white/60 dark:bg-gray-800/60 hover:bg-white/80 dark:hover:bg-gray-800/80 hover:scale-102 hover:shadow-lg text-gray-700 dark:text-gray-300"
+                }`}
+              >
+                <div className={`relative ${isActive ? 'scale-110' : 'group-hover:scale-105'} transition-transform duration-300`}>
+                  <Image
+                    src={img}
+                    alt={label}
+                    width={48}
+                    height={48}
+                    className="object-contain"
+                    unoptimized
+                  />
+                  {hasData && (
+                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+                  )}
+                </div>
+                <div className="text-center">
+                  <span className="text-sm font-bold">{label}</span>
+                  {!hasData && (key === "prem" || key === "champ") && !loading && (
+                    <div className="text-xs opacity-75 mt-1">No data</div>
+                  )}
+                </div>
+              </button>
+            );
+          })}
+        </div>
 
-    //                   <span className="text-[#1A4268] dark:text-sky-200 font-bold text-2xl md:text-3xl px-2">
-    //                     VS
-    //                   </span>
+        {/* Content */}
+        {loading ? (
+          <div className="flex flex-col items-center justify-center py-16">
+            <Loader2 className="w-12 h-12 text-sky-600 animate-spin mb-4" />
+            <p className="text-gray-600 dark:text-gray-400">Loading matches...</p>
+          </div>
+        ) : currentMatches.length > 0 ? (
+          <>
+            <div className="text-center mb-6">
+              <span className="inline-block bg-sky-100 dark:bg-sky-900 text-sky-800 dark:text-sky-200 px-4 py-2 rounded-full text-sm font-semibold">
+                {currentMatches.length} {currentMatches.length === 1 ? 'match' : 'matches'} found
+              </span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+              {currentMatches.map(match => (
+                <MatchCard 
+                  key={match.id}
+                  match={match}
+                  formatDate={(date) => formatDate(date, timeFormat)}
+                  getDaysToGo={getDaysToGo}
+                />
+              ))}
+            </div>
+          </>
+        ) : (
+          renderEmptyState()
+        )}
 
-    //                   <div className="flex-1 flex justify-center">
-    //                     <Image
-    //                       src={awayTeam.crest}
-    //                       alt={awayTeam.name}
-    //                       width={80}
-    //                       height={80}
-    //                       quality={100}
-    //                       className="object-contain rounded-full border-2 border-[#1A4268]/50"
-    //                       unoptimized={
-    //                         awayTeam.crest.startsWith("http") ? false : true
-    //                       }
-    //                     />
-    //                   </div>
-    //                 </div>
-
-    //                 {/* Competition Info */}
-    //                 <div className="space-y-4">
-    //                   <div className="flex items-center justify-center gap-3">
-    //                     <Image
-    //                       src={competition.emblem}
-    //                       alt={competition.name}
-    //                       width={80}
-    //                       height={80}
-    //                       quality={100}
-    //                       className="object-contain rounded-xl"
-    //                       unoptimized={
-    //                         competition.emblem.startsWith("http") ? false : true
-    //                       }
-    //                     />
-    //                     <span className="text-black dark:text-white font-semibold uppercase tracking-wider">
-    //                       | {competition.name}
-    //                     </span>
-    //                   </div>
-
-    //                   {/* Date & Time */}
-    //                   <div className="flex items-center justify-center gap-3">
-    //                     <Clock className="w-5 h-5 text-[#1A4268] dark:text-sky-300" />
-    //                     <span className="text-black dark:text-white text-sm md:text-base font-medium">
-    //                       {formatDate(utcDate)}
-    //                     </span>
-    //                   </div>
-
-    //                   {/* Countdown */}
-    //                   <div className="flex items-center justify-center">
-    //                     <span className="text-[#1A4268] dark:text-white text-sm md:text-base font-bold bg-white/30 dark:bg-white/10 px-3 py-1 rounded-full">
-    //                       {getDaysToGo(utcDate)}
-    //                     </span>
-    //                   </div>
-    //                 </div>
-
-    //                 {/* Buttons */}
-    //                 <div className="flex flex-col gap-2">
-    //                   {/* Match Details Button */}
-    //                   <Button className="w-full bg-[#1E90FF] dark:bg-[#3A6EA5] hover:bg-[#1A4268] dark:hover:bg-[#103554] text-white py-2 px-4 rounded-lg font-bold transition-all duration-200 flex items-center justify-center gap-2 hover:scale-105">
-    //                     Match Details
-    //                   </Button>
-                      
-                   
-    //                 </div>
-                    
-        
-    //               </div>
-    //             </div>
-    //           );
-    //         })}
-    //       </div>
-    //     )
-    
-    //      : (
-    //       <div className="text-center text-black/80 dark:text-white/80 py-20">
-    //         <p className="text-lg font-medium">No upcoming matches scheduled.</p>
-    //       </div>
-    //     )}
-    //   </div>
-    // </section>
+        {/* API Status Footer */}
+        {apiError && (selectedTab === "prem" || selectedTab === "champ") && (
+          <div className="mt-8 p-4 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg text-center">
+            <p className="text-orange-700 dark:text-orange-400 text-sm">
+              ⚠️ Unable to load matches from API. Please check your connection and try again.
+            </p>
+          </div>
+        )}
+      </div>
+    </section>
   );
 };
 

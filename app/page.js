@@ -12,8 +12,7 @@ import CoachProfile from "@/components/Coach";
 import Kit from "@/components/Kit";
 import KeyPerformers from "@/components/Keyperformer";
 import Image from "next/image";
-import Navbar from "@/components/Navbar";
-import Assistant from "@/components/Assistant";
+
 
 
 

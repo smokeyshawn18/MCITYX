@@ -21,11 +21,13 @@ export default function ProtectedRoute({ children }) {
         <h1 className="text-2xl font-semibold mb-4 text-gray-800">
           You must login to view Man City results
         </h1>
-        <SignInButton mode="modal">
+        <SignInButton/>
+        {/* <SignInButton mode="modal">
           <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition">
             Sign In
           </Button>
-        </SignInButton>
+        </SignInButton> */}
+    
       </div>
     );
   }

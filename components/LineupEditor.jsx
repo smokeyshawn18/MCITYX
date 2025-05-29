@@ -328,39 +328,6 @@ export default function LineupEditor({ lineupId = null }) {
           Edit Lineup
         </h2>
 
-        <label className="block mb-3">
-          <span className="text-gray-300">Lineup Name</span>
-          <input
-            type="text"
-            value={lineupName}
-            onChange={(e) => setLineupName(e.target.value)}
-            placeholder="Enter lineup name"
-            className="mt-1 block w-full rounded-md bg-gray-800 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
-          />
-        </label>
-
-        {/* Save & Reset Buttons */}
-        <div className="flex gap-3 mb-4">
-          <button
-            onClick={saveLineup}
-            disabled={loading}
-            className={`px-4 py-2 rounded-md font-semibold transition ${
-              loading ? 'bg-green-400 cursor-not-allowed' : 'bg-green-600 hover:bg-green-700'
-            }`}
-            type="button"
-            aria-label="Save lineup"
-          >
-            {loading ? 'Saving...' : 'Save'}
-          </button>
-          <button
-            onClick={resetLineup}
-            className="px-4 py-2 rounded-md bg-red-600 hover:bg-red-700 font-semibold transition"
-            type="button"
-            aria-label="Reset lineup"
-          >
-            Reset
-          </button>
-        </div>
 
         {selectedPlayerId === null && (
           <p className="text-gray-400 italic mb-4">Tap a player on the field to edit details.</p>
@@ -486,6 +453,40 @@ export default function LineupEditor({ lineupId = null }) {
               Add Player
             </button>
           </div>
+        </div>
+
+        <label className="block mb-3">
+          <span className="text-gray-300">Lineup Name</span>
+          <input
+            type="text"
+            value={lineupName}
+            onChange={(e) => setLineupName(e.target.value)}
+            placeholder="Enter lineup name"
+            className="mt-1 block w-full rounded-md bg-gray-800 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+          />
+        </label>
+
+        {/* Save & Reset Buttons */}
+        <div className="flex gap-3 mb-4">
+          <button
+            onClick={saveLineup}
+            disabled={loading}
+            className={`px-4 py-2 rounded-md font-semibold transition ${
+              loading ? 'bg-green-400 cursor-not-allowed' : 'bg-green-600 hover:bg-green-700'
+            }`}
+            type="button"
+            aria-label="Save lineup"
+          >
+            {loading ? 'Saving...' : 'Save your lineup'}
+          </button>
+          <button
+            onClick={resetLineup}
+            className="px-4 py-2 rounded-md bg-red-600 hover:bg-red-700 font-semibold transition"
+            type="button"
+            aria-label="Reset lineup"
+          >
+            Reset
+          </button>
         </div>
       </div>
     </div>

@@ -9,7 +9,8 @@ import { MdClose, MdLogout, MdPerson, MdSettings } from "react-icons/md";
 import ThemeToggle from "./ThemeToggle";
 import { Button } from "./ui/button";
 import { usePathname } from "next/navigation";
-import { Volleyball } from "lucide-react";
+import { TbPlayFootball } from "react-icons/tb"
+
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -19,11 +20,11 @@ const navItems = [
   { label: "Trophy Cabinet", href: "/trophy-cabinet" },
   { label: "Player Card", href: "/player-card" },
   { label: "History", href: "/history" },
-    { label: "Your Lineup", href: "/lineup/create", icon: Volleyball },
+    { label: "Your Lineup", href: "/lineup/create", icon: TbPlayFootball },
 ];
 
 const mobileSpecialItems = [
-    { label: "Your Lineup", href: "/lineup/create", icon: Volleyball },
+    { label: "Your Lineup", href: "/lineup/create", icon: TbPlayFootball },
   { label: "Your Profile", href: "/profile", icon: MdPerson },
   { label: "Settings", href: "/settings", icon: MdSettings },
 ];
@@ -99,7 +100,7 @@ export default function Navbar() {
       }`}
       aria-current={isActive(href) ? "page" : undefined}
     >
-      {Icon && <Icon className="w-5 h-5" aria-hidden="true" />}
+      {Icon && <Icon className="w-7 h-7" aria-hidden="true" />}
       {label}
     </Link>
   ))}
