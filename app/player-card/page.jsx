@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import PlayerCard from "../../components/PlayerCasrd";
 import { FaHospital } from "react-icons/fa";
 import Link from "next/link";
@@ -32,7 +32,7 @@ const players = [
   },
 
   {
-    name: "Kevin De Bruyne",
+    name: "King Kev (Thank you)",
     position: "AM",
     value: 27,
     age: 33,
@@ -362,8 +362,7 @@ const players = [
     age: 28,
     country: "/assets/images/portugal.webp",
     image: "/assets/images/ruben.jpg",
-  
-  
+
     careerStats: {
       goals: 19,
       assists: 11,
@@ -572,7 +571,7 @@ const players = [
     value: 9,
     age: 31,
     country: "/assets/images/germany.png",
- 
+
     image: "/assets/images/ortega.jpg",
     careerStats: {
       goalsConceded: 414,
