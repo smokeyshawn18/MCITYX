@@ -1,12 +1,9 @@
-"use client"
+"use client";
 import Link from "next/link";
 
 import Image from "next/image";
 
-
 function Footer() {
-
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -56,9 +53,9 @@ function Footer() {
           <Link href="/" onClick={scrollToTop} className="relative">
             <Image
               src="/logo.png"
-                width={100}    // For example, 40px width
-  height={100}   // And 40px height (matches your h-10 w-10 tailwind classes)
-  quality={100}
+              width={100} // For example, 40px width
+              height={100} // And 40px height (matches your h-10 w-10 tailwind classes)
+              quality={100}
               alt="Logo"
               className="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 rounded-full shadow-xl transform hover:scale-110 transition-transform duration-300"
             />
@@ -88,6 +85,7 @@ function Footer() {
               { path: "/results", label: "Results" },
               { path: "/trophy-cabinet", label: "Trophy Cabinet" },
               { path: "/player-card", label: "Player Card" },
+              { path: "/lineup/create", label: "Your Lineup" },
               { path: "/history", label: "History" },
             ].map(({ path, label }, index) => (
               <Link
@@ -161,5 +159,3 @@ function Footer() {
 }
 
 export default Footer;
-
-

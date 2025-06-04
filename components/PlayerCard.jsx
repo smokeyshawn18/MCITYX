@@ -37,15 +37,14 @@ const PlayerCard = ({ player }) => {
   // Dependency array triggers when seasonStats or player position changes
 
   return (
-    <div className="bg-gradient-to-br from-[#e6f1fa] to-white dark:from-[#1a1a2e] dark:to-[#16213e] rounded-3xl shadow-2xl p-8 max-w-6xl w-full mx-auto mb-10">
-      {/* Top section: Image & Name */}
-      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10">
+    <div className="bg-gradient-to-br from-[#e6f1fa] to-white dark:from-[#1a1a2e] dark:to-[#16213e] rounded-3xl shadow-2xl p-6 sm:p-8 max-w-6xl w-full mx-auto mb-10">
+      {/* Top Section */}
+      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
         {/* Player Image */}
-        <div className="relative w-24 h-24 mx-auto mt-4 rounded-full overflow-hidden bg-[#6accf5] shadow-lg clip-star">
+        <div className="relative w-20 h-20 rounded-full overflow-hidden bg-[#6accf5] shadow-lg mx-auto lg:mx-0">
           <Image
             src={player.image}
             alt={player.name}
-            quality={100}
             fill
             className="object-cover"
           />
@@ -53,11 +52,11 @@ const PlayerCard = ({ player }) => {
 
         {/* Player Info */}
         <div className="flex-1 text-center lg:text-left">
-          <h1 className="text-xl lg:text-xl font-extrabold text-[#1e3a8a] dark:text-white uppercase tracking-wide mb-4">
+          <h1 className="text-2xl font-extrabold text-[#1e3a8a] dark:text-white uppercase tracking-wide mb-3">
             {player.name}
           </h1>
 
-          <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-lg text-gray-800 dark:text-gray-200 font-medium">
+          <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-gray-800 dark:text-gray-200 text-base font-medium">
             <div className="flex items-center gap-2">
               <FaTshirt className="text-[#6CABDD]" />#{player.number}
             </div>
@@ -72,24 +71,22 @@ const PlayerCard = ({ player }) => {
                 className="object-contain rounded-sm"
               />
             </div>
-            Age: {player.age}
+            <div>Age: {player.age}</div>
           </div>
 
-          {/* Rating Badge */}
+          {/* Rating */}
           {player.fotmobRating && (
-            <div className="mt-4 inline-block bg-green-600 text-white font-bold px-4 py-2 rounded-full shadow-md text-sm">
+            <div className="mt-4 inline-block bg-green-600 text-white font-bold px-4 py-2 rounded-full text-sm shadow">
               Fotmob Rating: {player.fotmobRating}
             </div>
           )}
 
-          {/* Injury */}
+          {/* Injury Info */}
           {player.injured && (
-            <div className="bg-red-100 dark:bg-red-900 mt-4 p-4 rounded-xl shadow">
-              <div className="flex items-center gap-2">
-                <CiMedicalCross className="text-red-600 text-xl" />
-                <span className="text-red-700 dark:text-red-400 font-semibold text-base">
-                  {player.injuryDetails.type} / {player.injuryDetails.tm}
-                </span>
+            <div className="bg-red-100 dark:bg-red-900 mt-4 p-4 rounded-xl shadow-md">
+              <div className="flex items-center gap-2 text-red-700 dark:text-red-400 font-semibold">
+                <CiMedicalCross className="text-xl" />
+                {player.injuryDetails.type} / {player.injuryDetails.tm}
               </div>
               <p className="text-sm text-gray-700 dark:text-gray-300 mt-1">
                 Expected return: {player.injuryDetails.recoveryTime}
@@ -100,85 +97,117 @@ const PlayerCard = ({ player }) => {
       </div>
 
       {/* Tabs */}
-      <div className="flex justify-center lg:justify-start gap-4 mt-8">
-        <button
-          className={`px-6 py-2 rounded-xl text-lg font-semibold transition ${
-            activeTab === "season"
-              ? "bg-[#1e3a8a] text-white shadow-lg"
-              : "bg-gray-100 dark:bg-gray-700 text-[#1e3a8a] dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600"
-          }`}
-          onClick={() => setActiveTab("season")}
-        >
-          <FaMedal className="inline mr-2" />
-          Season
-        </button>
-        <button
-          className={`px-6 py-2 rounded-xl text-lg font-semibold transition ${
-            activeTab === "career"
-              ? "bg-[#1e3a8a] text-white shadow-lg"
-              : "bg-gray-100 dark:bg-gray-700 text-[#1e3a8a] dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600"
-          }`}
-          onClick={() => setActiveTab("career")}
-        >
-          <FaTrophy className="inline mr-2" />
-          Career
-        </button>
+      <div className="flex justify-center lg:justify-start gap-4 mt-6 flex-wrap">
+        {[
+          {
+            label: "Season",
+            value: "season",
+            icon: <FaMedal className="mr-2" />,
+          },
+          {
+            label: "Career",
+            value: "career",
+            icon: <FaTrophy className="mr-2" />,
+          },
+        ].map((tab) => (
+          <button
+            key={tab.value}
+            className={`flex items-center px-5 py-2 rounded-xl text-lg font-semibold transition ${
+              activeTab === tab.value
+                ? "bg-[#1e3a8a] text-white shadow-lg"
+                : "bg-gray-100 dark:bg-gray-700 text-[#1e3a8a] dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600"
+            }`}
+            onClick={() => setActiveTab(tab.value)}
+          >
+            {tab.icon}
+            {tab.label}
+          </button>
+        ))}
       </div>
 
-      <div className="mt-8 px-4 max-w-screen-sm mx-auto">
-        <div
-          className="
-      grid 
-      grid-cols-3 
-      gap-x-4 
-      text-center
-      items-center
-    "
-        >
-          {/* Matches */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow flex flex-col items-center justify-center">
-            <FaRunning className="text-black dark:text-white text-xl mb-2" />
-
-            <p className="text-xl font-semibold text-sky-900 dark:text-sky-100">
-              {activeTab === "career"
-                ? careerStats.appearances
-                : player.seasonStats.appearances}
-            </p>
-            <h3 className="text-lg font-bold text-sky-900 dark:text-sky-100">
-              <span className="block md:hidden">M</span>
-              <span className="hidden md:block">Matches</span>
-            </h3>
-          </div>
-
-          {/* Goals */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow flex flex-col items-center justify-center">
-            <FaFutbol className="text-2xl mb-2" />
-
-            <p className="text-xl font-semibold text-sky-900 dark:text-sky-100">
-              {activeTab === "career"
-                ? careerStats.goals
-                : player.seasonStats.goals}
-            </p>
-            <h3 className="text-lg font-bold text-sky-900 dark:text-sky-100">
-              <span className="block md:hidden">G</span>
-              <span className="hidden md:block">Goals</span>
-            </h3>
-          </div>
-
-          {/* Assists */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow flex flex-col items-center justify-center">
-            <Handshake className="text-black dark:text-white text-2xl mb-2" />
-
-            <p className="text-xl font-semibold text-sky-900 dark:text-sky-100">
-              {activeTab === "career"
-                ? careerStats.assists
-                : player.seasonStats.assists}
-            </p>
-            <h3 className="text-lg font-bold text-sky-900 dark:text-sky-100">
-              <span className="block md:hidden">A</span>
-              <span className="hidden md:block">Assists</span>
-            </h3>
-          </div>
+      {/* Stats */}
+      {/* Stats */}
+      <div className="mt-8 px-4 max-w-md mx-auto">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 space-y-4 text-left">
+          {(player.position === "GK"
+            ? [
+                {
+                  label: "Matches",
+                  value:
+                    activeTab === "career"
+                      ? careerStats.appearances
+                      : player.seasonStats.appearances,
+                  icon: (
+                    <FaRunning className="text-sky-600 dark:text-sky-300 text-xl" />
+                  ),
+                },
+                {
+                  label: "Goals Conceded",
+                  value:
+                    activeTab === "career"
+                      ? careerStats.goalsConceded
+                      : player.seasonStats.goalsConceded,
+                  icon: (
+                    <FaFutbol className="text-red-500 dark:text-red-400 text-xl" />
+                  ),
+                },
+                {
+                  label: "Clean Sheets",
+                  value:
+                    activeTab === "career"
+                      ? careerStats.cleanSheets
+                      : player.seasonStats.cleanSheets,
+                  icon: (
+                    <FaTrophy className="text-green-500 dark:text-green-300 text-xl" />
+                  ),
+                },
+              ]
+            : [
+                {
+                  label: "Matches",
+                  value:
+                    activeTab === "career"
+                      ? careerStats.appearances
+                      : player.seasonStats.appearances,
+                  icon: (
+                    <FaRunning className="text-sky-600 dark:text-sky-300 text-xl" />
+                  ),
+                },
+                {
+                  label: "Goals",
+                  value:
+                    activeTab === "career"
+                      ? careerStats.goals
+                      : player.seasonStats.goals,
+                  icon: (
+                    <FaFutbol className="text-yellow-500 dark:text-yellow-300 text-xl" />
+                  ),
+                },
+                {
+                  label: "Assists",
+                  value:
+                    activeTab === "career"
+                      ? careerStats.assists
+                      : player.seasonStats.assists,
+                  icon: (
+                    <Handshake className="text-green-600 dark:text-green-300 text-xl" />
+                  ),
+                },
+              ]
+          ).map((stat, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-between border-b last:border-none pb-2 text-lg font-medium text-gray-700 dark:text-gray-200"
+            >
+              <div className="flex items-center gap-2">
+                {stat.icon}
+                <span>{stat.label}</span>
+              </div>
+              <span className="font-bold text-[#1e3a8a] dark:text-white">
+                {stat.value}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

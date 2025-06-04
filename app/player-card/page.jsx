@@ -8,8 +8,8 @@ const inBillion = totalValue / 1000;
 
 const PlayerSection = () => (
   <div className="p-8 bg-sky-100 dark:bg-gray-900">
-    <h1 className="text-2xl font-extrabold dark:text-white text-sky-700 mb-10 text-center uppercase tracking-wider ">
-      Manchester City Player Stats - 24/25 Season
+    <h1 className="text-3xl font-extrabold dark:text-white text-sky-700 mb-10 text-center uppercase tracking-wider ">
+      Manchester City Player Stats - 25/26 Season
     </h1>
     <h3 className="text-xl font-extrabold dark:text-white text-sky-700 mb-10 text-center uppercase tracking-wider">
       Squad Value:{" "}
