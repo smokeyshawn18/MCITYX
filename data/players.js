@@ -474,6 +474,26 @@ export const players = [
     },
   },
   {
+    name: "Rayan Ait Nouri",
+    number: 0,
+    position: "LB",
+    value: 35,
+    age: 23,
+    country: "/assets/images/algeria.png",
+    image: "/assets/images/rayan.webp",
+    careerStats: {
+      goals: 12,
+      assists: 23,
+      appearances: 193,
+    },
+    seasonStats: {
+      goals: 0,
+      assists: 0,
+      appearances: 0,
+    },
+    injured: false,
+  },
+  {
     name: "Rico Lewis",
     number: 82,
     position: "RB",
