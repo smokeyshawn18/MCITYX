@@ -1,4 +1,4 @@
-"use client"; // If you're using this inside an app directory with Next.js 13+
+"use client";
 
 import React from "react";
 
@@ -10,7 +10,7 @@ const WelcomePlayer = ({ players, selectedNames }) => {
   return (
     <div className="p-6 bg-gradient-to-br from-blue-100 to-sky-200 dark:from-gray-900 dark:to-gray-800 rounded-2xl shadow-xl">
       <h1 className="text-4xl sm:text-5xl font-extrabold text-center text-blue-700 dark:text-white mb-10">
-        👋 Welcome to the Team!
+        Welcome to the Team!
       </h1>
 
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-8">
