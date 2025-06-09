@@ -102,7 +102,7 @@ export default function Navbar() {
               <Link
                 key={label}
                 href={href}
-                className={`flex items-center gap-2 px-3 py-2 rounded-md font-medium transition-colors duration-200 ${
+                className={`flex items-center gap-2 px-3 py-2 rounded-md text-lg font-medium transition-colors duration-200 ${
                   isActive(href)
                     ? "bg-sky-600 text-white dark:bg-sky-400 dark:text-gray-900"
                     : "text-sky-800 dark:text-sky-200 hover:bg-sky-200 dark:hover:bg-gray-700"
@@ -164,7 +164,7 @@ export default function Navbar() {
               </div>
             ) : (
               <SignInButton mode="modal">
-                <Button className="bg-sky-500 hover:bg-sky-600 text-white font-semibold">
+                <Button className="bg-sky-500 text-lg hover:bg-sky-600 text-white font-semibold">
                   Sign In
                 </Button>
               </SignInButton>

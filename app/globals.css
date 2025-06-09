@@ -1,7 +1,17 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
- 
+@font-face {
+  font-family: "Tan Kulture";
+  src: url("/fonts/typo.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "Tan Kulture", sans-serif;
+  letter-spacing: 0.01em;
+}
 
 @custom-variant dark (&:is(.dark *));
 
