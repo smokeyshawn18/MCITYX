@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { useUser, SignInButton, SignOutButton, UserButton } from "@clerk/nextjs";
+import {
+  useUser,
+  SignInButton,
+  SignOutButton,
+  UserButton,
+} from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -9,8 +14,7 @@ import { MdClose, MdLogout, MdPerson, MdSettings } from "react-icons/md";
 import ThemeToggle from "./ThemeToggle";
 import { Button } from "./ui/button";
 import { usePathname } from "next/navigation";
-import { TbPlayFootball } from "react-icons/tb"
-
+import { TbPlayFootball } from "react-icons/tb";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -20,11 +24,11 @@ const navItems = [
   { label: "Trophy Cabinet", href: "/trophy-cabinet" },
   { label: "Player Card", href: "/player-card" },
   { label: "History", href: "/history" },
-    { label: "Your Lineup", href: "/lineup/create", icon: TbPlayFootball },
+  { label: "Your Lineup", href: "/lineup/create", icon: TbPlayFootball },
 ];
 
 const mobileSpecialItems = [
-    { label: "Your Lineup", href: "/lineup/create", icon: TbPlayFootball },
+  { label: "Your Lineup", href: "/lineup/create", icon: TbPlayFootball },
   { label: "Your Profile", href: "/profile", icon: MdPerson },
   { label: "Settings", href: "/settings", icon: MdSettings },
 ];
@@ -45,7 +49,10 @@ export default function Navbar() {
   // Close user dropdown on outside click
   useEffect(() => {
     function handleClickOutside(event) {
-      if (userDropdownRef.current && !userDropdownRef.current.contains(event.target)) {
+      if (
+        userDropdownRef.current &&
+        !userDropdownRef.current.contains(event.target)
+      ) {
         setUserDropdownOpen(false);
       }
     }
@@ -72,40 +79,41 @@ export default function Navbar() {
     <nav className="bg-sky-100 w-full dark:bg-gray-900 sticky top-0 z-50 shadow-md font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-        <Link href="/" className="flex items-center gap-2 group pr-3 border-r-2 border-gray-300 dark:border-gray-600">
-  <Image
-    src="/logo.png"
-    alt="MCityX Logo"
-    width={50}
-    height={40}
-    className="rounded-full group-hover:scale-105 transition-transform duration-300"
-    priority
-  />
-  <span className="hidden sm:inline-block text-[#00285E] dark:text-sky-300 font-bold text-xl tracking-wide uppercase">
-    MCityX
-  </span>
-</Link>
-
+          <Link
+            href="/"
+            className="flex items-center gap-2 group pr-3 border-r-2 border-gray-300 dark:border-gray-600"
+          >
+            <Image
+              src="/logo.png"
+              alt="MCityX Logo"
+              width={50}
+              height={40}
+              className="rounded-full group-hover:scale-105 transition-transform duration-300"
+              priority
+            />
+            <span className="hidden sm:inline-block text-[#00285E] dark:text-sky-300 font-bold text-xl tracking-wide uppercase">
+              MCityX
+            </span>
+          </Link>
 
           {/* Desktop navigation */}
-<div className="hidden md:flex items-center space-x-4 flex-1 justify-center">
-  {navItems.map(({ label, href, icon: Icon }) => (
-    <Link
-      key={label}
-      href={href}
-      className={`flex items-center gap-2 px-3 py-2 rounded-md font-medium transition-colors duration-200 ${
-        isActive(href)
-          ? "bg-sky-600 text-white dark:bg-sky-400 dark:text-gray-900"
-          : "text-sky-800 dark:text-sky-200 hover:bg-sky-200 dark:hover:bg-gray-700"
-      }`}
-      aria-current={isActive(href) ? "page" : undefined}
-    >
-      {Icon && <Icon className="w-7 h-7" aria-hidden="true" />}
-      {label}
-    </Link>
-  ))}
-</div>
-
+          <div className="hidden md:flex items-center space-x-4 flex-1 justify-center">
+            {navItems.map(({ label, href, icon: Icon }) => (
+              <Link
+                key={label}
+                href={href}
+                className={`flex items-center gap-2 px-3 py-2 rounded-md font-medium transition-colors duration-200 ${
+                  isActive(href)
+                    ? "bg-sky-600 text-white dark:bg-sky-400 dark:text-gray-900"
+                    : "text-sky-800 dark:text-sky-200 hover:bg-sky-200 dark:hover:bg-gray-700"
+                }`}
+                aria-current={isActive(href) ? "page" : undefined}
+              >
+                {Icon && <Icon className="w-7 h-7" aria-hidden="true" />}
+                {label}
+              </Link>
+            ))}
+          </div>
 
           {/* Theme toggle + User section + Mobile menu button */}
           <div className="flex items-center space-x-3">
@@ -182,73 +190,72 @@ export default function Navbar() {
         </div>
       </div>
 
-    {/* Mobile Menu */}
-{mobileMenuOpen && (
-  <>
-    <div
-      className="fixed inset-0 bg-opacity-30 z-40"
-      onClick={() => setMobileMenuOpen(false)}
-    />
-    <div
-      ref={menuRef}
-      className="fixed top-16 left-0 right-0 bottom-0 z-50 bg-sky-50 dark:bg-gray-800 overflow-y-auto shadow-inner"
-      style={{ maxHeight: "calc(100vh - 64px)" }}
-    >
-      <nav className="flex flex-col gap-2 p-4">
-        {navItems
-          .filter(({ label }) => label !== "Your Lineup") // <-- filter out here
-          .map(({ label, href, icon: Icon }) => (
-            <Link
-              key={label}
-              href={href}
-              onClick={() => setMobileMenuOpen(false)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-md font-medium transition-colors duration-200 ${
-                isActive(href)
-                  ? "bg-sky-600 text-white dark:bg-sky-400 dark:text-gray-900"
-                  : "text-sky-800 dark:text-sky-200 hover:bg-sky-200 dark:hover:bg-gray-700"
-              }`}
-              aria-current={isActive(href) ? "page" : undefined}
-            >
-              {Icon && <Icon className="w-5 h-5" aria-hidden="true" />}
-              {label}
-            </Link>
-          ))}
-
-        <hr className="border-gray-300 dark:border-gray-600 my-3" />
-
-        {mobileSpecialItems.map(({ label, href, icon: Icon }) => (
-          <Link
-            key={label}
-            href={href}
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-opacity-30 z-40"
             onClick={() => setMobileMenuOpen(false)}
-            className={`flex items-center gap-3 px-5 py-3 rounded-md font-medium transition-colors duration-200 ${
-              isActive(href)
-                ? "bg-sky-600 text-white dark:bg-sky-400 dark:text-gray-900"
-                : "text-sky-800 dark:text-sky-200 hover:bg-sky-200 dark:hover:bg-gray-700"
-            }`}
-            aria-current={isActive(href) ? "page" : undefined}
+          />
+          <div
+            ref={menuRef}
+            className="fixed top-16 left-0 right-0 bottom-0 z-50 bg-sky-50 dark:bg-gray-800 overflow-y-auto shadow-inner"
+            style={{ maxHeight: "calc(100vh - 64px)" }}
           >
-            <Icon className="w-5 h-5" />
-            {label}
-          </Link>
-        ))}
+            <nav className="flex flex-col gap-2 p-4">
+              {navItems
+                .filter(({ label }) => label !== "Your Lineup") // <-- filter out here
+                .map(({ label, href, icon: Icon }) => (
+                  <Link
+                    key={label}
+                    href={href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center gap-2 px-3 py-2 rounded-md font-medium transition-colors duration-200 ${
+                      isActive(href)
+                        ? "bg-sky-600 text-white dark:bg-sky-400 dark:text-gray-900"
+                        : "text-sky-800 dark:text-sky-200 hover:bg-sky-200 dark:hover:bg-gray-700"
+                    }`}
+                    aria-current={isActive(href) ? "page" : undefined}
+                  >
+                    {Icon && <Icon className="w-5 h-5" aria-hidden="true" />}
+                    {label}
+                  </Link>
+                ))}
 
-        {isSignedIn && (
-          <SignOutButton>
-            <button
-              className="flex items-center gap-3 px-5 py-3 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900 rounded-md font-medium"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <MdLogout className="w-5 h-5" />
-              Logout
-            </button>
-          </SignOutButton>
-        )}
-      </nav>
-    </div>
-  </>
-)}
+              <hr className="border-gray-300 dark:border-gray-600 my-3" />
 
+              {mobileSpecialItems.map(({ label, href, icon: Icon }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center gap-3 px-5 py-3 rounded-md font-medium transition-colors duration-200 ${
+                    isActive(href)
+                      ? "bg-sky-600 text-white dark:bg-sky-400 dark:text-gray-900"
+                      : "text-sky-800 dark:text-sky-200 hover:bg-sky-200 dark:hover:bg-gray-700"
+                  }`}
+                  aria-current={isActive(href) ? "page" : undefined}
+                >
+                  <Icon className="w-5 h-5" />
+                  {label}
+                </Link>
+              ))}
+
+              {isSignedIn && (
+                <SignOutButton>
+                  <button
+                    className="flex items-center gap-3 px-5 py-3 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900 rounded-md font-medium"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <MdLogout className="w-5 h-5" />
+                    Logout
+                  </button>
+                </SignOutButton>
+              )}
+            </nav>
+          </div>
+        </>
+      )}
     </nav>
   );
 }

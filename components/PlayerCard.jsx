@@ -41,12 +41,16 @@ const PlayerCard = ({ player }) => {
       {/* Top Section */}
       <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
         {/* Player Image */}
-        <div className="relative w-20 h-20 rounded-full overflow-hidden bg-[#6accf5] shadow-lg mx-auto lg:mx-0">
-          <Image
+        <div className="relative w-24 h-24 sm:w-28 sm:h-28 mb-3">
+          <img
             src={player.image}
             alt={player.name}
-            fill
-            className="object-cover"
+            className="w-full h-full rounded-full object-cover shadow-md"
+          />
+          <img
+            src={player.country}
+            alt={player.name + " country"}
+            className="absolute bottom-0 right-0 w-8 h-8 rounded-lg border-2 border-white object-cover shadow"
           />
         </div>
 
@@ -62,15 +66,7 @@ const PlayerCard = ({ player }) => {
             </div>
             <div className="flex items-center gap-2">💰 ${player.value}M</div>
             <div className="flex items-center gap-2">🧭 {player.position}</div>
-            <div className="flex items-center gap-2">
-              <Image
-                src={player.country}
-                alt="country"
-                width={28}
-                height={20}
-                className="object-contain rounded-sm"
-              />
-            </div>
+
             <div>Age: {player.age}</div>
           </div>
 

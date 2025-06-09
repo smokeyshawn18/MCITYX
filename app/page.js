@@ -9,7 +9,11 @@ import WelcomePlayer from "@/components/Welcome";
 import { players } from "@/data/players";
 
 const Home = () => {
-  const selectedNames = ["Rayan Ait Nouri", "Tijjani Reijnders"]; // ✅ Define this before usage
+  const selectedNames = [
+    "Rayan Ait Nouri",
+    "Tijjani Reijnders",
+    "Rayan Cherki",
+  ]; // ✅ Define this before usage
   return (
     <>
       <section className="bg-[#f0f8ff] dark:bg-gray-950 dark:text-white text-gray-800 py-12 lg:py-24">
