@@ -3,7 +3,7 @@
 
 @font-face {
   font-family: "Tan Kulture";
-  src: url("/fonts/typo.ttf") format("truetype");
+  src: url("/fonts/gen.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
