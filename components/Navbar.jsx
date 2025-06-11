@@ -21,8 +21,8 @@ const navItems = [
   { label: "News", href: "/news" },
   { label: "Schedule", href: "/schedule" },
   { label: "Results", href: "/results" },
-  { label: "Trophy Cabinet", href: "/trophy-cabinet" },
-  { label: "Player Card", href: "/player-card" },
+  { label: "Trophies", href: "/trophy-cabinet" },
+  { label: "Players", href: "/player-card" },
   { label: "History", href: "/history" },
   { label: "Your Lineup", href: "/lineup/create", icon: TbPlayFootball },
 ];
