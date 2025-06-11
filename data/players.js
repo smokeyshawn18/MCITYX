@@ -188,7 +188,7 @@ export const players = [
   },
   {
     name: "Tijjani Reijnders",
-    number: 0,
+    number: 4,
     position: "DM",
     value: 50,
     age: 26,
@@ -262,7 +262,7 @@ export const players = [
   },
   {
     name: "Rayan Cherki",
-    number: 0,
+    number: 29,
     position: "RW",
     value: 45,
     age: 21,
@@ -495,7 +495,7 @@ export const players = [
   },
   {
     name: "Rayan Ait Nouri",
-    number: 0,
+    number: 21,
     position: "LB",
     value: 35,
     age: 23,
