@@ -586,7 +586,7 @@ export const players = [
   {
     name: "C. Echeverri",
     position: "AM",
-    number: 2,
+    number: 30,
     value: 18,
     country: "/assets/images/arg.webp",
     age: 19,
