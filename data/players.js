@@ -29,32 +29,32 @@ export const players = [
     injuryIcon: FaHospital,
   },
 
-  // {
-  //   name: "King Kev (Thank you)",
-  //   position: "AM",
-  //   value: 20,
-  //   age: 33,
-  //   country: "/assets/images/belgium.png",
-  //   number: 17,
-  //   image: "/assets/images/kdb.jpg",
-  //   careerStats: {
-  //     goals: 177,
-  //     assists: 304,
-  //     appearances: 716,
-  //   },
-  //   seasonStats: {
-  //     goals: 8,
-  //     assists: 10,
-  //     appearances: 44,
-  //   },
-  //   injured: false,
-  //   injuryDetails: {
-  //     tm: "Sept 18, 2024",
-  //     type: "Groin Injury",
-  //     recoveryTime: "A Few Days",
-  //   },
-  //   injuryIcon: FaHospital,
-  // },
+  {
+    name: "King Kev (Napoli)",
+    position: "AM",
+    value: 20,
+    age: 33,
+    country: "/assets/images/napoli.png",
+    number: 17,
+    image: "/assets/images/kdb.jpg",
+    careerStats: {
+      goals: 185,
+      assists: 314,
+      appearances: 760,
+    },
+    seasonStats: {
+      goals: 1,
+      assists: 0,
+      appearances: 2,
+    },
+    injured: false,
+    injuryDetails: {
+      tm: "Sept 18, 2024",
+      type: "Groin Injury",
+      recoveryTime: "A Few Days",
+    },
+    injuryIcon: FaHospital,
+  },
 
   {
     name: "Bernardo Silva",
