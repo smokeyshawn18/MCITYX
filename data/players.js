@@ -193,7 +193,7 @@ export const players = [
     value: 50,
     age: 26,
     country: "/assets/images/ned.png",
-    image: "/assets/images/rejin.jpeg",
+    image: "/assets/images/rejin.webp",
     careerStats: {
       goals: 37,
       assists: 22,
