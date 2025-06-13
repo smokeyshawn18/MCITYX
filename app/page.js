@@ -7,6 +7,7 @@ import KeyPerformers from "@/components/Keyperformer";
 import Image from "next/image";
 import WelcomePlayer from "@/components/Welcome";
 import { players } from "@/data/players";
+import Bye from "@/components/Bye";
 
 const Home = () => {
   const selectedNames = [
@@ -14,11 +15,13 @@ const Home = () => {
     "Tijjani Reijnders",
     "Rayan Cherki",
   ]; // ✅ Define this before usage
+  const byeNames = ["King Kev (Napoli)", "Jack Grealish"];
   return (
     <>
       <section className="bg-[#f0f8ff] dark:bg-gray-950 dark:text-white text-gray-800 py-12 lg:py-24">
         <div className="relative container mx-auto px-4 lg:px-8">
           <WelcomePlayer players={players} selectedNames={selectedNames} />
+          <Bye players={players} byeNames={byeNames} />
           <br />
           <LiveMatches />
           <div className="relative h-80 sm:h-96 mb-4">

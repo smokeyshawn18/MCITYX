@@ -2,16 +2,16 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Euro } from "lucide-react";
+import { UserRoundX } from "lucide-react";
 
-const WelcomePlayer = ({ players, selectedNames }) => {
+const Bye = ({ players, byeNames }) => {
   const filteredPlayers = players.filter((player) =>
-    selectedNames.includes(player.name)
+    byeNames.includes(player.name)
   );
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.98 }}
+      initial={{ opacity: 0, scale: 0.97 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6 }}
       className="p-6 sm:p-10 bg-gradient-to-br from-blue-100 to-sky-200 dark:from-gray-900 dark:to-gray-800 rounded-3xl shadow-2xl"
@@ -23,12 +23,12 @@ const WelcomePlayer = ({ players, selectedNames }) => {
           transition={{ duration: 0.8 }}
           className="text-4xl sm:text-5xl font-extrabold text-center text-sky-700 dark:text-white"
         >
-          Welcome to the Team
+          Farewell Legends
         </motion.h1>
       </div>
 
-      <p className="text-center text-slate-700 dark:text-slate-300 text-md sm:text-lg mb-10">
-        A new journey begins! Let’s make history together 💙
+      <p className="text-center text-slate-600 dark:text-slate-300 text-md sm:text-lg mb-10">
+        Thank you for everything. You'll always be part of our history 💙
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
@@ -46,7 +46,7 @@ const WelcomePlayer = ({ players, selectedNames }) => {
               <img
                 src={player.image}
                 alt={player.name}
-                className="w-full h-full rounded-full border-4 border-sky-500 object-cover shadow-md"
+                className="w-full h-full rounded-full  object-cover shadow-md"
               />
               <img
                 src={player.country}
@@ -55,13 +55,15 @@ const WelcomePlayer = ({ players, selectedNames }) => {
                 className="absolute bottom-0 right-0 w-8 h-8 rounded-md border-2 border-white object-cover shadow"
               />
             </div>
+
             <h2 className="text-xl sm:text-2xl font-semibold text-sky-800 dark:text-gray-100 mb-1">
               {player.name}
             </h2>
-            {player.value && (
-              <span className="inline-flex items-center gap-1 text-xl">
-                <Euro className="w-5 h-5" /> {player.value}M
-              </span>
+
+            {player.message && (
+              <p className="text-center text-gray-600 dark:text-gray-400 text-sm italic mt-2 px-2">
+                “{player.message}”
+              </p>
             )}
           </motion.div>
         ))}
@@ -70,4 +72,4 @@ const WelcomePlayer = ({ players, selectedNames }) => {
   );
 };
 
-export default WelcomePlayer;
+export default Bye;
