@@ -8,6 +8,7 @@ import Image from "next/image";
 import WelcomePlayer from "@/components/Welcome";
 import { players } from "@/data/players";
 import Bye from "@/components/Bye";
+import GoogleAd from "@/components/GoogleAd";
 
 const Home = () => {
   const selectedNames = [
@@ -20,6 +21,7 @@ const Home = () => {
     <>
       <section className="bg-[#f0f8ff] dark:bg-gray-950 dark:text-white text-gray-800 py-12 lg:py-24">
         <div className="relative container mx-auto px-4 lg:px-8">
+          <GoogleAd slot="YOUR_SLOT_ID" />
           <WelcomePlayer players={players} selectedNames={selectedNames} />
           <Bye players={players} byeNames={byeNames} />
           <br />
