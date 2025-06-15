@@ -1,12 +1,5 @@
-"use client"
-import HomeKit from "../assets/images/homekit.webp"
-import AwayKit from "../assets/images/awaykit.webp";
-import Third from "../assets/images/thirdkit.jpg";
-import Fourth from "../assets/images/fourth.webp";
-import GK1 from "../assets/images/gk1.jpg";
-import GK2 from "../assets/images/gk2.jpg";
+"use client";
 
-import PumaLogo from "../assets/images/puma.png"; // Import Puma logo
 import Image from "next/image";
 
 // Define the Kit component
@@ -72,16 +65,15 @@ const Kit = () => {
             onClick={() => window.open(kit.shopLink, "_blank")} // Navigate to shop link
           >
             <div className="w-64 h-64 overflow-hidden rounded-full border-2 border-gray-300 transform transition-transform duration-300 hover:scale-110 hover:shadow-lg">
-           <div className="relative w-full h-full rounded-full overflow-hidden">
-  <Image
-    src={kit.image}
-    alt={`Manchester City Kit ${kit.name}`}
-    fill
-    quality={100}
-    className="object-cover"
-  />
-</div>
-
+              <div className="relative w-full h-full rounded-full overflow-hidden">
+                <Image
+                  src={kit.image}
+                  alt={`Manchester City Kit ${kit.name}`}
+                  fill
+                  quality={100}
+                  className="object-cover"
+                />
+              </div>
             </div>
             <div className="mt-4">
               <h3 className="text-xl font-bold">{kit.name}</h3>
@@ -93,7 +85,11 @@ const Kit = () => {
               </h3>{" "}
               {/* Text styling */}
             </div>
-            <Image src={PumaLogo} alt="Puma Logo" className="h-10 w-auto mt-4" />
+            <Image
+              src="../assets/images/puma.png"
+              alt="Puma Logo"
+              className="h-10 w-auto mt-4"
+            />
           </div>
         ))}
       </div>

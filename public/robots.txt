@@ -1,9 +1,4 @@
-# *
 User-agent: *
 Allow: /
 
-# Host
-Host: https://mcityx.vercel.app
-
-# Sitemaps
 Sitemap: https://mcityx.vercel.app/sitemap.xml
