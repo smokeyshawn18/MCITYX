@@ -122,7 +122,9 @@ const LiveMatches = () => {
                       </div>
                       <div className="flex items-center justify-center">
                         <span className="text-[#1A4268] text-sm md:text-base font-bold bg-white/30 px-3 py-1 rounded-full">
-                          {status === "IN_PLAY" ? "Playing Now" : "Match Paused"}
+                          {status === "IN_PLAY"
+                            ? "Playing Now"
+                            : "Match Paused"}
                         </span>
                       </div>
                     </div>
@@ -146,9 +148,7 @@ const LiveMatches = () => {
             <p className="text-2xl font-semibold mb-4">
               No live matches currently.
             </p>
-            <p className="mb-8 ">
-              Stay tuned! Check out upcoming fixtures.
-            </p>
+            <p className="mb-8 ">Stay tuned! Check out upcoming fixtures.</p>
             <button
               onClick={() => router.push("/schedule")}
               className="inline-block bg-[#1E90FF] hover:bg-[#1A4268] text-white font-semibold py-3 px-8 rounded-lg transition-transform duration-200 hover:scale-105"
