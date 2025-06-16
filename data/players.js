@@ -106,7 +106,7 @@ export const players = [
     age: 25,
 
     country: "/assets/images/eng.png",
-    image: "/assets/images/fode.jpg",
+    image: "/assets/images/foden.jpg",
     careerStats: {
       goals: 101,
       assists: 67,
