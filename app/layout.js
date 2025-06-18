@@ -1,14 +1,16 @@
+import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import AskAI from "@/components/AskAI";
+import Head from "next/head";
 
 export const metadata = {
   title: "MCityX - Manchester City Fan Site",
   description:
     "Latest results, stats, trophies, news, and more about Manchester City.",
+  robots: "index, follow",
   verification: {
     other: {
       "google-adsense-account": "ca-pub-8971104795657349",
@@ -40,7 +42,7 @@ export const metadata = {
     title: "MCityX - Manchester City Fan Site",
     description:
       "Latest results, stats, trophies, news, and more about Manchester City.",
-    image: "https://mcityx.vercel.app/twitter-image.png",
+    images: ["https://mcityx.vercel.app/twitter-image.png"],
   },
 };
 
@@ -48,65 +50,15 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <head>
-          <title>{metadata.title}</title>
-          <meta name="description" content={metadata.description} />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta name="robots" content="index, follow" />
-
-          {/* Adsense verification */}
-          <meta
-            name="google-adsense-account"
-            content={metadata.verification.other["google-adsense-account"]}
-          />
-
-          {/* Open Graph */}
-          <meta property="og:title" content={metadata.openGraph.title} />
-          <meta
-            property="og:description"
-            content={metadata.openGraph.description}
-          />
-          <meta property="og:url" content={metadata.openGraph.url} />
-          <meta property="og:site_name" content={metadata.openGraph.siteName} />
-          <meta property="og:locale" content={metadata.openGraph.locale} />
-          <meta property="og:type" content={metadata.openGraph.type} />
-          <meta
-            property="og:image"
-            content={metadata.openGraph.images[0].url}
-          />
-          <meta
-            property="og:image:width"
-            content={metadata.openGraph.images[0].width.toString()}
-          />
-          <meta
-            property="og:image:height"
-            content={metadata.openGraph.images[0].height.toString()}
-          />
-          <meta
-            property="og:image:alt"
-            content={metadata.openGraph.images[0].alt}
-          />
-
-          {/* Twitter Card */}
-          <meta name="twitter:card" content={metadata.twitter.card} />
-          <meta name="twitter:site" content={metadata.twitter.site} />
-          <meta name="twitter:title" content={metadata.twitter.title} />
-          <meta
-            name="twitter:description"
-            content={metadata.twitter.description}
-          />
-          <meta name="twitter:image" content={metadata.twitter.image} />
-
-          {/* Favicon */}
-          <link rel="icon" href={metadata.icons.icon} />
-
+        <Head>
+          {/* Google AdSense */}
           <script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8971104795657349"
-            crossorigin="anonymous"
-          />
+            crossOrigin="anonymous"
+          ></script>
 
-          {/* Structured Data JSON-LD for Google Search */}
+          {/* JSON-LD Structured Data */}
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
@@ -119,7 +71,7 @@ export default function RootLayout({ children }) {
               }),
             }}
           />
-        </head>
+        </Head>
         <body
           className="antialiased font-sans"
           style={{
