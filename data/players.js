@@ -18,7 +18,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 0,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
     injuryDetails: {
@@ -93,7 +93,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 0,
+      appearances: 1,
     },
     injured: false,
   },
@@ -113,9 +113,9 @@ export const players = [
       appearances: 360,
     },
     seasonStats: {
-      goals: 0,
-      assists: 0,
-      appearances: 0,
+      goals: 1,
+      assists: 1,
+      appearances: 1,
     },
     injured: false,
   },
@@ -136,7 +136,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 0,
+      appearances: 1,
     },
     injured: false,
   },
@@ -202,7 +202,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 1,
+      appearances: 2,
     },
     injured: false,
     injuryDetails: {
@@ -236,7 +236,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 0,
+      appearances: 1,
     },
   },
 
@@ -254,9 +254,9 @@ export const players = [
       appearances: 247,
     },
     seasonStats: {
-      goals: 1,
+      goals: 2,
       assists: 0,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
   },
@@ -276,7 +276,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 1,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
   },
@@ -296,7 +296,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 1,
+      appearances: 2,
     },
     injured: false,
     injuryDetails: {
@@ -442,7 +442,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 0,
+      appearances: 1,
     },
     injured: false,
   },
@@ -462,7 +462,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 0,
+      appearances: 1,
     },
     injured: false,
   },
@@ -522,14 +522,14 @@ export const players = [
     country: "/assets/images/eng.png",
     image: "/assets/images/ricol.jpg",
     careerStats: {
-      goals: 5,
-      assists: 10,
-      appearances: 98,
+      goals: 7,
+      assists: 15,
+      appearances: 145,
     },
     seasonStats: {
-      goals: 2,
-      assists: 5,
-      appearances: 47,
+      goals: 0,
+      assists: 0,
+      appearances: 1,
     },
     injured: false,
   },
@@ -551,7 +551,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 0,
+      appearances: 1,
     },
     injured: false,
   },
@@ -572,7 +572,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 1,
+      appearances: 2,
     },
     injured: false,
     injuryDetails: {
@@ -624,8 +624,8 @@ export const players = [
     },
     seasonStats: {
       goalsConceded: 0,
-      cleanSheets: 0,
-      appearances: 0,
+      cleanSheets: 1,
+      appearances: 1,
     },
     injured: false,
   },

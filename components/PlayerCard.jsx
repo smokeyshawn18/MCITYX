@@ -10,10 +10,15 @@ import { CiMedicalCross } from "react-icons/ci";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Handshake } from "lucide-react";
+import { ratePlayer } from "@/utils/ratePlayer";
 
 const PlayerCard = ({ player }) => {
   const [activeTab, setActiveTab] = useState("season");
   const [careerStats, setCareerStats] = useState(player.careerStats);
+
+  const GA = player.seasonStats.goals + player.seasonStats.assists;
+
+  const rating = ratePlayer(player);
 
   useEffect(() => {
     if (player.position === "GK") {
@@ -42,13 +47,16 @@ const PlayerCard = ({ player }) => {
       <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
         {/* Player Image */}
         <div className="relative w-24 h-24 sm:w-28 sm:h-28 mb-3">
-          <img
+          <Image
             src={player.image}
+            fill
             alt={player.name}
             className="w-full h-full rounded-full object-cover shadow-md"
           />
-          <img
+          <Image
             src={player.country}
+            width={10}
+            height={10}
             alt={player.name + " country"}
             className="absolute bottom-0 right-0 w-8 h-8 rounded-lg border-2 border-white object-cover shadow"
           />
@@ -70,12 +78,19 @@ const PlayerCard = ({ player }) => {
             <div>Age: {player.age}</div>
           </div>
 
-          {/* Rating */}
-          {player.fotmobRating && (
-            <div className="mt-4 inline-block bg-green-600 text-white font-bold px-4 py-2 rounded-full text-sm shadow">
-              Fotmob Rating: {player.fotmobRating}
+          <div className="mt-4 flex items-center justify-center gap-4">
+            {/* Circular Rating Bubble */}
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-sky-800 dark:bg-sky-200 text-white dark:text-sky-900 text-lg font-extrabold shadow-lg">
+              {rating}
             </div>
-          )}
+
+            {/* Label + Stars */}
+            <div className="flex flex-col">
+              <span className="text-base tracking-wide text-sky-900 dark:text-sky-200 font-semibold">
+                Player Rating
+              </span>
+            </div>
+          </div>
 
           {/* Injury Info */}
           {player.injured && (

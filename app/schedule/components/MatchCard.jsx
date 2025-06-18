@@ -1,97 +1,125 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { Clock, MapPin } from "lucide-react";
 
 const MatchCard = ({ match, formatDate, getDaysToGo }) => {
   const { id, homeTeam, awayTeam, utcDate, competition } = match;
   const countdown = getDaysToGo(utcDate);
 
   return (
-    <div
+    <article
       key={id}
-      className="relative group bg-gradient-to-br from-white/80 via-sky-50/80 to-blue-100/80 dark:from-gray-900/80 dark:via-gray-800/80 dark:to-blue-900/80
-    backdrop-blur-xl rounded-3xl shadow-xl border border-blue-300 dark:border-blue-800
-    overflow-hidden transition-all duration-300 hover:scale-[1.025] hover:shadow-2xl"
+      className="group relative bg-gradient-to-br from-sky-50/95 via-white/95 to-blue-50/95 
+                 dark:from-slate-900/95 dark:via-slate-800/95 dark:to-blue-950/95
+                 backdrop-blur-lg rounded-3xl shadow-lg border-2 border-sky-200/50 dark:border-slate-700/50
+                 hover:border-sky-400 dark:hover:border-sky-600 hover:shadow-2xl hover:shadow-sky-200/20 dark:hover:shadow-sky-900/20
+                 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
     >
-      {/* Animated Border Glow */}
-      <span className="absolute inset-0 z-0 pointer-events-none rounded-3xl border-2 border-transparent group-hover:border-sky-400 group-hover:shadow-[0_0_40px_8px_rgba(56,189,248,0.25)] transition-all duration-500"></span>
+      {/* Top Accent Strip */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-400 via-blue-500 to-sky-600"></div>
 
-      <div className="relative z-10 p-4 sm:p-6 flex flex-col gap-4">
-        {/* Competition Badge & Date */}
-        <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-2">
+      {/* Glow Effect on Hover */}
+      <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+        <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-sky-400/10 via-blue-500/10 to-sky-600/10"></div>
+      </div>
+
+      <div className="relative z-10 p-4 sm:p-6">
+        {/* Competition Header */}
+        <header className="flex items-center justify-between mb-6">
+          <div className="flex items-center space-x-3 bg-white/80  rounded-2xl px-4 py-2 shadow-sm">
             <Image
               src={competition.emblem}
               alt={competition.name}
-              width={36}
-              height={36}
-              className="rounded-full border-2 border-sky-200 dark:border-blue-700 shadow"
+              width={42}
+              height={42}
+              className="rounded-lg shadow-sm"
               unoptimized={!competition.emblem.startsWith("http")}
             />
-            <span className="text-xs sm:text-sm font-bold text-sky-700 dark:text-sky-200 uppercase tracking-widest">
+            <span className="text-xs sm:text-sm font-bold text-blue-900 dark:text-sky-900 uppercase tracking-wide">
               {competition.name}
             </span>
           </div>
-          <span className="text-xs font-bold text-gray-900 dark:text-gray-300 bg-white/60 dark:bg-gray-700/60 px-2 py-1 rounded-lg shadow">
-            {formatDate(utcDate)}
-          </span>
-        </div>
 
-        {/* Teams & VS Section */}
-        <div className="flex items-center justify-between gap-2 sm:gap-6">
+          <div className="flex items-center space-x-2 bg-sky-100/80 dark:bg-slate-700/80 rounded-xl px-3 py-2">
+            <Clock className="w-3 h-3 text-sky-600 dark:text-sky-400" />
+            <span className="text-xs font-semibold text-sky-700 dark:text-sky-300 uppercase ">
+              {formatDate(utcDate)}
+            </span>
+          </div>
+        </header>
+
+        {/* Teams Section */}
+        <div className="flex items-center justify-between gap-3 sm:gap-6 mb-6">
           {/* Home Team */}
-          <div className="flex flex-col items-center flex-1">
-            <div className="relative group-hover:scale-110 transition-transform duration-300">
+          <div className="flex flex-col items-center flex-1 space-y-3">
+            <div className="relative p-3 bg-white/90 dark:bg-slate-800/90 rounded-2xl shadow-lg group-hover:scale-105 transition-transform duration-300">
               <Image
                 src={homeTeam.crest}
                 alt={homeTeam.name}
-                width={72}
-                height={72}
-                className="object-contain drop-shadow-xl rounded-xl border-2 border-white dark:border-gray-800 bg-white/60 dark:bg-gray-900/60"
+                width={56}
+                height={56}
+                className="object-contain"
                 unoptimized={!homeTeam.crest.startsWith("http")}
               />
             </div>
-            <span className="mt-2 font-extrabold text-base sm:text-lg text-gray-800 dark:text-white text-center">
-              {homeTeam.name}
-            </span>
+            <div className="text-center">
+              <h3 className="font-bold text-sm sm:text-base text-sky-800 dark:text-sky-200 leading-tight">
+                {homeTeam.shortName || homeTeam.name}
+              </h3>
+            </div>
           </div>
 
-          {/* VS Animated */}
-          <div className="flex flex-col items-center mx-2">
-            <div className="bg-gradient-to-r from-sky-500 to-blue-700 text-white font-black text-xl sm:text-3xl px-5 py-2 rounded-full shadow-lg ">
+          {/* VS Section with Countdown */}
+          <div className="flex flex-col items-center space-y-3 px-2">
+            <div className="bg-gradient-to-br from-sky-600 to-blue-700 text-white font-black text-lg sm:text-2xl px-4 py-2 rounded-full shadow-lg">
               VS
             </div>
+
             {/* Countdown Badge */}
-            <span
-              className={`${countdown.color} mt-3 text-white animate-pulse text-[12px] sm:text-xs font-bold px-3 py-1 rounded-full shadow-md tracking-wide uppercase`}
+            <div
+              className={`${countdown.color} text-white text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-full shadow-md uppercase tracking-wider animate-pulse`}
             >
               {countdown.text}
-            </span>
+            </div>
           </div>
 
           {/* Away Team */}
-          <div className="flex flex-col items-center flex-1">
-            <div className="relative group-hover:scale-110 transition-transform duration-300">
+          <div className="flex flex-col items-center flex-1 space-y-3">
+            <div className="relative p-3 bg-white/90 dark:bg-slate-800/90 rounded-2xl shadow-lg group-hover:scale-105 transition-transform duration-300">
               <Image
                 src={awayTeam.crest}
                 alt={awayTeam.name}
-                width={72}
-                height={72}
-                className="object-contain drop-shadow-xl rounded-xl border-2 border-white dark:border-gray-800 bg-white/60 dark:bg-gray-900/60"
+                width={56}
+                height={56}
+                className="object-contain"
                 unoptimized={!awayTeam.crest.startsWith("http")}
               />
             </div>
-            <span className="mt-2 font-extrabold text-base sm:text-lg text-gray-800 dark:text-white text-center">
-              {awayTeam.name}
-            </span>
+            <div className="text-center">
+              <h3 className="font-bold text-sm sm:text-base text-sky-800 dark:text-sky-200 leading-tight">
+                {awayTeam.shortName || awayTeam.name}
+              </h3>
+            </div>
           </div>
         </div>
 
         {/* Action Button */}
-        <Button className="mt-6 w-full bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-700 hover:to-blue-800 text-white font-bold py-3 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-200 text-lg tracking-wide">
-          View Details
+        <Button
+          className="w-full bg-gradient-to-r from-sky-600 via-blue-600 to-sky-700 
+                     hover:from-sky-700 hover:via-blue-700 hover:to-sky-800
+                     dark:from-sky-700 dark:via-blue-700 dark:to-sky-800
+                     dark:hover:from-sky-800 dark:hover:via-blue-800 dark:hover:to-sky-900
+                     text-white font-bold py-3 sm:py-4 rounded-2xl shadow-lg hover:shadow-xl 
+                     transition-all duration-300 transform hover:scale-105 active:scale-95
+                     text-sm sm:text-base tracking-wide"
+        >
+          <span className="flex items-center justify-center space-x-2">
+            <span>View Match Details</span>
+            <div className="w-1.5 h-1.5 bg-white/80 rounded-full animate-bounce"></div>
+          </span>
         </Button>
       </div>
-    </div>
+    </article>
   );
 };
 
