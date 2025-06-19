@@ -1,14 +1,12 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import { SignInButton, useUser } from '@clerk/nextjs';
-import { XCircle, Shirt, ArrowDownToLine } from 'lucide-react';
-import { Button } from './ui/button';
-import { downloadLineupImage } from '@/utils/downloadLineup';
-
+import { useState, useEffect, useRef } from "react";
+import { SignInButton, useUser } from "@clerk/nextjs";
+import { XCircle, Shirt, ArrowDownToLine } from "lucide-react";
+import { Button } from "./ui/button";
+import { downloadLineupImage } from "@/utils/downloadLineup";
 
 const MAX_PLAYERS = 11;
-
 
 const desktopPositions = {
   GK: { x: 50, y: 92 },
@@ -21,7 +19,7 @@ const desktopPositions = {
   RAM: { x: 70, y: 40 },
   CAM: { x: 50, y: 40 },
   LAM: { x: 30, y: 40 },
-  ST: { x: 50, y: 20 }
+  ST: { x: 50, y: 20 },
 };
 
 const mobilePositions = {
@@ -35,22 +33,21 @@ const mobilePositions = {
   RAM: { x: 70, y: 45 },
   CAM: { x: 50, y: 45 },
   LAM: { x: 30, y: 45 },
-  ST: { x: 50, y: 25 }
+  ST: { x: 50, y: 25 },
 };
-  const defaultPlayers = [
-  { id: 1, number: 31, name: 'Ederson', position: 'GK', x: 50, y: 92 },
-  { id: 2, number: 27, name: 'M. Nunes', position: 'RB', x: 85, y: 75 },
-  { id: 3, number: 3, name: 'Dias (C)', position: 'RCB', x: 65, y: 75 },
-  { id: 4, number: 25, name: 'Akanji', position: 'LCB', x: 35, y: 75 },
-  { id: 5, number: 24, name: 'Gvardiol', position: 'LB', x: 15, y: 75 },
-  { id: 6, number: 20, name: 'Silva', position: 'RDM', x: 60, y: 60 },
-  { id: 7, number: 19, name: 'Gundogan', position: 'LDM', x: 40, y: 60 },
-  { id: 8, number: 7, name: 'Marmoush', position: 'RAM', x: 70, y: 40 },
-  { id: 9, number: 47, name: 'Foden', position: 'CAM', x: 50, y: 40 },
-  { id: 10, number: 11, name: 'Doku', position: 'LAM', x: 30, y: 40 },
-  { id: 11, number: 9, name: 'Haaland', position: 'ST', x: 50, y: 20 }
+const defaultPlayers = [
+  { id: 1, number: 31, name: "Ederson", position: "GK", x: 50, y: 92 },
+  { id: 2, number: 27, name: "M. Nunes", position: "RB", x: 85, y: 75 },
+  { id: 3, number: 3, name: "Dias", position: "RCB", x: 65, y: 75 },
+  { id: 4, number: 6, name: "Ake", position: "LCB", x: 35, y: 75 },
+  { id: 5, number: 24, name: "Gvardiol", position: "LB", x: 15, y: 75 },
+  { id: 6, number: 4, name: "Silva (C)", position: "RDM", x: 60, y: 60 },
+  { id: 7, number: 16, name: "Rodri", position: "LDM", x: 40, y: 60 },
+  { id: 8, number: 7, name: "Marmoush", position: "RAM", x: 70, y: 40 },
+  { id: 9, number: 47, name: "Foden", position: "CAM", x: 50, y: 40 },
+  { id: 10, number: 11, name: "Doku", position: "LAM", x: 30, y: 40 },
+  { id: 11, number: 9, name: "Haaland", position: "ST", x: 50, y: 20 },
 ];
-
 
 function useIsMobile(breakpoint = 640) {
   const [isMobile, setIsMobile] = useState(false);
@@ -59,46 +56,54 @@ function useIsMobile(breakpoint = 640) {
       setIsMobile(window.innerWidth < breakpoint);
     }
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [breakpoint]);
   return isMobile;
 }
 
 export default function LineupEditor({ lineupId = null }) {
+  const { user, isSignedIn, isLoaded } = useUser();
 
-
-
-  const { user, isSignedIn } = useUser();
   const isMobile = useIsMobile();
 
-  const [lineupName, setLineupName] = useState('');
+  const [lineupName, setLineupName] = useState("");
   const [players, setPlayers] = useState([]);
   const [selectedPlayerId, setSelectedPlayerId] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const [newPlayerName, setNewPlayerName] = useState('');
-  const [newPlayerNumber, setNewPlayerNumber] = useState('');
+  const [newPlayerName, setNewPlayerName] = useState("");
+  const [newPlayerNumber, setNewPlayerNumber] = useState("");
 
   const fieldRef = useRef(null);
   const editPanelRef = useRef(null);
+  const {} = useUser();
 
-   const handleDownloadClick = () => {
-    downloadLineupImage(fieldRef.current);
+  if (!isLoaded) return null;
+
+  const username = user?.username || user?.firstName || "guest";
+
+  const handleDownloadClick = () => {
+    if (fieldRef.current) {
+      downloadLineupImage(fieldRef.current, username);
+    }
   };
 
   useEffect(() => {
     if (lineupId) loadLineup();
     else {
       setPlayers(defaultPlayers);
-      setLineupName('');
+      setLineupName("");
     }
   }, [lineupId]);
 
   useEffect(() => {
     if (selectedPlayerId !== null && isMobile && editPanelRef.current) {
       setTimeout(() => {
-        editPanelRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        editPanelRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
       }, 200);
     }
   }, [selectedPlayerId, isMobile]);
@@ -109,54 +114,54 @@ export default function LineupEditor({ lineupId = null }) {
       const res = await fetch(`/api/lineups/${lineupId}`);
       if (res.ok) {
         const data = await res.json();
-        setLineupName(data.name || '');
+        setLineupName(data.name || "");
         setPlayers(
           data.players.map((p, i) => ({
             id: i + 1,
             number: p.number || 0,
-            name: p.name || '',
-            position: p.position || 'CM',
+            name: p.name || "",
+            position: p.position || "CM",
             x: p.x || 50,
-            y: p.y || 50
+            y: p.y || 50,
           }))
         );
       }
     } catch (e) {
       console.error(e);
-      alert('Failed to load lineup');
+      alert("Failed to load lineup");
     } finally {
       setLoading(false);
     }
   }
 
   async function saveLineup() {
-    if (!isSignedIn) return alert('You must be signed in to save.');
-    if (!lineupName.trim()) return alert('Please enter a lineup name.');
-    if (players.length === 0) return alert('Add at least one player.');
+    if (!isSignedIn) return alert("You must be signed in to save.");
+    if (!lineupName.trim()) return alert("Please enter a lineup name.");
+    if (players.length === 0) return alert("Add at least one player.");
     if (players.some((p) => !p.name.trim() || !p.number)) {
-      return alert('Please fill all player names and jersey numbers.');
+      return alert("Please fill all player names and jersey numbers.");
     }
 
     setLoading(true);
     try {
-      const res = await fetch('/api/lineups', {
-        method: lineupId ? 'PUT' : 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/lineups", {
+        method: lineupId ? "PUT" : "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           id: lineupId,
           user_id: user.id,
           name: lineupName,
-          players
-        })
+          players,
+        }),
       });
 
       if (!res.ok) {
         const err = await res.json();
-        throw new Error(err.error || 'Failed to save lineup');
+        throw new Error(err.error || "Failed to save lineup");
       }
 
-      alert('Lineup saved successfully!');
-      window.location.href = '/profile';
+      alert("Lineup saved successfully!");
+      window.location.href = "/profile";
     } catch (error) {
       alert(error.message);
     } finally {
@@ -165,14 +170,14 @@ export default function LineupEditor({ lineupId = null }) {
   }
 
   function onDragStart(e, id) {
-    e.dataTransfer.setData('text/plain', id);
+    e.dataTransfer.setData("text/plain", id);
   }
   function onDragOver(e) {
     e.preventDefault();
   }
   function onDrop(e) {
     e.preventDefault();
-    const id = Number(e.dataTransfer.getData('text/plain'));
+    const id = Number(e.dataTransfer.getData("text/plain"));
     if (!fieldRef.current) return;
     const rect = fieldRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -193,7 +198,11 @@ export default function LineupEditor({ lineupId = null }) {
     setPlayers((p) =>
       p.map((pl) =>
         pl.id === id
-          ? { ...pl, x: Math.min(95, Math.max(5, x)), y: Math.min(95, Math.max(5, y)) }
+          ? {
+              ...pl,
+              x: Math.min(95, Math.max(5, x)),
+              y: Math.min(95, Math.max(5, y)),
+            }
           : pl
       )
     );
@@ -206,8 +215,8 @@ export default function LineupEditor({ lineupId = null }) {
         pl.id === id
           ? {
               ...pl,
-              [field]: field === 'position' ? value : value.trim(),
-              ...(field === 'position' ? positions[value] : {})
+              [field]: field === "position" ? value : value.trim(),
+              ...(field === "position" ? positions[value] : {}),
             }
           : pl
       )
@@ -218,25 +227,29 @@ export default function LineupEditor({ lineupId = null }) {
     if (players.length >= MAX_PLAYERS) {
       return alert(`Maximum of ${MAX_PLAYERS} players allowed.`);
     }
-    if (!newPlayerName.trim()) return alert('Enter player name');
+    if (!newPlayerName.trim()) return alert("Enter player name");
     const num = parseInt(newPlayerNumber);
-    if (!num || num < 1 || num > 99) return alert('Enter valid jersey number (1-99)');
-    if (players.some((p) => p.number === num)) return alert('Jersey number already taken');
+    if (!num || num < 1 || num > 99)
+      return alert("Enter valid jersey number (1-99)");
+    if (players.some((p) => p.number === num))
+      return alert("Jersey number already taken");
 
-    const newId = players.length ? Math.max(...players.map((p) => p.id)) + 1 : 1;
+    const newId = players.length
+      ? Math.max(...players.map((p) => p.id)) + 1
+      : 1;
     setPlayers((p) => [
       ...p,
       {
         id: newId,
         name: newPlayerName.trim(),
         number: num,
-        position: 'CM',
+        position: "CM",
         x: 50,
-        y: 50
-      }
+        y: 50,
+      },
     ]);
-    setNewPlayerName('');
-    setNewPlayerNumber('');
+    setNewPlayerName("");
+    setNewPlayerNumber("");
   }
 
   function removePlayer(id) {
@@ -245,10 +258,12 @@ export default function LineupEditor({ lineupId = null }) {
   }
 
   function resetLineup() {
-    if (confirm('Reset lineup to default players? This will remove all changes.')) {
+    if (
+      confirm("Reset lineup to default players? This will remove all changes.")
+    ) {
       setPlayers(defaultPlayers);
       setSelectedPlayerId(null);
-      setLineupName('');
+      setLineupName("");
     }
   }
 
@@ -257,13 +272,11 @@ export default function LineupEditor({ lineupId = null }) {
   if (!isSignedIn) {
     return (
       <div className="p-6 text-center text-black font-bold ">
-        <p className='mb-4'> Please sign in to create or edit lineups.</p>
-       
+        <p className="mb-4"> Please sign in to create or edit lineups.</p>
 
         <Button className="bg-black text-white font-bold uppercase ">
-           <SignInButton mode='modal'/>
+          <SignInButton mode="modal" />
         </Button>
-       
       </div>
     );
   }
@@ -273,6 +286,7 @@ export default function LineupEditor({ lineupId = null }) {
       {/* Left: Football Field */}
       <div
         ref={fieldRef}
+        style={{ fontFamily: "sans-serif" }} // Fallback to avoid undefined fonts
         className="relative bg-green-800 rounded-lg border-4 border-green-700 aspect-[3/4] flex-shrink-0 w-full lg:w-3/5 max-w-4xl mx-auto shadow-lg overflow-hidden"
         onDragOver={onDragOver}
         onDrop={onDrop}
@@ -285,19 +299,22 @@ export default function LineupEditor({ lineupId = null }) {
             onDragStart={(e) => onDragStart(e, player.id)}
             onTouchMove={(e) => onTouchMove(e, player.id)}
             className={`absolute cursor-grab select-none transform -translate-x-1/2 -translate-y-1/2 text-center transition
-              ${selectedPlayerId === player.id ? 'ring-4 ring-yellow-400' : ''}
-            `}
+                ${
+                  selectedPlayerId === player.id ? "ring-4 ring-yellow-400" : ""
+                }
+              `}
             style={{
               left: `${player.x}%`,
               top: `${player.y}%`,
-              zIndex: selectedPlayerId === player.id ? 10 : 1
+              zIndex: selectedPlayerId === player.id ? 10 : 1,
             }}
             onClick={() => setSelectedPlayerId(player.id)}
             title={`${player.name} (#${player.number}) - ${player.position}`}
             tabIndex={0}
             aria-label={`Edit ${player.name} (#${player.number})`}
-            onKeyDown={e => {
-              if (e.key === 'Enter' || e.key === ' ') setSelectedPlayerId(player.id);
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ")
+                setSelectedPlayerId(player.id);
             }}
           >
             <div className="w-10 h-10 xs:w-12 xs:h-12 sm:w-16 sm:h-16 rounded-full bg-[#3c87c5] border-4 border-white flex items-center justify-center font-bold text-base xs:text-lg sm:text-xl shadow-lg hover:bg-sky-700 transition">
@@ -310,34 +327,35 @@ export default function LineupEditor({ lineupId = null }) {
         ))}
       </div>
 
-   
       {/* Right: Edit Panel */}
       <div
         className="flex-grow max-w-lg mx-auto lg:mx-0 flex flex-col gap-6"
         ref={editPanelRef}
       >
-            <button
-  onClick={handleDownloadClick}
-  className="mt-6 px-5 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold rounded-xl shadow-lg hover:from-blue-700 hover:to-blue-600 transition-all duration-300 flex items-center gap-2"
->
-  <ArrowDownToLine className="w-5 h-5" />
-  Download Lineup Field
-</button>
+        <button
+          onClick={handleDownloadClick}
+          className="mt-6 px-5 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold rounded-xl shadow-lg hover:from-blue-700 hover:to-blue-600 transition-all duration-300 flex items-center gap-2"
+        >
+          <ArrowDownToLine className="w-5 h-5" />
+          Download Lineup Field
+        </button>
 
         <h2 className="text-2xl sm:text-3xl font-semibold mb-4 border-b border-gray-700 pb-2">
           Edit Lineup
         </h2>
 
-
         {selectedPlayerId === null && (
-          <p className="text-gray-400 italic mb-4">Tap a player on the field to edit details.</p>
+          <p className="text-gray-400 italic mb-4">
+            Tap a player on the field to edit details.
+          </p>
         )}
 
         {selectedPlayerId !== null && (
           <>
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg sm:text-xl font-semibold">
-                Editing: {players.find((p) => p.id === selectedPlayerId)?.name || ''}
+                Editing:{" "}
+                {players.find((p) => p.id === selectedPlayerId)?.name || ""}
               </h3>
               <button
                 onClick={() => setSelectedPlayerId(null)}
@@ -358,7 +376,9 @@ export default function LineupEditor({ lineupId = null }) {
                     <input
                       type="text"
                       value={player.name}
-                      onChange={(e) => updatePlayerField(player.id, 'name', e.target.value)}
+                      onChange={(e) =>
+                        updatePlayerField(player.id, "name", e.target.value)
+                      }
                       className="mt-1 block w-full rounded-md bg-gray-800 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                       maxLength={30}
                     />
@@ -371,7 +391,9 @@ export default function LineupEditor({ lineupId = null }) {
                       min={1}
                       max={99}
                       value={player.number}
-                      onChange={(e) => updatePlayerField(player.id, 'number', e.target.value)}
+                      onChange={(e) =>
+                        updatePlayerField(player.id, "number", e.target.value)
+                      }
                       className="mt-1 block w-full rounded-md bg-gray-800 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
                   </label>
@@ -380,7 +402,9 @@ export default function LineupEditor({ lineupId = null }) {
                     <span className="text-gray-300">Position</span>
                     <select
                       value={player.position}
-                      onChange={(e) => updatePlayerField(player.id, 'position', e.target.value)}
+                      onChange={(e) =>
+                        updatePlayerField(player.id, "position", e.target.value)
+                      }
                       className="mt-1 block w-full rounded-md bg-gray-800 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                     >
                       {Object.keys(desktopPositions).map((pos) => (
@@ -440,14 +464,14 @@ export default function LineupEditor({ lineupId = null }) {
               disabled={players.length >= MAX_PLAYERS}
               className={`rounded-md text-white font-semibold px-4 py-2 transition ${
                 players.length >= MAX_PLAYERS
-                  ? 'bg-gray-600 cursor-not-allowed'
-                  : 'bg-green-600 hover:bg-green-700 cursor-pointer'
+                  ? "bg-gray-600 cursor-not-allowed"
+                  : "bg-green-600 hover:bg-green-700 cursor-pointer"
               }`}
               type="button"
               title={
                 players.length >= MAX_PLAYERS
                   ? `Maximum ${MAX_PLAYERS} players reached`
-                  : 'Add Player'
+                  : "Add Player"
               }
             >
               Add Player
@@ -472,12 +496,14 @@ export default function LineupEditor({ lineupId = null }) {
             onClick={saveLineup}
             disabled={loading}
             className={`px-4 py-2 rounded-md font-semibold transition ${
-              loading ? 'bg-green-400 cursor-not-allowed' : 'bg-green-600 hover:bg-green-700'
+              loading
+                ? "bg-green-400 cursor-not-allowed"
+                : "bg-green-600 hover:bg-green-700"
             }`}
             type="button"
             aria-label="Save lineup"
           >
-            {loading ? 'Saving...' : 'Save your lineup'}
+            {loading ? "Saving..." : "Save your lineup"}
           </button>
           <button
             onClick={resetLineup}

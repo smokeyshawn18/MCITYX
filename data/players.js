@@ -324,7 +324,7 @@ export const players = [
       assists: 0,
       appearances: 0,
     },
-    injured: true,
+    injured: false,
     injuryDetails: {
       tm: "Feb 20, 2025",
       type: "Foot Injury",

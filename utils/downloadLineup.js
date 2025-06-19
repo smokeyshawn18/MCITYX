@@ -1,58 +1,58 @@
 // utils/downloadLineupImage.js
-import { toPng } from 'html-to-image'; // or your preferred library
+import { toPng } from "html-to-image";
 
-export async function downloadLineupImage(fieldElement) {
+export async function downloadLineupImage(fieldElement, username = "mcityx") {
   if (!fieldElement) return;
-try {
-  const dataUrl = await toPng(fieldElement, {
-    backgroundColor: '#016a2c',
-    pixelRatio: 2,
-  });
 
-  const img = new Image();
-  img.src = dataUrl;
+  try {
+    const dataUrl = await toPng(fieldElement, {
+      backgroundColor: "#016a2c",
+      pixelRatio: 2,
+      skipFonts: true,
+    });
 
-  await new Promise((resolve) => {
-    img.onload = resolve;
-  });
+    const img = new Image();
+    img.src = dataUrl;
 
-  const canvas = document.createElement('canvas');
-  canvas.width = img.width;
-  canvas.height = img.height;
+    await new Promise((resolve) => {
+      img.onload = resolve;
+    });
 
-  const ctx = canvas.getContext('2d');
-  ctx.drawImage(img, 0, 0);
+    const canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
 
-  // Watermark styling
-  const watermarkText = 'MCITYX';
-  const fontSize = Math.floor(canvas.width / 15); // responsive font size
-  ctx.font = `bold ${fontSize}px Arial`;
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.6)'; // black with 60% opacity for subtlety
-  ctx.textAlign = 'right';
-  ctx.textBaseline = 'bottom';
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
 
-  // Padding from edges
-  const paddingX = 30;
-  const paddingY = 30;
+    // Watermark
+    const watermarkText = "MCITYX";
 
-  // Optionally add a subtle shadow for better visibility
-  ctx.shadowColor = 'rgba(255, 255, 255, 0.3)';
-  ctx.shadowBlur = 4;
-  ctx.shadowOffsetX = 2;
-  ctx.shadowOffsetY = 2;
+    ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+    ctx.textAlign = "right";
+    ctx.textBaseline = "bottom";
 
-  // Draw the watermark text bottom-right aligned with padding
-  ctx.fillText(watermarkText, canvas.width - paddingX, canvas.height - paddingY);
+    ctx.shadowColor = "rgba(255, 255, 255, 0.3)";
+    ctx.shadowBlur = 4;
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 2;
 
-  const finalDataUrl = canvas.toDataURL('image/png');
+    const paddingX = 30;
+    const paddingY = 30;
 
-  // Trigger download
-  const link = document.createElement('a');
-  link.href = finalDataUrl;
-  link.download = 'mcity-lineup-field.png';
-  link.click();
-} catch (err) {
-  console.error('Image download failed', err);
-}
+    ctx.fillText(
+      watermarkText,
+      canvas.width - paddingX,
+      canvas.height - paddingY
+    );
 
+    const finalDataUrl = canvas.toDataURL("image/png");
+
+    const link = document.createElement("a");
+    link.href = finalDataUrl;
+    link.download = `${username}-mcityx.png`; // ✅ Correct template literal
+    link.click();
+  } catch (err) {
+    console.error("Image download failed", err);
+  }
 }

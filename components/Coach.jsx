@@ -1,6 +1,6 @@
 "use client";
 import { FaTrophy, FaMedal, FaCrown, FaStar } from "react-icons/fa";
-import Guardiola from "../assets/images/pepp.jpg";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -51,7 +51,7 @@ const trophies = [
 ];
 
 export default function CoachProfile() {
-  const wins = 379;
+  const wins = 380;
   const draws = 67;
   const losses = 82;
   const totalTrophies = trophies.reduce((sum, t) => sum + t.count, 0);
@@ -63,15 +63,15 @@ export default function CoachProfile() {
       <div className="w-full max-w-6xl bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 sm:p-10 flex flex-col lg:flex-row gap-8 lg:gap-12">
         {/* Left: Coach Profile */}
         <div className="flex flex-col items-center lg:items-start gap-4 flex-shrink-0 w-full lg:w-72">
-         <div className="relative w-48 h-48 rounded-full border-8 border-sky-300 dark:border-sky-500 shadow-lg overflow-hidden">
-  <Image
-    src="/assets/images/pepp.jpg"
-    alt="Pep Guardiola"
-    fill
-    className="object-cover"
-    priority
-  />
-</div>
+          <div className="relative w-48 h-48 rounded-full border-8 border-sky-300 dark:border-sky-500 shadow-lg overflow-hidden">
+            <Image
+              src="/assets/images/pepp.jpg"
+              alt="Pep Guardiola"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
 
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white text-center lg:text-left">
             Pep Guardiola
@@ -80,7 +80,10 @@ export default function CoachProfile() {
             2016/07/01 - Present
           </h3>
           <p className="italic text-gray-600 dark:text-gray-400 text-center lg:text-left max-w-xs">
-            Manager of <span className="text-sky-600 dark:text-sky-400 font-semibold">Manchester City</span>
+            Manager of{" "}
+            <span className="text-sky-600 dark:text-sky-400 font-semibold">
+              Manchester City
+            </span>
           </p>
         </div>
 
@@ -93,19 +96,27 @@ export default function CoachProfile() {
             </h3>
             <div className="flex flex-wrap justify-center gap-8 text-gray-700 dark:text-gray-300 font-semibold text-base sm:text-lg mb-6">
               <div className="text-center">
-                <p className="text-3xl sm:text-4xl text-sky-600 dark:text-sky-400">{totalMatches}</p>
+                <p className="text-3xl sm:text-4xl text-sky-600 dark:text-sky-400">
+                  {totalMatches}
+                </p>
                 <p>Matches</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl sm:text-4xl text-sky-600 dark:text-sky-400">{wins}</p>
+                <p className="text-3xl sm:text-4xl text-sky-600 dark:text-sky-400">
+                  {wins}
+                </p>
                 <p>Wins</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl sm:text-4xl text-sky-600 dark:text-sky-400">{losses}</p>
+                <p className="text-3xl sm:text-4xl text-sky-600 dark:text-sky-400">
+                  {losses}
+                </p>
                 <p>Losses</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl sm:text-4xl text-sky-600 dark:text-sky-400">{ppg}</p>
+                <p className="text-3xl sm:text-4xl text-sky-600 dark:text-sky-400">
+                  {ppg}
+                </p>
                 <p>Points Per Game</p>
               </div>
             </div>
@@ -115,7 +126,9 @@ export default function CoachProfile() {
                 <p className="text-lg font-bold text-sky-600 dark:text-sky-400">
                   {((wins / totalMatches) * 100).toFixed(1)}%
                 </p>
-                <p className="text-gray-700 dark:text-gray-300 mt-1 font-semibold">Wins</p>
+                <p className="text-gray-700 dark:text-gray-300 mt-1 font-semibold">
+                  Wins
+                </p>
                 <div className="mt-2 h-3 w-full bg-sky-200 dark:bg-sky-700 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-sky-600 dark:bg-sky-400 rounded-full"
@@ -128,7 +141,9 @@ export default function CoachProfile() {
                 <p className="text-lg font-bold text-blue-500 dark:text-blue-400">
                   {((draws / totalMatches) * 100).toFixed(1)}%
                 </p>
-                <p className="text-gray-700 dark:text-gray-300 mt-1 font-semibold">Draws</p>
+                <p className="text-gray-700 dark:text-gray-300 mt-1 font-semibold">
+                  Draws
+                </p>
                 <div className="mt-2 h-3 w-full bg-blue-200 dark:bg-blue-700 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-blue-500 dark:bg-blue-400 rounded-full"
@@ -141,7 +156,9 @@ export default function CoachProfile() {
                 <p className="text-lg font-bold text-red-500 dark:text-red-400">
                   {((losses / totalMatches) * 100).toFixed(1)}%
                 </p>
-                <p className="text-gray-700 dark:text-gray-300 mt-1 font-semibold">Losses</p>
+                <p className="text-gray-700 dark:text-gray-300 mt-1 font-semibold">
+                  Losses
+                </p>
                 <div className="mt-2 h-3 w-full bg-red-200 dark:bg-red-700 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-red-500 dark:bg-red-400 rounded-full"
@@ -155,7 +172,8 @@ export default function CoachProfile() {
           {/* Trophy Section */}
           <div className="bg-white dark:bg-gray-800 rounded-xl p-4 sm:p-6 shadow-inner">
             <h4 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-800 dark:text-white text-center">
-              Trophy Cabinet <span className="ml-2 text-yellow-500">{totalTrophies}</span>
+              Trophy Cabinet{" "}
+              <span className="ml-2 text-yellow-500">{totalTrophies}</span>
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {trophies.map((trophy) => (
@@ -182,10 +200,13 @@ export default function CoachProfile() {
 
           {/* Coaching Philosophy */}
           <div className="bg-sky-50 dark:bg-gray-700 rounded-xl p-4 sm:p-6 shadow-inner text-gray-800 dark:text-white">
-            <h4 className="text-xl sm:text-2xl font-semibold mb-2">Coaching Philosophy</h4>
+            <h4 className="text-xl sm:text-2xl font-semibold mb-2">
+              Coaching Philosophy
+            </h4>
             <p className="leading-relaxed text-base sm:text-lg">
-              Guardiola emphasizes ball possession, tactical flexibility, and high-intensity pressing,
-              transforming Manchester City into one of the most formidable teams in Europe.
+              Guardiola emphasizes ball possession, tactical flexibility, and
+              high-intensity pressing, transforming Manchester City into one of
+              the most formidable teams in Europe.
             </p>
           </div>
 
