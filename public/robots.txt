@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
 
-Host: https://mcityx.vercel.app
-Sitemap: https://mcityx.vercel.app/sitemap.xml
+Host: https://mcityxs.vercel.app
+Sitemap: https://mcityxs.vercel.app/sitemap.xml
 
