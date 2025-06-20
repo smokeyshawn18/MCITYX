@@ -14,9 +14,9 @@ const WelcomePlayer = ({ players, selectedNames }) => {
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6 }}
-      className="p-6 sm:p-10 bg-gradient-to-br from-blue-100 to-sky-200 dark:from-gray-900 dark:to-gray-800 rounded-3xl shadow-2xl"
+      className="p-8 sm:p-12 bg-gradient-to-br from-blue-50 to-sky-100 dark:from-gray-900 dark:to-gray-800 rounded-3xl shadow-lg"
     >
-      <div className="flex justify-center items-center gap-3 mb-6">
+      <div className="flex justify-center mb-8">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -27,42 +27,44 @@ const WelcomePlayer = ({ players, selectedNames }) => {
         </motion.h1>
       </div>
 
-      <p className="text-center text-slate-700 dark:text-slate-300 text-md sm:text-lg mb-10">
+      <p className="text-center text-slate-700 dark:text-slate-300 text-lg sm:text-xl mb-12 max-w-xl mx-auto">
         A new journey begins! Let’s make history together 💙
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         {filteredPlayers.map((player, index) => (
           <motion.div
             key={player.name}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1, duration: 0.4 }}
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            className="w-full bg-white dark:bg-gray-900 rounded-3xl shadow-lg flex flex-col items-center p-6 transition-all duration-300"
+            className="relative rounded-3xl overflow-hidden border border-sky-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-md cursor-pointer"
           >
-            <div className="relative w-24 h-24 sm:w-28 sm:h-28 mb-4">
+            {/* Large squared image container */}
+            <div className="relative w-full aspect-square">
               <img
                 src={player.image}
                 alt={player.name}
-                className="w-full h-full rounded-full border-4 border-sky-500 object-cover shadow-md"
+                className="w-full h-full object-cover opacity-90 transition-opacity duration-300 hover:opacity-100"
               />
+              {/* Overlay with gradient for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent flex flex-col justify-end p-4">
+                <h2 className="text-white text-2xl font-bold truncate">
+                  {player.name}
+                </h2>
+                {player.value && (
+                  <div className="inline-flex items-center gap-1 text-white text-lg font-semibold mt-1">
+                    <Euro className="w-5 h-5" /> {player.value}M
+                  </div>
+                )}
+              </div>
+              {/* Country flag badge */}
               <img
                 src={player.country}
-                alt={player.name + " country"}
+                alt={`${player.name} country`}
                 title={player.countryName || "Country"}
-                className="absolute bottom-0 right-0 w-8 h-8 rounded-md border-2 border-white object-cover shadow"
+                className="absolute top-4 right-4 w-10 h-10 rounded-full border-2 border-white shadow-lg object-cover"
               />
             </div>
-            <h2 className="text-xl sm:text-2xl font-semibold text-sky-800 dark:text-gray-100 mb-1">
-              {player.name}
-            </h2>
-            {player.value && (
-              <span className="inline-flex items-center gap-1 text-xl">
-                <Euro className="w-5 h-5" /> {player.value}M
-              </span>
-            )}
           </motion.div>
         ))}
       </div>

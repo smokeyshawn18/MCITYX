@@ -267,7 +267,7 @@ export const players = [
     value: 45,
     age: 21,
     country: "/assets/images/france.svg",
-    image: "/assets/images/rayan.png",
+    image: "/assets/images/rayan.webp",
     careerStats: {
       goals: 29,
       assists: 45,
@@ -500,7 +500,7 @@ export const players = [
     value: 35,
     age: 23,
     country: "/assets/images/algeria.png",
-    image: "/assets/images/rayan.webp",
+    image: "/assets/images/rayanati.jpeg",
     careerStats: {
       goals: 12,
       assists: 23,
