@@ -16,9 +16,9 @@ export const players = [
       appearances: 364,
     },
     seasonStats: {
-      goals: 2,
-      assists: 0,
-      appearances: 3,
+      goals: 3,
+      assists: 1,
+      appearances: 4,
     },
     injured: false,
     injuryDetails: {
@@ -71,8 +71,8 @@ export const players = [
     },
     seasonStats: {
       goals: 0,
-      assists: 0,
-      appearances: 2,
+      assists: 1,
+      appearances: 3,
     },
     injured: false,
   },
@@ -91,9 +91,9 @@ export const players = [
       appearances: 697,
     },
     seasonStats: {
-      goals: 0,
+      goals: 2,
       assists: 0,
-      appearances: 1,
+      appearances: 2,
     },
     injured: false,
   },
@@ -115,7 +115,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 1,
-      appearances: 1,
+      appearances: 2,
     },
     injured: false,
   },
@@ -202,7 +202,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
     injuryDetails: {
@@ -217,7 +217,7 @@ export const players = [
     number: 16,
     position: "DM",
     value: 110,
-    age: 28,
+    age: 29,
     injury: "Torn ACL",
     country: "/assets/images/spain.png",
     injured: false,
@@ -235,8 +235,8 @@ export const players = [
     },
     seasonStats: {
       goals: 0,
-      assists: 0,
-      appearances: 1,
+      assists: 1,
+      appearances: 2,
     },
   },
 
@@ -274,9 +274,9 @@ export const players = [
       appearances: 185,
     },
     seasonStats: {
-      goals: 1,
+      goals: 2,
       assists: 1,
-      appearances: 3,
+      appearances: 4,
     },
     injured: false,
   },
@@ -348,7 +348,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 1,
-      appearances: 1,
+      appearances: 2,
     },
     injured: false,
   },
@@ -388,7 +388,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 1,
+      appearances: 2,
     },
     injured: false,
     injuryDetails: {
@@ -415,7 +415,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 1,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
     injuryDetails: {
@@ -462,7 +462,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 1,
+      appearances: 2,
     },
     injured: false,
   },
@@ -490,7 +490,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 0,
+      appearances: 1,
     },
   },
   {
@@ -509,7 +509,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 0,
+      appearances: 1,
     },
     injured: false,
   },
@@ -570,9 +570,9 @@ export const players = [
       appearances: 38,
     },
     seasonStats: {
-      goals: 0,
+      goals: 1,
       assists: 0,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
     injuryDetails: {
@@ -597,9 +597,9 @@ export const players = [
       appearances: 50,
     },
     seasonStats: {
-      goals: 0,
+      goals: 1,
       assists: 0,
-      appearances: 0,
+      appearances: 1,
     },
     injured: false,
     injuryDetails: {
@@ -645,8 +645,8 @@ export const players = [
     },
     seasonStats: {
       goalsConceded: 0,
-      cleanSheets: 0,
-      appearances: 0,
+      cleanSheets: 1,
+      appearances: 1,
     },
     injured: false,
   },

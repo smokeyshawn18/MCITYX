@@ -23,11 +23,11 @@ export const metadata = {
     title: "MCityX - Manchester City Fan Site",
     description:
       "Latest results, stats, trophies, news, and more about Manchester City.",
-    url: "https://mcityx.vercel.app",
+    url: "https://mcityxs.vercel.app",
     siteName: "MCityX",
     images: [
       {
-        url: "https://mcityx.vercel.app/og-image.png",
+        url: "https://mcityxs.vercel.app/og-image.png",
         width: 1200,
         height: 630,
         alt: "MCityX Logo",
@@ -42,7 +42,7 @@ export const metadata = {
     title: "MCityX - Manchester City Fan Site",
     description:
       "Latest results, stats, trophies, news, and more about Manchester City.",
-    images: ["https://mcityx.vercel.app/twitter-image.png"],
+    images: ["https://mcityxs.vercel.app/twitter-image.png"],
   },
 };
 
@@ -66,8 +66,8 @@ export default function RootLayout({ children }) {
                 "@context": "https://schema.org",
                 "@type": "Organization",
                 name: "MCityX",
-                url: "https://mcityx.vercel.app",
-                logo: "https://mcityx.vercel.app/logo.png",
+                url: "https://mcityxs.vercel.app",
+                logo: "https://mcityxs.vercel.app/logo.png",
               }),
             }}
           />

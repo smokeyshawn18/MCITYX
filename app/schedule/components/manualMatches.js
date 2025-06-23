@@ -1,40 +1,6 @@
 // Manual matches data for FIFA Club World Cup
 export const manualMatches = [
   {
-    id: "99901",
-    homeTeam: {
-      name: "Man City",
-      crest: "/assets/images/logo.svg",
-    },
-    awayTeam: {
-      name: "Wydad AC",
-      crest: "/assets/images/wydad.png",
-    },
-    competition: {
-      name: "Fifa CWC",
-      emblem: "/assets/images/cwc.webp",
-    },
-    utcDate: "2025-06-18T16:00:00Z",
-    status: "TIMED",
-  },
-  {
-    id: "99902",
-    homeTeam: {
-      name: "Man City",
-      crest: "/assets/images/logo.svg",
-    },
-    awayTeam: {
-      name: "Al Ain",
-      crest: "/assets/images/alalyn.png",
-    },
-    competition: {
-      name: "Fifa CWC",
-      emblem: "/assets/images/cwc.webp",
-    },
-    utcDate: "2025-06-23T06:45:00Z",
-    status: "TIMED",
-  },
-  {
     id: "99903",
     homeTeam: {
       name: "Juventus",
@@ -89,6 +55,6 @@ export const getDaysToGo = (utcDate) => {
   if (days === 0) return { text: "Today", color: "bg-green-500" };
   if (days === 1) return { text: "Tomorrow", color: "bg-blue-500" };
   if (days < 0) return { text: "Past Match (City Won)", color: "bg-slate-800" };
-  if (days <= 7) return { text: `${days} days to go`, color: "bg-orange-700" };
+  if (days <= 7) return { text: `${days} days to go`, color: "bg-teal-700" };
   return { text: `${days} days to go`, color: "bg-sky-600" };
 };

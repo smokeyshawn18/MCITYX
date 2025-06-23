@@ -1,9 +1,9 @@
 export function ratePlayer(player) {
   const { position, age, injured, careerStats, seasonStats } = player;
 
-  const isAttacker = ["AM", "FW", "ST", "LW", "RW"].includes(position);
-  const goalWeight = isAttacker ? 0.6 : 0.4;
-  const assistWeight = isAttacker ? 0.4 : 0.6;
+  const isAttacker = ["AM", "FW", "CM", "ST", "LW", "RW"].includes(position);
+  const goalWeight = isAttacker ? 0.7 : 0.4;
+  const assistWeight = isAttacker ? 0.6 : 0.6;
 
   const seasonInvolvement =
     (seasonStats.goals * goalWeight + seasonStats.assists * assistWeight) /
