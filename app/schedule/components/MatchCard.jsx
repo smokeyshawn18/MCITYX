@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Clock, MapPin } from "lucide-react";
 
 const MatchCard = ({ match, formatDate, getDaysToGo }) => {
-  const { id, homeTeam, awayTeam, utcDate, competition } = match;
+  const { id, homeTeam, awayTeam, utcDate, competition, round } = match;
   const countdown = getDaysToGo(utcDate);
 
   return (
@@ -103,21 +103,9 @@ const MatchCard = ({ match, formatDate, getDaysToGo }) => {
           </div>
         </div>
 
-        {/* Action Button */}
-        <Button
-          className="w-full bg-gradient-to-r from-sky-600 via-blue-600 to-sky-700 
-                     hover:from-sky-700 hover:via-blue-700 hover:to-sky-800
-                     dark:from-sky-700 dark:via-blue-700 dark:to-sky-800
-                     dark:hover:from-sky-800 dark:hover:via-blue-800 dark:hover:to-sky-900
-                     text-white font-bold py-3 sm:py-4 rounded-2xl shadow-lg hover:shadow-xl 
-                     transition-all duration-300 transform hover:scale-105 active:scale-95
-                     text-sm sm:text-base tracking-wide"
-        >
-          <span className="flex items-center justify-center space-x-2">
-            <span>View Match Details</span>
-            <div className="w-1.5 h-1.5 bg-white/80 rounded-full animate-bounce"></div>
-          </span>
-        </Button>
+        <span className="flex items-center justify-center space-x-2">
+          <span>{round}</span>
+        </span>
       </div>
     </article>
   );

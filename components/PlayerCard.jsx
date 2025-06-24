@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Handshake } from "lucide-react";
 import { ratePlayer } from "@/utils/ratePlayer";
+import { calculateAge } from "@/utils/playerAge";
 
 const PlayerCard = ({ player }) => {
   const [activeTab, setActiveTab] = useState("season");
@@ -75,7 +76,7 @@ const PlayerCard = ({ player }) => {
             <div className="flex items-center gap-2">💰 ${player.value}M</div>
             <div className="flex items-center gap-2">🧭 {player.position}</div>
 
-            <div>Age: {player.age}</div>
+            <div>Age: {calculateAge(player.age)}</div>
           </div>
 
           <div className="mt-4 flex items-center justify-center gap-4">

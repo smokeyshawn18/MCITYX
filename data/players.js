@@ -8,7 +8,7 @@ export const players = [
     number: 9,
 
     country: "/assets/images/norway.webp",
-    age: 24,
+    age: "2000-07-21",
     image: "/assets/images/haaland.jpg",
     careerStats: {
       goals: 296,
@@ -33,7 +33,7 @@ export const players = [
     name: "King Kev (Napoli)",
     position: "AM",
     value: 20,
-    age: 33,
+    age: "1991-06-28",
     country: "/assets/images/napoli.png",
     number: 17,
     image: "/assets/images/kdb.jpg",
@@ -62,7 +62,7 @@ export const players = [
     value: 38,
     number: 20,
     country: "/assets/images/portugal.webp",
-    age: 30,
+    age: "1994-08-10", // YYYY-MM-DD
     image: "/assets/images/silvab.jpg",
     careerStats: {
       goals: 113,
@@ -81,7 +81,7 @@ export const players = [
     number: 19,
     position: "CM",
     value: 5,
-    age: 33,
+    age: "1990-10-24",
     country: "/assets/images/germany.png",
     image: "/assets/images/gundo.webp",
 
@@ -103,7 +103,7 @@ export const players = [
     position: "AM",
     number: 47,
     value: 100,
-    age: 25,
+    age: "2000-05-28",
 
     country: "/assets/images/eng.png",
     image: "/assets/images/foden.jpg",
@@ -124,7 +124,7 @@ export const players = [
     number: 7,
     position: "ST",
     value: 75,
-    age: 26,
+    age: "1999-02-07",
     country: "/assets/images/eg.webp",
     image: "/assets/images/marmoush.webp",
 
@@ -145,7 +145,7 @@ export const players = [
     position: "LW",
     value: 28,
     number: 10,
-    age: 29,
+    age: "1995-09-10",
     country: "/assets/images/eng.png",
     image: "/assets/images/jack.jpg",
     careerStats: {
@@ -171,7 +171,7 @@ export const players = [
     number: 8,
     position: "DM",
     value: 20,
-    age: 30,
+    age: "1994-05-06",
     country: "/assets/images/cro.png",
     image: "/assets/images/kovacic.webp",
     careerStats: {
@@ -191,7 +191,7 @@ export const players = [
     number: 4,
     position: "DM",
     value: 50,
-    age: 26,
+    age: "1998-07-29",
     country: "/assets/images/ned.png",
     image: "/assets/images/rejin.webp",
     careerStats: {
@@ -217,7 +217,7 @@ export const players = [
     number: 16,
     position: "DM",
     value: 110,
-    age: 29,
+    age: "1996-06-22",
     injury: "Torn ACL",
     country: "/assets/images/spain.png",
     injured: false,
@@ -245,7 +245,7 @@ export const players = [
     number: 11,
     position: "LW",
     value: 50,
-    age: 22,
+    age: "2002-05-27",
     country: "/assets/images/belgium.png",
     image: "/assets/images/doku.jpg",
     careerStats: {
@@ -265,7 +265,7 @@ export const players = [
     number: 29,
     position: "RW",
     value: 45,
-    age: 21,
+    age: "2003-08-17",
     country: "/assets/images/france.svg",
     image: "/assets/images/rayan.webp",
     careerStats: {
@@ -285,7 +285,7 @@ export const players = [
     number: 6,
     position: "CB",
     value: 25,
-    age: 30,
+    age: "1995-02-18",
     country: "/assets/images/ned.png",
     image: "/assets/images/ake.webp",
     careerStats: {
@@ -312,7 +312,7 @@ export const players = [
     number: 5,
     value: 25,
     country: "/assets/images/eng.png",
-    age: 31,
+    age: "1994-05-28",
     image: "/assets/images/stones.jpg",
     careerStats: {
       goals: 24,
@@ -337,7 +337,7 @@ export const players = [
     number: 24,
     position: "LB",
     value: 75,
-    age: 22,
+    age: "2002-01-23",
     country: "/assets/images/cro.png",
     image: "/assets/images/gv.jpg",
     careerStats: {
@@ -357,7 +357,7 @@ export const players = [
     position: "AM",
     number: 87,
     value: 20,
-    age: 21,
+    age: "2002-10-18",
     country: "/assets/images/eng.png",
     image: "/assets/images/james.webp",
     careerStats: {
@@ -377,7 +377,7 @@ export const players = [
     number: 25,
     position: "CB",
     value: 28,
-    age: 29,
+    age: "1995-07-19",
     country: "/assets/images/swi.png",
     image: "/assets/images/akanji.jpg",
     careerStats: {
@@ -403,7 +403,7 @@ export const players = [
     number: 3,
     position: "CB",
     value: 65,
-    age: 28,
+    age: "1997-05-14",
     country: "/assets/images/portugal.webp",
     image: "/assets/images/ruben.jpg",
 
@@ -431,7 +431,7 @@ export const players = [
     number: 26,
     position: "RW",
     value: 50,
-    age: 20,
+    age: "2004-04-10",
     country: "/assets/images/brazil.png",
     image: "/assets/images/savio.png",
     careerStats: {
@@ -452,7 +452,7 @@ export const players = [
     number: 27,
     country: "/assets/images/portugal.webp",
     value: 35,
-    age: 26,
+    age: "1998-08-27",
     image: "/assets/images/nunes.jpg",
     careerStats: {
       goals: 15,
@@ -471,7 +471,7 @@ export const players = [
     number: 14,
     position: "DM",
     value: 40,
-    age: 23,
+    age: "2002-01-03",
     injury: "Torn ACL",
     country: "/assets/images/spain.png",
     injured: false,
@@ -498,7 +498,7 @@ export const players = [
     number: 21,
     position: "LB",
     value: 35,
-    age: 23,
+    age: "2001-06-06",
     country: "/assets/images/algeria.png",
     image: "/assets/images/rayanati.jpeg",
     careerStats: {
@@ -518,7 +518,7 @@ export const players = [
     number: 82,
     position: "RB",
     value: 40,
-    age: 20,
+    age: "2004-11-21",
     country: "/assets/images/eng.png",
     image: "/assets/images/ricol.jpg",
     careerStats: {
@@ -539,7 +539,7 @@ export const players = [
     position: "CM",
     number: 75,
     value: 18,
-    age: 20,
+    age: "2005-03-21",
     // fotmobRating: 7.2,
     country: "/assets/images/eng.png",
     image: "/assets/images/oriely.webp",
@@ -562,7 +562,7 @@ export const players = [
     number: 52,
     country: "/assets/images/norway.webp",
     value: 25,
-    age: 21,
+    age: "2003-07-12",
     image: "/assets/images/bob.jpg",
     careerStats: {
       goals: 4,
@@ -589,7 +589,7 @@ export const players = [
     number: 30,
     value: 18,
     country: "/assets/images/arg.webp",
-    age: 19,
+    age: "2006-01-02",
     image: "/assets/images/claudio.webp",
     careerStats: {
       goals: 4,
@@ -614,7 +614,7 @@ export const players = [
     number: 3,
     position: "GK",
     value: 20,
-    age: 31,
+    age: "1993-08-17",
     country: "/assets/images/brazil.png",
     image: "/assets/images/ederson.webp",
     careerStats: {
@@ -634,7 +634,7 @@ export const players = [
     number: 18,
     position: "GK",
     value: 8,
-    age: 31,
+    age: "1992-11-06",
     country: "/assets/images/germany.png",
 
     image: "/assets/images/ortega.jpg",
