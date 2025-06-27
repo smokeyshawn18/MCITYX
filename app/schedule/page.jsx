@@ -271,7 +271,7 @@ const Schedule = () => {
                     <div className="text-xs opacity-75 mt-1">Loading...</div>
                   )}
                   {!isLoading && !hasData && key !== "fifa" && (
-                    <div className="text-xs opacity-75 mt-1">Coming Soon</div>
+                    <div className="text-xs opacity-75 mt-1">Click to view</div>
                   )}
                 </div>
               </button>

@@ -2,20 +2,20 @@
 export const manualMatches = [
   {
     id: "99903",
-    round: "Group Stage",
+    round: "Round of 16",
     homeTeam: {
-      name: "Juventus",
-      crest: "/assets/images/juv.jpg",
-    },
-    awayTeam: {
       name: "Man City",
       crest: "/assets/images/logo.svg",
+    },
+    awayTeam: {
+      name: "Al Hilal",
+      crest: "/assets/images/al.png",
     },
     competition: {
       name: "Fifa CWC",
       emblem: "/assets/images/cwc.webp",
     },
-    utcDate: "2025-06-27T06:45:00Z",
+    utcDate: "2025-07-01T01:00:00Z",
     status: "TIMED",
   },
 ];

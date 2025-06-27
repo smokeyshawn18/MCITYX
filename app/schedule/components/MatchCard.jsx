@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Clock, MapPin } from "lucide-react";
+
+import { Clock } from "lucide-react";
 
 const MatchCard = ({ match, formatDate, getDaysToGo }) => {
   const { id, homeTeam, awayTeam, utcDate, competition, round } = match;
