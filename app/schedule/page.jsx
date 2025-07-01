@@ -57,13 +57,13 @@ const Schedule = () => {
         setApiDataFetched({ prem: true, champ: true });
 
         if (upcoming.length > 0) {
-          toast.success(`Loaded ${upcoming.length} matches from API`);
+          toast.success(`Loaded ${upcoming.length} upcoming matches!`);
         }
       } catch (error) {
         console.error("API Error:", error);
         setApiMatches([]);
         setApiError({ prem: true, champ: true });
-        toast.error("Could not connect to matches API");
+        toast.error("Could not get the matches ");
       } finally {
         setApiLoading({ prem: false, champ: false });
       }
