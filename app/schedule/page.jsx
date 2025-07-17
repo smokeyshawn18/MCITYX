@@ -6,7 +6,6 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import toast, { Toaster } from "react-hot-toast";
 
-// Import modular components
 import MatchCard from "./components/MatchCard";
 import { manualMatches, tabs, getDaysToGo } from "./components/manualMatches";
 import { formatDate, TIME_FORMATS, TimeToggle } from "./components/timeUtils";
