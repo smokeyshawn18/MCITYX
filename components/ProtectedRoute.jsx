@@ -1,7 +1,7 @@
 "use client";
 
 import { useUser, SignInButton } from "@clerk/nextjs";
-import { useEffect, useState } from "react";
+
 import { Button } from "./ui/button";
 
 export default function ProtectedRoute({ children }) {

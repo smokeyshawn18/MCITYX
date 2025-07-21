@@ -1,34 +1,27 @@
 // Manual matches data for FIFA Club World Cup
 export const manualMatches = [
-  {
-    id: "99903",
-    round: "Round of 16",
-    homeTeam: {
-      name: "Man City",
-      crest: "/assets/images/logo.svg",
-    },
-    awayTeam: {
-      name: "Al Hilal",
-      crest: "/assets/images/al.png",
-    },
-    competition: {
-      name: "Fifa CWC",
-      emblem: "/assets/images/cwc.webp",
-    },
-    utcDate: "2025-07-01T01:00:00Z",
-    status: "TIMED",
-  },
+  // {
+  //   id: "99903",
+  //   round: "Round of 16",
+  //   homeTeam: {
+  //     name: "Man City",
+  //     crest: "/assets/images/logo.svg",
+  //   },
+  //   awayTeam: {
+  //     name: "Al Hilal",
+  //     crest: "/assets/images/al.png",
+  //   },
+  //   competition: {
+  //     name: "Fifa CWC",
+  //     emblem: "/assets/images/cwc.webp",
+  //   },
+  //   utcDate: "2025-07-01T01:00:00Z",
+  //   status: "TIMED",
+  // },
 ];
 
 // Tab configuration
 export const tabs = [
-  {
-    key: "fifa",
-    label: "FIFA CWC",
-    img: "/assets/images/cwc.webp",
-    color: "from-blue-500 to-cyan-500",
-    description: "FIFA Club World Cup",
-  },
   {
     key: "prem",
     label: "Premier League",
@@ -42,6 +35,13 @@ export const tabs = [
     img: "/assets/images/Champ.png",
     color: "from-indigo-500 to-blue-500",
     description: "UEFA Champions League",
+  },
+  {
+    key: "fifa",
+    label: "FIFA CWC",
+    img: "/assets/images/cwc.webp",
+    color: "from-blue-500 to-cyan-500",
+    description: "FIFA Club World Cup",
   },
 ];
 

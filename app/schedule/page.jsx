@@ -11,147 +11,125 @@ import { manualMatches, tabs, getDaysToGo } from "./components/manualMatches";
 import { formatDate, TIME_FORMATS, TimeToggle } from "./components/timeUtils";
 
 const Schedule = () => {
-  const [apiMatches, setApiMatches] = useState([]);
-  const [selectedTab, setSelectedTab] = useState("fifa"); // Start with FIFA (manual matches)
-  const [apiLoading, setApiLoading] = useState({
-    prem: false,
-    champ: false,
+  const [apiMatches, setApiMatches] = useState({
+    prem: [],
+    champ: [],
   });
-  const [apiError, setApiError] = useState({
-    prem: false,
-    champ: false,
-  });
+  const [selectedTab, setSelectedTab] = useState("fifa");
+  const [apiLoading, setApiLoading] = useState({ prem: false, champ: false });
+  const [apiError, setApiError] = useState({ prem: false, champ: false });
   const [timeFormat, setTimeFormat] = useState(TIME_FORMATS.LOCAL_12);
   const [apiDataFetched, setApiDataFetched] = useState({
     prem: false,
     champ: false,
   });
 
-  // Fetch API data only when needed (lazy loading for API tabs)
+  // Fetch matches for a specific tab: prem or champ
   const fetchApiMatches = useCallback(
-    async (forceRefresh = false) => {
-      if (!forceRefresh && apiDataFetched.prem && apiDataFetched.champ) {
-        return; // Already fetched
-      }
+    async (tabKey, forceRefresh = false) => {
+      if (!forceRefresh && apiDataFetched[tabKey]) return;
+
+      setApiLoading((loading) => ({ ...loading, [tabKey]: true }));
+      setApiError((error) => ({ ...error, [tabKey]: false }));
 
       try {
-        setApiLoading({ prem: true, champ: true });
-        setApiError({ prem: false, champ: false });
-
         const response = await fetch("/api/matches");
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(
-            `HTTP ${response.status}: ${data.message || "Failed to fetch"}`
-          );
+          throw new Error(data.message || "Failed to fetch");
         }
 
         const upcoming = Array.isArray(data?.matches)
           ? data.matches.filter((m) => m.status === "TIMED")
           : [];
 
+        // Sort by date
         upcoming.sort((a, b) => new Date(a.utcDate) - new Date(b.utcDate));
-        setApiMatches(upcoming);
-        setApiDataFetched({ prem: true, champ: true });
 
-        if (upcoming.length > 0) {
-          toast.success(`Loaded ${upcoming.length} upcoming matches!`);
-        }
+        // Categorize matches for prem or champ
+        const filteredMatches = upcoming.filter((match) => {
+          const compName = match.competition.name.toLowerCase();
+          if (tabKey === "prem") {
+            return (
+              compName.includes("premier") ||
+              compName.includes("pl") ||
+              compName.includes("epl")
+            );
+          } else if (tabKey === "champ") {
+            return (
+              compName.includes("champions") ||
+              compName.includes("ucl") ||
+              compName.includes("cl")
+            );
+          }
+          return false;
+        });
+
+        setApiMatches((prev) => ({ ...prev, [tabKey]: filteredMatches }));
+        setApiDataFetched((fetched) => ({ ...fetched, [tabKey]: true }));
+
+        toast.success(
+          `Loaded ${filteredMatches.length} upcoming ${
+            tabKey === "prem" ? "Premier League" : "Champions League"
+          } matches!`
+        );
       } catch (error) {
         console.error("API Error:", error);
-        setApiMatches([]);
-        setApiError({ prem: true, champ: true });
-        toast.error("Could not get the matches ");
+        setApiMatches((prev) => ({ ...prev, [tabKey]: [] }));
+        setApiError((error) => ({ ...error, [tabKey]: true }));
+        toast.error(
+          `Could not get the ${
+            tabKey === "prem" ? "Premier League" : "Champions League"
+          } matches.`
+        );
       } finally {
-        setApiLoading({ prem: false, champ: false });
+        setApiLoading((loading) => ({ ...loading, [tabKey]: false }));
       }
     },
-    [apiDataFetched.prem, apiDataFetched.champ]
+    [apiDataFetched]
   );
 
-  // Fetch API data only when user switches to API-dependent tabs
+  // Fetch API data when user switches tabs
   useEffect(() => {
-    if (
-      (selectedTab === "prem" || selectedTab === "champ") &&
-      !apiDataFetched.prem &&
-      !apiDataFetched.champ
-    ) {
-      fetchApiMatches();
+    if (selectedTab === "prem" || selectedTab === "champ") {
+      fetchApiMatches(selectedTab);
     }
-  }, [selectedTab, fetchApiMatches, apiDataFetched.prem, apiDataFetched.champ]);
+  }, [selectedTab, fetchApiMatches]);
 
-  // Categorize API matches efficiently
-  const categorizedMatches = useMemo(() => {
-    const categorized = {
-      premier: [],
-      champions: [],
-    };
-
-    apiMatches.forEach((match) => {
-      const compName = match.competition.name.toLowerCase();
-      if (
-        compName.includes("premier") ||
-        compName.includes("pl") ||
-        compName.includes("epl")
-      ) {
-        categorized.premier.push(match);
-      } else if (
-        compName.includes("champions") ||
-        compName.includes("ucl") ||
-        compName.includes("cl")
-      ) {
-        categorized.champions.push(match);
-      }
-    });
-
-    return categorized;
-  }, [apiMatches]);
-
-  // Get current matches based on selected tab
+  // Determine current matches based on selected tab
   const currentMatches = useMemo(() => {
     switch (selectedTab) {
       case "fifa":
         return manualMatches;
       case "prem":
-        return categorizedMatches.premier;
       case "champ":
-        return categorizedMatches.champions;
+        return apiMatches[selectedTab];
       default:
         return [];
     }
-  }, [selectedTab, categorizedMatches]);
+  }, [selectedTab, apiMatches]);
 
-  // Check if current tab is loading
-  const isCurrentTabLoading = useMemo(() => {
-    return selectedTab === "prem"
-      ? apiLoading.prem
-      : selectedTab === "champ"
-      ? apiLoading.champ
-      : false; // FIFA tab never loads
-  }, [selectedTab, apiLoading]);
+  // Loading and error states for current tab
+  const isCurrentTabLoading = apiLoading[selectedTab] || false;
+  const hasCurrentTabError = apiError[selectedTab] || false;
 
   // Memoized date formatter
   const memoizedFormatDate = useCallback(
-    (date) => {
-      return formatDate(date, timeFormat);
-    },
+    (date) => formatDate(date, timeFormat),
     [timeFormat]
   );
 
-  // Handle tab change
-  const handleTabChange = useCallback((tabKey) => {
-    setSelectedTab(tabKey);
-  }, []);
+  // Handle tab selection change
+  const handleTabChange = useCallback((tabKey) => setSelectedTab(tabKey), []);
 
-  // Handle refresh
+  // Handle refresh by refetching current tab API data if necessary
   const handleRefresh = useCallback(() => {
     if (selectedTab === "fifa") {
-      // For FIFA, just show a quick success message
       toast.success("FIFA matches are up to date!");
       return;
     }
-    fetchApiMatches(true);
+    fetchApiMatches(selectedTab, true);
   }, [selectedTab, fetchApiMatches]);
 
   const renderEmptyState = () => {
@@ -205,28 +183,16 @@ const Schedule = () => {
           <TimeToggle timeFormat={timeFormat} setTimeFormat={setTimeFormat} />
         </div>
 
-        {/* Clean Tabs UI */}
+        {/* Tabs */}
         <div className="flex justify-center gap-2 sm:gap-6 mb-8 overflow-x-auto pb-2">
           {tabs.map(({ key, label, img, color, description }) => {
             const isActive = selectedTab === key;
-            const isLoading =
-              key === "prem"
-                ? apiLoading.prem
-                : key === "champ"
-                ? apiLoading.champ
-                : false;
+            const isLoading = apiLoading[key] || false;
             const hasData =
               key === "fifa"
                 ? manualMatches.length > 0
-                : key === "prem"
-                ? categorizedMatches.premier.length > 0
-                : categorizedMatches.champions.length > 0;
-            const hasError =
-              key === "prem"
-                ? apiError.prem
-                : key === "champ"
-                ? apiError.champ
-                : false;
+                : apiMatches[key]?.length > 0;
+            const hasError = apiError[key] || false;
 
             return (
               <button
@@ -278,7 +244,7 @@ const Schedule = () => {
           })}
         </div>
 
-        {/* Content - No loading spinner for FIFA tab */}
+        {/* Content */}
         {isCurrentTabLoading ? (
           <div className="flex flex-col items-center justify-center py-16">
             <Loader2 className="w-12 h-12 text-sky-600 animate-spin mb-4" />
@@ -309,8 +275,8 @@ const Schedule = () => {
           renderEmptyState()
         )}
 
-        {/* API Status Footer - Only show for API tabs with errors */}
-        {(apiError.prem || apiError.champ) &&
+        {/* API Error Notice */}
+        {hasCurrentTabError &&
           (selectedTab === "prem" || selectedTab === "champ") && (
             <div className="mt-8 p-4 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg text-center">
               <p className="text-orange-700 dark:text-orange-400 text-sm mb-2">
