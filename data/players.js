@@ -84,7 +84,7 @@ export const players = [
     value: 5,
     age: "1990-10-24",
     country: "/assets/images/germany.png",
-    image: "/assets/images/gundo.webp",
+    image: "/assets/images/gundo.jpeg",
 
     careerStats: {
       goals: 110,
@@ -107,7 +107,7 @@ export const players = [
     age: "2000-05-28",
 
     country: "/assets/images/eng.png",
-    image: "/assets/images/foden.jpg",
+    image: "/assets/images/foden.webp",
     careerStats: {
       goals: 101,
       assists: 67,
