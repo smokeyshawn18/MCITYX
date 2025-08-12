@@ -148,7 +148,7 @@ export const players = [
     number: 10,
     age: "1995-09-10",
     country: "/assets/images/eng.png",
-    image: "/assets/images/jack.jpg",
+    image: "/assets/images/jack.png",
     careerStats: {
       goals: 58,
       assists: 79,

@@ -1,4 +1,5 @@
 "use client";
+
 import {
   FaFutbol,
   FaMedal,
@@ -7,40 +8,111 @@ import {
   FaTrophy,
 } from "react-icons/fa";
 import { CiMedicalCross } from "react-icons/ci";
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Handshake } from "lucide-react";
+import { useState, useMemo } from "react";
 import { ratePlayer } from "@/utils/ratePlayer";
 import { calculateAge } from "@/utils/playerAge";
 
-const PlayerCard = ({ player }) => {
+const HIDDEN_NAMES = new Set(["King Kev (Napoli)", "Jack Grealish"]);
+
+const TABS = [
+  { label: "Season", value: "season", icon: <FaMedal className="mr-2" /> },
+  { label: "Career", value: "career", icon: <FaTrophy className="mr-2" /> },
+];
+
+export default function PlayerCard({ player }) {
+  // Skip rendering completely for hidden players
+  if (HIDDEN_NAMES.has(player.name)) return null;
+
   const [activeTab, setActiveTab] = useState("season");
-  const [careerStats, setCareerStats] = useState(player.careerStats);
 
-  const GA = player.seasonStats.goals + player.seasonStats.assists;
+  // Memoized player rating
+  const rating = useMemo(() => ratePlayer(player), [player]);
 
-  const rating = ratePlayer(player);
-
-  useEffect(() => {
+  // Memoized combined career stats
+  const careerStats = useMemo(() => {
     if (player.position === "GK") {
-      setCareerStats({
+      return {
         appearances:
           player.careerStats.appearances + player.seasonStats.appearances,
         goalsConceded:
           player.careerStats.goalsConceded + player.seasonStats.goalsConceded,
         cleanSheets:
           player.careerStats.cleanSheets + player.seasonStats.cleanSheets,
-      });
-    } else {
-      setCareerStats({
-        appearances:
-          player.careerStats.appearances + player.seasonStats.appearances,
-        goals: player.careerStats.goals + player.seasonStats.goals,
-        assists: player.careerStats.assists + player.seasonStats.assists,
-      });
+      };
     }
-  }, [player]); // Depend only on `player` to prevent unnecessary re-renders
-  // Dependency array triggers when seasonStats or player position changes
+    return {
+      appearances:
+        player.careerStats.appearances + player.seasonStats.appearances,
+      goals: player.careerStats.goals + player.seasonStats.goals,
+      assists: player.careerStats.assists + player.seasonStats.assists,
+    };
+  }, [player]);
+
+  // Memoized stat list for rendering
+  const statList = useMemo(() => {
+    if (player.position === "GK") {
+      return [
+        {
+          label: "Matches",
+          value:
+            activeTab === "career"
+              ? careerStats.appearances
+              : player.seasonStats.appearances,
+          icon: (
+            <FaRunning className="text-sky-600 dark:text-sky-300 text-xl" />
+          ),
+        },
+        {
+          label: "Goals Conceded",
+          value:
+            activeTab === "career"
+              ? careerStats.goalsConceded
+              : player.seasonStats.goalsConceded,
+          icon: <FaFutbol className="text-red-500 dark:text-red-400 text-xl" />,
+        },
+        {
+          label: "Clean Sheets",
+          value:
+            activeTab === "career"
+              ? careerStats.cleanSheets
+              : player.seasonStats.cleanSheets,
+          icon: (
+            <FaTrophy className="text-green-500 dark:text-green-300 text-xl" />
+          ),
+        },
+      ];
+    }
+    return [
+      {
+        label: "Matches",
+        value:
+          activeTab === "career"
+            ? careerStats.appearances
+            : player.seasonStats.appearances,
+        icon: <FaRunning className="text-sky-600 dark:text-sky-300 text-xl" />,
+      },
+      {
+        label: "Goals",
+        value:
+          activeTab === "career" ? careerStats.goals : player.seasonStats.goals,
+        icon: (
+          <FaFutbol className="text-yellow-500 dark:text-yellow-300 text-xl" />
+        ),
+      },
+      {
+        label: "Assists",
+        value:
+          activeTab === "career"
+            ? careerStats.assists
+            : player.seasonStats.assists,
+        icon: (
+          <Handshake className="text-green-600 dark:text-green-300 text-xl" />
+        ),
+      },
+    ];
+  }, [activeTab, careerStats, player]);
 
   return (
     <div className="bg-gradient-to-br from-[#e6f1fa] to-white dark:from-[#1a1a2e] dark:to-[#16213e] rounded-3xl shadow-2xl p-6 sm:p-8 max-w-6xl w-full mx-auto mb-10">
@@ -58,7 +130,7 @@ const PlayerCard = ({ player }) => {
             src={player.country}
             width={10}
             height={10}
-            alt={player.name + " country"}
+            alt={`${player.name} country`}
             className="absolute bottom-0 right-0 w-8 h-8 rounded-lg border-2 border-white object-cover shadow"
           />
         </div>
@@ -75,18 +147,15 @@ const PlayerCard = ({ player }) => {
             </div>
             <div className="flex items-center gap-2">💰 ${player.value}M</div>
             <div className="flex items-center gap-2">🧭 {player.position}</div>
-
             <div>Age: {calculateAge(player.age)}</div>
           </div>
 
+          {/* Player Rating */}
           <div className="mt-4 flex items-center justify-center gap-4">
-            {/* Circular Rating Bubble */}
             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-sky-800 dark:bg-sky-200 text-white dark:text-sky-900 text-lg font-extrabold shadow-lg">
               {rating}
             </div>
-
-            {/* Label + Stars */}
-            <div className="flex flex-col">
+            <div>
               <span className="text-base tracking-wide text-sky-900 dark:text-sky-200 font-semibold">
                 Player Rating
               </span>
@@ -110,18 +179,7 @@ const PlayerCard = ({ player }) => {
 
       {/* Tabs */}
       <div className="flex justify-center lg:justify-start gap-4 mt-6 flex-wrap">
-        {[
-          {
-            label: "Season",
-            value: "season",
-            icon: <FaMedal className="mr-2" />,
-          },
-          {
-            label: "Career",
-            value: "career",
-            icon: <FaTrophy className="mr-2" />,
-          },
-        ].map((tab) => (
+        {TABS.map((tab) => (
           <button
             key={tab.value}
             className={`flex items-center px-5 py-2 rounded-xl text-lg font-semibold transition ${
@@ -138,75 +196,9 @@ const PlayerCard = ({ player }) => {
       </div>
 
       {/* Stats */}
-      {/* Stats */}
       <div className="mt-8 px-4 max-w-md mx-auto">
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 space-y-4 text-left">
-          {(player.position === "GK"
-            ? [
-                {
-                  label: "Matches",
-                  value:
-                    activeTab === "career"
-                      ? careerStats.appearances
-                      : player.seasonStats.appearances,
-                  icon: (
-                    <FaRunning className="text-sky-600 dark:text-sky-300 text-xl" />
-                  ),
-                },
-                {
-                  label: "Goals Conceded",
-                  value:
-                    activeTab === "career"
-                      ? careerStats.goalsConceded
-                      : player.seasonStats.goalsConceded,
-                  icon: (
-                    <FaFutbol className="text-red-500 dark:text-red-400 text-xl" />
-                  ),
-                },
-                {
-                  label: "Clean Sheets",
-                  value:
-                    activeTab === "career"
-                      ? careerStats.cleanSheets
-                      : player.seasonStats.cleanSheets,
-                  icon: (
-                    <FaTrophy className="text-green-500 dark:text-green-300 text-xl" />
-                  ),
-                },
-              ]
-            : [
-                {
-                  label: "Matches",
-                  value:
-                    activeTab === "career"
-                      ? careerStats.appearances
-                      : player.seasonStats.appearances,
-                  icon: (
-                    <FaRunning className="text-sky-600 dark:text-sky-300 text-xl" />
-                  ),
-                },
-                {
-                  label: "Goals",
-                  value:
-                    activeTab === "career"
-                      ? careerStats.goals
-                      : player.seasonStats.goals,
-                  icon: (
-                    <FaFutbol className="text-yellow-500 dark:text-yellow-300 text-xl" />
-                  ),
-                },
-                {
-                  label: "Assists",
-                  value:
-                    activeTab === "career"
-                      ? careerStats.assists
-                      : player.seasonStats.assists,
-                  icon: (
-                    <Handshake className="text-green-600 dark:text-green-300 text-xl" />
-                  ),
-                },
-              ]
-          ).map((stat, index) => (
+          {statList.map((stat, index) => (
             <div
               key={index}
               className="flex items-center justify-between border-b last:border-none pb-2 text-lg font-medium text-gray-700 dark:text-gray-200"
@@ -224,6 +216,4 @@ const PlayerCard = ({ player }) => {
       </div>
     </div>
   );
-};
-
-export default PlayerCard;
+}
