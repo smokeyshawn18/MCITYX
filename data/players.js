@@ -651,5 +651,26 @@ export const players = [
     },
     injured: false,
   },
+  {
+    name: "James Trafford",
+    number: 18,
+    position: "GK",
+    value: 8,
+    age: "2002-10-10",
+    country: "/assets/images/eng.png",
+
+    image: "/assets/images/james-trafford.webp",
+    careerStats: {
+      goalsConceded: 64,
+      cleanSheets: 2,
+      appearances: 29,
+    },
+    seasonStats: {
+      goalsConceded: 0,
+      cleanSheets: 0,
+      appearances: 0,
+    },
+    injured: false,
+  },
   // Add more players here
 ];

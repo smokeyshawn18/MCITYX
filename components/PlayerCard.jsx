@@ -14,7 +14,11 @@ import { useState, useMemo } from "react";
 import { ratePlayer } from "@/utils/ratePlayer";
 import { calculateAge } from "@/utils/playerAge";
 
-const HIDDEN_NAMES = new Set(["King Kev (Napoli)", "Jack Grealish"]);
+const HIDDEN_NAMES = new Set([
+  "King Kev (Napoli)",
+  "Jack Grealish",
+  "James McAtee",
+]);
 
 const TABS = [
   { label: "Season", value: "season", icon: <FaMedal className="mr-2" /> },

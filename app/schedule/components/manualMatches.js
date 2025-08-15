@@ -1,21 +1,30 @@
-// Manual matches data for FIFA Club World Cup
+// components/manualMatches.js
 export const manualMatches = [
   // {
   //   id: "99903",
   //   round: "Round of 16",
-  //   homeTeam: {
-  //     name: "Man City",
-  //     crest: "/assets/images/logo.svg",
-  //   },
-  //   awayTeam: {
-  //     name: "Al Hilal",
-  //     crest: "/assets/images/al.png",
-  //   },
-  //   competition: {
-  //     name: "Fifa CWC",
-  //     emblem: "/assets/images/cwc.webp",
-  //   },
+  //   homeTeam: { name: "Man City", crest: "/assets/images/logo.svg" },
+  //   awayTeam: { name: "Al Hilal", crest: "/assets/images/al.png" },
+  //   competition: { name: "Fifa CWC", emblem: "/assets/images/cwc.webp" },
   //   utcDate: "2025-07-01T01:00:00Z",
+  //   status: "TIMED",
+  // },
+  // {
+  //   id: "99904",
+  //   round: "Quarter-final",
+  //   homeTeam: { name: "Man City", crest: "/assets/images/logo.svg" },
+  //   awayTeam: { name: "Liverpool", crest: "/assets/images/liv.png" },
+  //   competition: { name: "FA Cup", emblem: "/assets/images/fa.jpg" },
+  //   utcDate: "2025-05-10T15:30:00Z",
+  //   status: "TIMED",
+  // },
+  // {
+  //   id: "99905",
+  //   round: "Semi-final",
+  //   homeTeam: { name: "Man City", crest: "/assets/images/logo.svg" },
+  //   awayTeam: { name: "Chelsea", crest: "/assets/images/che.png" },
+  //   competition: { name: "Carabao Cup", emblem: "/assets/images/carabao.png" },
+  //   utcDate: "2025-02-15T20:00:00Z",
   //   status: "TIMED",
   // },
 ];
@@ -37,12 +46,26 @@ export const tabs = [
     description: "UEFA Champions League",
   },
   {
-    key: "fifa",
-    label: "FIFA CWC",
-    img: "/assets/images/cwc.webp",
+    key: "carabao",
+    label: "Carabao Cup",
+    img: "/assets/images/carabao.png",
     color: "from-blue-500 to-cyan-500",
-    description: "FIFA Club World Cup",
+    description: "Carabao Cup",
   },
+  {
+    key: "fa",
+    label: "FA Cup",
+    img: "/assets/images/fa.jpg",
+    color: "from-blue-500 to-cyan-500",
+    description: "FA Cup",
+  },
+  // {
+  //   key: "fifa",
+  //   label: "FIFA CWC",
+  //   img: "/assets/images/cwc.webp",
+  //   color: "from-green-500 to-teal-500",
+  //   description: "FIFA Club World Cup",
+  // },
 ];
 
 // Utility function to get days countdown with styling

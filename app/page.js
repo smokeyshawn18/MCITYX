@@ -16,7 +16,7 @@ const Home = () => {
     "Tijjani Reijnders",
     "Rayan Cherki",
   ]; // ✅ Write player name  before usage
-  const byeNames = ["King Kev (Napoli)", "Jack Grealish"];
+  const byeNames = ["King Kev (Napoli)", "Jack Grealish", "James McAtee"];
   return (
     <>
       <section className="bg-[#f0f8ff] dark:bg-gray-950 dark:text-white text-gray-800 py-12 lg:py-24">

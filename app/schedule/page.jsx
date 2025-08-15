@@ -101,7 +101,15 @@ const Schedule = () => {
   const currentMatches = useMemo(() => {
     switch (selectedTab) {
       case "fifa":
-        return manualMatches;
+        return manualMatches.filter((m) => m.competition.name.includes("Fifa"));
+      case "fa":
+        return manualMatches.filter((m) =>
+          m.competition.name.includes("FA Cup")
+        );
+      case "carabao":
+        return manualMatches.filter((m) =>
+          m.competition.name.includes("Carabao")
+        );
       case "prem":
       case "champ":
         return apiMatches[selectedTab];
@@ -126,7 +134,7 @@ const Schedule = () => {
   // Handle refresh by refetching current tab API data if necessary
   const handleRefresh = useCallback(() => {
     if (selectedTab === "fifa") {
-      toast.success("FIFA matches are up to date!");
+      toast.success("Carabao Cup  matches are up to date!");
       return;
     }
     fetchApiMatches(selectedTab, true);
@@ -143,7 +151,7 @@ const Schedule = () => {
         </h3>
         <p className="text-gray-500 dark:text-gray-400 text-center max-w-md">
           {selectedTab === "fifa"
-            ? "FIFA Club World Cup matches will appear here when scheduled."
+            ? "Carabao Cup matches will appear here when scheduled."
             : `${currentTab?.description} matches will appear here when available.`}
         </p>
         <Button
