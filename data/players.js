@@ -11,15 +11,15 @@ export const players = [
     age: "2000-07-21",
     image: "/assets/images/haaland.jpg",
     careerStats: {
-      goals: 296,
-      assists: 58,
-      appearances: 364,
+      goals: 301,
+      assists: 59,
+      appearances: 370,
     },
     seasonStats: {
-      goals: 5,
+      goals: 2,
 
-      assists: 1,
-      appearances: 6,
+      assists: 0,
+      appearances: 1,
     },
     injured: false,
     injuryDetails: {
@@ -66,14 +66,14 @@ export const players = [
     age: "1994-08-10", // YYYY-MM-DD
     image: "/assets/images/silvab.jpg",
     careerStats: {
-      goals: 113,
-      assists: 118,
-      appearances: 654,
+      goals: 114,
+      assists: 119,
+      appearances: 659,
     },
     seasonStats: {
-      goals: 1,
-      assists: 1,
-      appearances: 5,
+      goals: 0,
+      assists: 0,
+      appearances: 1,
     },
     injured: false,
   },
@@ -87,14 +87,14 @@ export const players = [
     image: "/assets/images/gundo.jpeg",
 
     careerStats: {
-      goals: 110,
-      assists: 92,
-      appearances: 697,
+      goals: 112,
+      assists: 93,
+      appearances: 701,
     },
     seasonStats: {
-      goals: 2,
-      assists: 1,
-      appearances: 4,
+      goals: 0,
+      assists: 0,
+      appearances: 0,
     },
     injured: false,
   },
@@ -109,14 +109,14 @@ export const players = [
     country: "/assets/images/eng.png",
     image: "/assets/images/foden.webp",
     careerStats: {
-      goals: 101,
-      assists: 67,
-      appearances: 360,
+      goals: 104,
+      assists: 68,
+      appearances: 364,
     },
     seasonStats: {
-      goals: 3,
-      assists: 1,
-      appearances: 4,
+      goals: 0,
+      assists: 0,
+      appearances: 0,
     },
     injured: false,
   },
@@ -132,12 +132,12 @@ export const players = [
     careerStats: {
       goals: 70,
       assists: 35,
-      appearances: 235,
+      appearances: 238,
     },
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 3,
+      appearances: 1,
     },
     injured: false,
   },
@@ -198,12 +198,12 @@ export const players = [
     careerStats: {
       goals: 37,
       assists: 22,
-      appearances: 259,
+      appearances: 264,
     },
     seasonStats: {
-      goals: 0,
-      assists: 0,
-      appearances: 5,
+      goals: 1,
+      assists: 1,
+      appearances: 1,
     },
     injured: false,
     injuryDetails: {
@@ -231,13 +231,13 @@ export const players = [
     image: "/assets/images/rodriedit.png",
     careerStats: {
       goals: 35,
-      assists: 39,
-      appearances: 449,
+      assists: 40,
+      appearances: 453,
     },
     seasonStats: {
       goals: 0,
-      assists: 1,
-      appearances: 4,
+      assists: 0,
+      appearances: 0,
     },
   },
 
@@ -250,14 +250,14 @@ export const players = [
     country: "/assets/images/belgium.png",
     image: "/assets/images/doku.jpg",
     careerStats: {
-      goals: 32,
+      goals: 35,
       assists: 49,
-      appearances: 247,
+      appearances: 252,
     },
     seasonStats: {
-      goals: 3,
+      goals: 0,
       assists: 0,
-      appearances: 5,
+      appearances: 1,
     },
     injured: false,
   },
@@ -270,14 +270,14 @@ export const players = [
     country: "/assets/images/france.svg",
     image: "/assets/images/rayan.webp",
     careerStats: {
-      goals: 29,
-      assists: 45,
-      appearances: 185,
+      goals: 31,
+      assists: 47,
+      appearances: 191,
     },
     seasonStats: {
-      goals: 2,
-      assists: 2,
-      appearances: 6,
+      goals: 1,
+      assists: 0,
+      appearances: 1,
     },
     injured: false,
   },
@@ -292,12 +292,12 @@ export const players = [
     careerStats: {
       goals: 27,
       assists: 13,
-      appearances: 366,
+      appearances: 369,
     },
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 3,
+      appearances: 0,
     },
     injured: false,
     injuryDetails: {
@@ -323,7 +323,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 0,
+      appearances: 1,
     },
     injured: false,
     injuryDetails: {
@@ -343,13 +343,13 @@ export const players = [
     image: "/assets/images/gv.jpg",
     careerStats: {
       goals: 23,
-      assists: 10,
-      appearances: 275,
+      assists: 11,
+      appearances: 278,
     },
     seasonStats: {
       goals: 0,
-      assists: 1,
-      appearances: 3,
+      assists: 0,
+      appearances: 0,
     },
     injured: false,
   },
@@ -384,12 +384,12 @@ export const players = [
     careerStats: {
       goals: 20,
       assists: 9,
-      appearances: 455,
+      appearances: 459,
     },
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 4,
+      appearances: 0,
     },
     injured: false,
     injuryDetails: {
@@ -410,13 +410,13 @@ export const players = [
 
     careerStats: {
       goals: 19,
-      assists: 11,
-      appearances: 422,
+      assists: 12,
+      appearances: 427,
     },
     seasonStats: {
       goals: 0,
-      assists: 1,
-      appearances: 5,
+      assists: 0,
+      appearances: 1,
     },
     injured: false,
     injuryDetails: {
@@ -436,14 +436,14 @@ export const players = [
     country: "/assets/images/brazil.png",
     image: "/assets/images/savio.png",
     careerStats: {
-      goals: 18,
-      assists: 26,
-      appearances: 150,
+      goals: 19,
+      assists: 27,
+      appearances: 153,
     },
     seasonStats: {
-      goals: 1,
-      assists: 1,
-      appearances: 3,
+      goals: 0,
+      assists: 0,
+      appearances: 0,
     },
     injured: false,
   },
@@ -457,13 +457,13 @@ export const players = [
     image: "/assets/images/nunes.jpg",
     careerStats: {
       goals: 15,
-      assists: 25,
-      appearances: 234,
+      assists: 26,
+      appearances: 238,
     },
     seasonStats: {
       goals: 0,
-      assists: 1,
-      appearances: 4,
+      assists: 0,
+      appearances: 1,
     },
     injured: false,
   },
@@ -486,7 +486,7 @@ export const players = [
     careerStats: {
       goals: 14,
       assists: 12,
-      appearances: 147,
+      appearances: 148,
     },
     seasonStats: {
       goals: 0,
@@ -504,13 +504,13 @@ export const players = [
     image: "/assets/images/rayanati.jpeg",
     careerStats: {
       goals: 12,
-      assists: 23,
-      appearances: 193,
+      assists: 24,
+      appearances: 196,
     },
     seasonStats: {
       goals: 0,
-      assists: 1,
-      appearances: 3,
+      assists: 0,
+      appearances: 1,
     },
     injured: false,
   },
@@ -525,11 +525,11 @@ export const players = [
     careerStats: {
       goals: 7,
       assists: 15,
-      appearances: 145,
+      appearances: 146,
     },
     seasonStats: {
       goals: 0,
-      assists: 0,
+      assists: 1,
       appearances: 1,
     },
     injured: false,
@@ -547,12 +547,12 @@ export const players = [
     careerStats: {
       goals: 5,
       assists: 2,
-      appearances: 20,
+      appearances: 22,
     },
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 2,
+      appearances: 1,
     },
     injured: false,
   },
@@ -566,14 +566,14 @@ export const players = [
     age: "2003-07-12",
     image: "/assets/images/bob.jpg",
     careerStats: {
-      goals: 4,
+      goals: 5,
       assists: 4,
-      appearances: 38,
+      appearances: 41,
     },
     seasonStats: {
-      goals: 1,
-      assists: 0,
-      appearances: 3,
+      goals: 0,
+      assists: 1,
+      appearances: 1,
     },
     injured: false,
     injuryDetails: {
@@ -593,14 +593,14 @@ export const players = [
     age: "2006-01-02",
     image: "/assets/images/claudio.webp",
     careerStats: {
-      goals: 4,
+      goals: 5,
       assists: 8,
-      appearances: 50,
+      appearances: 51,
     },
     seasonStats: {
-      goals: 1,
+      goals: 0,
       assists: 0,
-      appearances: 1,
+      appearances: 0,
     },
     injured: false,
     injuryDetails: {
@@ -619,14 +619,14 @@ export const players = [
     country: "/assets/images/brazil.png",
     image: "/assets/images/ederson.webp",
     careerStats: {
-      goalsConceded: 439,
-      cleanSheets: 233,
-      appearances: 520,
+      goalsConceded: 444,
+      cleanSheets: 234,
+      appearances: 523,
     },
     seasonStats: {
-      goalsConceded: 5,
-      cleanSheets: 1,
-      appearances: 3,
+      goalsConceded: 0,
+      cleanSheets: 0,
+      appearances: 0,
     },
     injured: false,
   },
@@ -641,13 +641,13 @@ export const players = [
     image: "/assets/images/ortega.jpg",
     careerStats: {
       goalsConceded: 437,
-      cleanSheets: 98,
-      appearances: 338,
+      cleanSheets: 99,
+      appearances: 339,
     },
     seasonStats: {
       goalsConceded: 0,
-      cleanSheets: 1,
-      appearances: 1,
+      cleanSheets: 0,
+      appearances: 0,
     },
     injured: false,
   },
@@ -667,8 +667,8 @@ export const players = [
     },
     seasonStats: {
       goalsConceded: 0,
-      cleanSheets: 0,
-      appearances: 0,
+      cleanSheets: 1,
+      appearances: 1,
     },
     injured: false,
   },
