@@ -192,66 +192,64 @@ const Schedule = () => {
         </div>
 
         {/* Tabs */}
-        <div className="flex justify-center gap-2 sm:gap-6 mb-8 overflow-x-auto pb-2">
-          {tabs.map(({ key, label, img, color, description }) => {
-            const isActive = selectedTab === key;
-            const isLoading = apiLoading[key] || false;
-            const hasData =
-              key === "fifa"
-                ? manualMatches.length > 0
-                : apiMatches[key]?.length > 0;
-            const hasError = apiError[key] || false;
+        <div className="flex justify-center mb-8 overflow-x-auto scrollbar-hide">
+          <div className="inline-flex flex-nowrap gap-2 p-1.5 bg-white/30 dark:bg-gray-800/30 rounded-xl shadow-sm">
+            {tabs.map(({ key, label, img, color }) => {
+              const isActive = selectedTab === key;
+              const isLoading = apiLoading[key] || false;
+              const hasData =
+                key === "fifa"
+                  ? manualMatches.length > 0
+                  : apiMatches[key]?.length > 0;
+              const hasError = apiError[key] || false;
 
-            return (
-              <button
-                key={key}
-                onClick={() => handleTabChange(key)}
-                disabled={isLoading}
-                className={`group flex flex-col items-center gap-2 p-4 rounded-2xl transition-all duration-300 min-w-[120px] ${
-                  isActive
-                    ? `bg-gradient-to-br ${color} text-white shadow-xl scale-105`
-                    : "bg-white/60 dark:bg-gray-800/60 hover:bg-white/80 dark:hover:bg-gray-800/80 hover:scale-102 hover:shadow-lg text-gray-700 dark:text-gray-300"
-                } ${isLoading ? "opacity-75 cursor-not-allowed" : ""}`}
-              >
-                <div
-                  className={`relative ${
-                    isActive ? "scale-110" : "group-hover:scale-105"
-                  } transition-transform duration-300`}
+              return (
+                <button
+                  key={key}
+                  onClick={() => handleTabChange(key)}
+                  disabled={isLoading}
+                  className={`relative flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 ${
+                    isActive
+                      ? `${
+                          color.replace("from-", "bg-").split(" ")[0]
+                        } text-white shadow-md`
+                      : "bg-white/70 dark:bg-gray-800/70 hover:bg-white/90 dark:hover:bg-gray-700/90 text-gray-700 dark:text-gray-300"
+                  } ${isLoading ? "opacity-75 cursor-not-allowed" : ""}`}
                 >
-                  {isLoading ? (
-                    <Loader2 className="w-12 h-12 animate-spin" />
-                  ) : (
-                    <Image
-                      src={img}
-                      alt={label}
-                      width={48}
-                      height={48}
-                      className="object-contain"
-                      unoptimized
-                      priority={isActive}
-                    />
-                  )}
-                  {!isLoading && hasData && (
-                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
-                  )}
-                  {!isLoading && hasError && (
-                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white"></div>
-                  )}
-                </div>
-                <div className="text-center">
-                  <span className="text-sm font-bold">{label}</span>
+                  <div className="relative flex-shrink-0">
+                    {isLoading ? (
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                    ) : (
+                      <Image
+                        src={img}
+                        alt={label}
+                        width={20}
+                        height={20}
+                        className="object-contain"
+                        unoptimized
+                      />
+                    )}
+                    {!isLoading && (hasData || hasError) && (
+                      <div
+                        className={`absolute -top-1 -right-1 w-2 h-2 ${
+                          hasError ? "bg-red-500" : "bg-green-500"
+                        } rounded-full border border-white dark:border-gray-800`}
+                      ></div>
+                    )}
+                  </div>
+                  <span className="text-sm font-medium whitespace-nowrap">
+                    {label}
+                  </span>
                   {isLoading && (
-                    <div className="text-xs opacity-75 mt-1">Loading...</div>
+                    <span className="absolute inset-0 flex items-center justify-center bg-black/5 dark:bg-white/5 rounded-lg">
+                      <Loader2 className="w-4 h-4 animate-spin opacity-70" />
+                    </span>
                   )}
-                  {!isLoading && !hasData && key !== "fifa" && (
-                    <div className="text-xs opacity-75 mt-1">Click to view</div>
-                  )}
-                </div>
-              </button>
-            );
-          })}
+                </button>
+              );
+            })}
+          </div>
         </div>
-
         {/* Content */}
         {isCurrentTabLoading ? (
           <div className="flex flex-col items-center justify-center py-16">
