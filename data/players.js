@@ -263,7 +263,7 @@ export const players = [
   },
   {
     name: "Rayan Cherki",
-    number: 29,
+    number: 10,
     position: "RW",
     value: 45,
     age: "2003-08-17",

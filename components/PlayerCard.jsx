@@ -18,6 +18,7 @@ const HIDDEN_NAMES = new Set([
   "King Kev (Napoli)",
   "Jack Grealish",
   "James McAtee",
+  "C. Echeverri",
 ]);
 
 const TABS = [
@@ -155,15 +156,14 @@ export default function PlayerCard({ player }) {
           </div>
 
           {/* Player Rating */}
-          <div className="mt-4 flex items-center justify-center gap-4">
+          <div className="mt-4 flex items-center justify-center gap-2">
             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-sky-800 dark:bg-sky-200 text-white dark:text-sky-900 text-lg font-extrabold shadow-lg">
               {rating}
             </div>
-            <div>
-              <span className="text-base tracking-wide text-sky-900 dark:text-sky-200 font-semibold">
-                Player Rating
-              </span>
-            </div>
+
+            <span className="text-base tracking-wide text-sky-900 dark:text-sky-200 font-semibold">
+              Player Rating
+            </span>
           </div>
 
           {/* Injury Info */}
