@@ -33,16 +33,16 @@ export const manualMatches = [
 export const tabs = [
   {
     key: "prem",
-    label: "Premier League",
+    label: "Prem",
     img: "/assets/images/prem.webp",
-    color: "from-purple-500 to-pink-500",
+    color: "from-sky-600 to-pink-500",
     description: "English Premier League",
   },
   {
     key: "champ",
     label: "Champions League",
     img: "/assets/images/Champ.png",
-    color: "from-indigo-500 to-blue-500",
+    color: "from-sky-500 to-blue-200",
     description: "UEFA Champions League",
   },
   {

@@ -11,11 +11,8 @@ import { manualMatches, tabs, getDaysToGo } from "./components/manualMatches";
 import { formatDate, TIME_FORMATS, TimeToggle } from "./components/timeUtils";
 
 const Schedule = () => {
-  const [apiMatches, setApiMatches] = useState({
-    prem: [],
-    champ: [],
-  });
-  const [selectedTab, setSelectedTab] = useState("fifa");
+  const [apiMatches, setApiMatches] = useState({ prem: [], champ: [] });
+  const [selectedTab, setSelectedTab] = useState("prem"); // Set default to Premier League
   const [apiLoading, setApiLoading] = useState({ prem: false, champ: false });
   const [apiError, setApiError] = useState({ prem: false, champ: false });
   const [timeFormat, setTimeFormat] = useState(TIME_FORMATS.LOCAL_12);
@@ -97,6 +94,11 @@ const Schedule = () => {
     }
   }, [selectedTab, fetchApiMatches]);
 
+  // Initial fetch for Premier League on component mount
+  useEffect(() => {
+    fetchApiMatches("prem");
+  }, [fetchApiMatches]);
+
   // Determine current matches based on selected tab
   const currentMatches = useMemo(() => {
     switch (selectedTab) {
@@ -133,8 +135,12 @@ const Schedule = () => {
 
   // Handle refresh by refetching current tab API data if necessary
   const handleRefresh = useCallback(() => {
-    if (selectedTab === "fifa") {
-      toast.success("Carabao Cup  matches are up to date!");
+    if (
+      selectedTab === "fifa" ||
+      selectedTab === "fa" ||
+      selectedTab === "carabao"
+    ) {
+      toast.success(`${selectedTab.toUpperCase()} matches are up to date!`);
       return;
     }
     fetchApiMatches(selectedTab, true);
@@ -178,76 +184,135 @@ const Schedule = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-sky-700 to-sky-900 bg-clip-text text-transparent mb-4 flex items-center justify-center gap-3">
-            <Calendar className="w-10 h-10 text-sky-900" />
+            <Calendar className="w-8 h-8 md:w-10 md:h-10 text-sky-900" />
             Match Schedule
           </h1>
           <p className="text-gray-600 dark:text-gray-400 text-lg">
             Stay updated with upcoming matches across all competitions
           </p>
         </div>
-
         {/* Time Toggle */}
         <div className="flex justify-end mb-6">
           <TimeToggle timeFormat={timeFormat} setTimeFormat={setTimeFormat} />
         </div>
 
-        {/* Tabs */}
-        <div className="flex justify-center mb-8 overflow-x-auto scrollbar-hide">
-          <div className="inline-flex flex-nowrap gap-2 p-1.5 bg-white/30 dark:bg-gray-800/30 rounded-xl shadow-sm">
-            {tabs.map(({ key, label, img, color }) => {
-              const isActive = selectedTab === key;
-              const isLoading = apiLoading[key] || false;
-              const hasData =
-                key === "fifa"
-                  ? manualMatches.length > 0
-                  : apiMatches[key]?.length > 0;
-              const hasError = apiError[key] || false;
+        {/* Enhanced Responsive Tabs */}
+        <div className="mb-8">
+          {/* Mobile Tab Scrollable (visible on small screens) */}
+          <div className="md:hidden w-full mb-4 overflow-x-auto scrollbar-hide">
+            <div className="flex p-1 space-x-2 bg-white/30 dark:bg-gray-800/30 backdrop-blur-sm rounded-xl shadow-sm min-w-max">
+              {tabs.map(({ key, label, img, color }) => {
+                const isActive = selectedTab === key;
+                const isLoading = apiLoading[key] || false;
 
-              return (
-                <button
-                  key={key}
-                  onClick={() => handleTabChange(key)}
-                  disabled={isLoading}
-                  className={`relative flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 ${
-                    isActive
-                      ? `${
-                          color.replace("from-", "bg-").split(" ")[0]
-                        } text-white shadow-md`
-                      : "bg-white/70 dark:bg-gray-800/70 hover:bg-white/90 dark:hover:bg-gray-700/90 text-gray-700 dark:text-gray-300"
-                  } ${isLoading ? "opacity-75 cursor-not-allowed" : ""}`}
-                >
-                  <div className="relative flex-shrink-0">
-                    {isLoading ? (
-                      <Loader2 className="w-5 h-5 animate-spin" />
-                    ) : (
-                      <Image
-                        src={img}
-                        alt={label}
-                        width={20}
-                        height={20}
-                        className="object-contain"
-                        unoptimized
-                      />
-                    )}
-                    {!isLoading && (hasData || hasError) && (
-                      <div
-                        className={`absolute -top-1 -right-1 w-2 h-2 ${
-                          hasError ? "bg-red-500" : "bg-green-500"
-                        } rounded-full border border-white dark:border-gray-800`}
-                      ></div>
-                    )}
-                  </div>
-                  <span className="text-sm font-medium whitespace-nowrap">
-                    {label}
-                  </span>
-                  {isLoading && (
-                    <span className="absolute inset-0 flex items-center justify-center bg-black/5 dark:bg-white/5 rounded-lg">
-                      <Loader2 className="w-4 h-4 animate-spin opacity-70" />
+                return (
+                  <button
+                    key={key}
+                    onClick={() => handleTabChange(key)}
+                    disabled={isLoading}
+                    className={`
+              flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-all duration-200
+              ${
+                isActive
+                  ? `${
+                      color.replace("from-", "bg-").split(" ")[0]
+                    } text-white shadow-sm`
+                  : "bg-white/70 dark:bg-gray-800/70 text-gray-700 dark:text-gray-300"
+              }
+              ${isLoading ? "opacity-75 cursor-not-allowed" : ""}
+            `}
+                  >
+                    <div className="flex-shrink-0 relative">
+                      {isLoading ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <Image
+                          src={img}
+                          alt={label}
+                          width={16}
+                          height={16}
+                          className={`object-contain ${
+                            isActive ? "brightness-200" : ""
+                          }`}
+                          unoptimized
+                        />
+                      )}
+                    </div>
+                    <span className="text-xs font-medium whitespace-nowrap">
+                      {label}
                     </span>
-                  )}
-                </button>
-              );
-            })}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Desktop Tabs (hidden on mobile) */}
+          <div className="hidden md:block relative">
+            {/* Background Accent */}
+            <div className="absolute inset-0 bg-gradient-to-r from-sky-100/50 via-blue-100/50 to-indigo-100/50 dark:from-sky-900/20 dark:via-blue-900/20 dark:to-indigo-900/20 rounded-2xl blur-xl opacity-70 transform -translate-y-1"></div>
+
+            {/* Tab Container */}
+            <div className="relative flex justify-center">
+              <div className="flex p-1.5 bg-white/30 dark:bg-gray-800/30 backdrop-blur-md rounded-xl shadow-md">
+                {tabs.map(({ key, label, img, color }) => {
+                  const isActive = selectedTab === key;
+                  const isLoading = apiLoading[key] || false;
+                  const hasData =
+                    key === "fifa"
+                      ? manualMatches.length > 0
+                      : apiMatches[key]?.length > 0;
+                  const hasError = apiError[key] || false;
+
+                  return (
+                    <button
+                      key={key}
+                      onClick={() => handleTabChange(key)}
+                      disabled={isLoading}
+                      className={`
+    relative flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 mx-0.5
+    ${
+      isActive
+        ? "bg-black text-white shadow-md"
+        : "bg-white/70 dark:bg-gray-800/70 hover:bg-white/90 dark:hover:bg-gray-700/90 text-gray-700 dark:text-gray-300"
+    }
+    ${isLoading ? "opacity-75 cursor-not-allowed" : ""}
+  `}
+                    >
+                      {/* Status Indicator */}
+                      {!isLoading && (hasData || hasError) && (
+                        <span
+                          className={`absolute top-1 right-1 w-1.5 h-1.5 ${
+                            hasError ? "bg-red-500" : "bg-green-500"
+                          } rounded-full ring-1 ring-white dark:ring-gray-800`}
+                        ></span>
+                      )}
+
+                      {/* Icon or Loader */}
+                      <div className="flex-shrink-0">
+                        {isLoading ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <Image
+                            src={img}
+                            alt={label}
+                            width={20}
+                            height={20}
+                            className={`object-contain transition-all duration-200 ${
+                              isActive ? "brightness-200" : ""
+                            }`}
+                            unoptimized
+                          />
+                        )}
+                      </div>
+
+                      {/* Label */}
+                      <span className="font-medium text-sm">{label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
         {/* Content */}
@@ -266,7 +331,7 @@ const Schedule = () => {
                 {currentMatches.length === 1 ? "match" : "matches"} found
               </span>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 md:gap-6">
               {currentMatches.map((match) => (
                 <MatchCard
                   key={match.id}
@@ -280,7 +345,6 @@ const Schedule = () => {
         ) : (
           renderEmptyState()
         )}
-
         {/* API Error Notice */}
         {hasCurrentTabError &&
           (selectedTab === "prem" || selectedTab === "champ") && (
