@@ -12,6 +12,7 @@ import GoogleAd from "@/components/GoogleAd";
 
 const Home = () => {
   const selectedNames = [
+    "Gianluigi Donnarumma",
     "Rayan Ait Nouri",
     "Tijjani Reijnders",
     "Rayan Cherki",
@@ -22,6 +23,7 @@ const Home = () => {
     "Jack Grealish",
     "James McAtee",
     "C. Echeverri",
+    "Ederson Moraes",
   ];
   return (
     <>

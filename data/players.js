@@ -16,10 +16,10 @@ export const players = [
       appearances: 365,
     },
     seasonStats: {
-      goals: 5,
+      goals: 6,
 
       assists: 0,
-      appearances: 6,
+      appearances: 7,
     },
     injured: false,
     injuryDetails: {
@@ -73,7 +73,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 1,
-      appearances: 5,
+      appearances: 6,
     },
     injured: false,
   },
@@ -136,8 +136,8 @@ export const players = [
     },
     seasonStats: {
       goals: 0,
-      assists: 0,
-      appearances: 5,
+      assists: 1,
+      appearances: 6,
     },
     injured: false,
   },
@@ -203,7 +203,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 1,
-      appearances: 5,
+      appearances: 6,
     },
     injured: false,
     injuryDetails: {
@@ -237,7 +237,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 1,
-      appearances: 4,
+      appearances: 5,
     },
   },
 
@@ -257,7 +257,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 0,
-      appearances: 5,
+      appearances: 6,
     },
     injured: false,
   },
@@ -279,7 +279,13 @@ export const players = [
       assists: 1,
       appearances: 6,
     },
-    injured: false,
+    injured: true,
+    injuryDetails: {
+      type: "Muscle Injury",
+      recoveryTime: "November 2025!",
+      tm: "Aug 31, 2025",
+    },
+    injuryIcon: FaHospital,
   },
   {
     name: "Nathan Ake",
@@ -323,7 +329,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
     injuryDetails: {
@@ -416,7 +422,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 5,
+      appearances: 6,
     },
     injured: false,
     injuryDetails: {
@@ -463,7 +469,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 1,
-      appearances: 5,
+      appearances: 6,
     },
     injured: false,
   },
@@ -510,7 +516,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 1,
-      appearances: 5,
+      appearances: 6,
     },
     injured: false,
   },
@@ -530,7 +536,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 1,
-      appearances: 3,
+      appearances: 4,
     },
     injured: false,
   },
@@ -552,7 +558,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 3,
+      appearances: 4,
     },
     injured: false,
   },
@@ -573,7 +579,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 1,
-      appearances: 4,
+      appearances: 5,
     },
     injured: false,
     injuryDetails: {
@@ -609,6 +615,26 @@ export const players = [
       recoveryTime: "Early March 2025",
     },
     injuryIcon: FaHospital,
+  },
+  {
+    name: "Gianluigi Donnarumma",
+    number: 3,
+    position: "GK",
+    value: 40,
+    age: "1999-02-25",
+    country: "/assets/images/italy.png",
+    image: "/assets/images/dona.webp",
+    careerStats: {
+      goalsConceded: 417,
+      cleanSheets: 139,
+      appearances: 405,
+    },
+    seasonStats: {
+      goalsConceded: 4,
+      cleanSheets: 5,
+      appearances: 7,
+    },
+    injured: false,
   },
   {
     name: "Ederson Moraes",
@@ -666,9 +692,9 @@ export const players = [
       appearances: 29,
     },
     seasonStats: {
-      goalsConceded: 2,
+      goalsConceded: 4,
       cleanSheets: 1,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
   },
