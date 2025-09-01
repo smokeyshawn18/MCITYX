@@ -19,6 +19,7 @@ const Home = () => {
     "James Trafford",
   ]; // ✅ Write player name  before usage
   const byeNames = [
+    "Manuel Akanji",
     "King Kev (Napoli)",
     "Jack Grealish",
     "James McAtee",

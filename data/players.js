@@ -625,9 +625,9 @@ export const players = [
     country: "/assets/images/italy.png",
     image: "/assets/images/dona.webp",
     careerStats: {
-      goalsConceded: 417,
-      cleanSheets: 139,
-      appearances: 405,
+      goalsConceded: 483,
+      cleanSheets: 169,
+      appearances: 479,
     },
     seasonStats: {
       goalsConceded: 4,
