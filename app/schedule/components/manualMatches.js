@@ -18,15 +18,18 @@ export const manualMatches = [
   //   utcDate: "2025-05-10T15:30:00Z",
   //   status: "TIMED",
   // },
-  // {
-  //   id: "99905",
-  //   round: "Semi-final",
-  //   homeTeam: { name: "Man City", crest: "/assets/images/logo.svg" },
-  //   awayTeam: { name: "Chelsea", crest: "/assets/images/che.png" },
-  //   competition: { name: "Carabao Cup", emblem: "/assets/images/carabao.png" },
-  //   utcDate: "2025-02-15T20:00:00Z",
-  //   status: "TIMED",
-  // },
+  {
+    id: "99905",
+    round: "Round-3",
+    homeTeam: {
+      name: "Huddersfield",
+      crest: "/assets/images/huddersfield.png",
+    },
+    awayTeam: { name: "Man City", crest: "/assets/images/logo.svg" },
+    competition: { name: "Carabao Cup", emblem: "/assets/images/carabao.png" },
+    utcDate: "2025-09-25T18:45:00Z",
+    status: "TIMED",
+  },
 ];
 
 // Tab configuration

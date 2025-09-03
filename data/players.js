@@ -618,7 +618,7 @@ export const players = [
   },
   {
     name: "Gianluigi Donnarumma",
-    number: 3,
+    number: 25,
     position: "GK",
     value: 40,
     age: "1999-02-25",
