@@ -16,10 +16,10 @@ export const players = [
       appearances: 365,
     },
     seasonStats: {
-      goals: 6,
+      goals: 7,
 
       assists: 0,
-      appearances: 7,
+      appearances: 8,
     },
     injured: false,
     injuryDetails: {
@@ -203,7 +203,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 1,
-      appearances: 6,
+      appearances: 7,
     },
     injured: false,
     injuryDetails: {
@@ -237,7 +237,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 1,
-      appearances: 5,
+      appearances: 6,
     },
   },
 
@@ -257,7 +257,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 0,
-      appearances: 6,
+      appearances: 7,
     },
     injured: false,
   },
@@ -579,7 +579,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 1,
-      appearances: 5,
+      appearances: 6,
     },
     injured: false,
     injuryDetails: {
