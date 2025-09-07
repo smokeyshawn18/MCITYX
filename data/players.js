@@ -203,7 +203,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 1,
-      appearances: 7,
+      appearances: 8,
     },
     injured: false,
     injuryDetails: {
@@ -422,7 +422,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 6,
+      appearances: 7,
     },
     injured: false,
     injuryDetails: {
