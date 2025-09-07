@@ -4,7 +4,23 @@ import { players } from "@/data/players";
 import PlayerCard from "@/components/PlayerCard";
 import Link from "next/link";
 
-const totalValue = players
+// Players on loan or transferred
+const byeNames = [
+  "İlkay Gündoğan",
+  "Manuel Akanji",
+  "King Kev (Napoli)",
+  "Jack Grealish",
+  "James McAtee",
+  "C. Echeverri",
+  "Ederson Moraes",
+];
+
+// Filter out players that are in byeNames list
+const activePlayers = players.filter(
+  (player) => !byeNames.includes(player.name)
+);
+
+const totalValue = activePlayers
   .reduce((sum, player) => sum + player.value, 0)
   .toFixed(1);
 const inBillion = (parseFloat(totalValue) / 1000).toFixed(2);
@@ -34,8 +50,8 @@ const filterByGroup = (group, playerList) => {
 const PlayerSection = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filter players based on search
-  const filteredPlayers = players.filter((player) =>
+  // Filter active players based on search
+  const filteredPlayers = activePlayers.filter((player) =>
     player.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 

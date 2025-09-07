@@ -15,10 +15,13 @@ import { ratePlayer } from "@/utils/ratePlayer";
 import { calculateAge } from "@/utils/playerAge";
 
 const HIDDEN_NAMES = new Set([
+  "İlkay Gündoğan",
+  "Manuel Akanji",
   "King Kev (Napoli)",
   "Jack Grealish",
   "James McAtee",
   "C. Echeverri",
+  "Ederson Moraes",
 ]);
 
 const TABS = [
@@ -33,7 +36,16 @@ export default function PlayerCard({ player }) {
   const [activeTab, setActiveTab] = useState("season");
 
   // Memoized player rating
-  const rating = useMemo(() => ratePlayer(player), [player]);
+  const rating = useMemo(() => {
+    try {
+      const calculatedRating = ratePlayer(player);
+      // Check for NaN and provide a default
+      return isNaN(calculatedRating) ? "7.0" : calculatedRating.toString();
+    } catch (error) {
+      console.error("Error calculating rating for", player.name, error);
+      return "7.0"; // Default fallback rating
+    }
+  }, [player]);
 
   // Memoized combined career stats
   const careerStats = useMemo(() => {

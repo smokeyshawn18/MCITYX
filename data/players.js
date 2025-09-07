@@ -213,6 +213,27 @@ export const players = [
     },
     injuryIcon: FaHospital,
   },
+
+  {
+    name: "Jeremy Doku",
+    number: 11,
+    position: "LW",
+    value: 50,
+    age: "2002-05-27",
+    country: "/assets/images/belgium.png",
+    image: "/assets/images/doku.jpg",
+    careerStats: {
+      goals: 33,
+      assists: 49,
+      appearances: 249,
+    },
+    seasonStats: {
+      goals: 3,
+      assists: 0,
+      appearances: 8,
+    },
+    injured: false,
+  },
   {
     name: "Rodri",
     number: 16,
@@ -241,26 +262,6 @@ export const players = [
     },
   },
 
-  {
-    name: "Jeremy Doku",
-    number: 11,
-    position: "LW",
-    value: 50,
-    age: "2002-05-27",
-    country: "/assets/images/belgium.png",
-    image: "/assets/images/doku.jpg",
-    careerStats: {
-      goals: 33,
-      assists: 49,
-      appearances: 249,
-    },
-    seasonStats: {
-      goals: 2,
-      assists: 0,
-      appearances: 7,
-    },
-    injured: false,
-  },
   {
     name: "Rayan Cherki",
     number: 10,
@@ -303,7 +304,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 3,
+      appearances: 4,
     },
     injured: false,
     injuryDetails: {
