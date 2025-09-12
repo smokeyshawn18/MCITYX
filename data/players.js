@@ -139,7 +139,13 @@ export const players = [
       assists: 1,
       appearances: 8,
     },
-    injured: false,
+    injured: true,
+    injuryDetails: {
+      tm: "Sep 10, 2025",
+      type: "Knee Injury",
+      recoveryTime: "Unknown",
+    },
+    injuryIcon: FaHospital,
   },
   {
     name: "Jack Grealish",
@@ -185,7 +191,13 @@ export const players = [
       assists: 0,
       appearances: 0,
     },
-    injured: false,
+    injured: true,
+    injuryDetails: {
+      tm: "Aug 10, 2025",
+      type: "Achilles Tendon Injury",
+      recoveryTime: "Early October 2025",
+    },
+    injuryIcon: FaHospital,
   },
   {
     name: "Tijjani Reijnders",
@@ -358,7 +370,13 @@ export const players = [
       assists: 0,
       appearances: 2,
     },
-    injured: false,
+    injured: true,
+    injuryDetails: {
+      tm: "Aug 11, 2025",
+      type: "Knock",
+      recoveryTime: "Doubtful",
+    },
+    injuryIcon: FaHospital,
   },
   {
     name: "James McAtee",
@@ -452,7 +470,13 @@ export const players = [
       assists: 1,
       appearances: 3,
     },
-    injured: false,
+    injured: true,
+    injuryDetails: {
+      tm: "Aug 15, 2025",
+      type: "Knock",
+      recoveryTime: "Doubtful",
+    },
+    injuryIcon: FaHospital,
   },
   {
     name: "Matheus Nunes",
@@ -539,7 +563,13 @@ export const players = [
       assists: 1,
       appearances: 4,
     },
-    injured: false,
+    injured: true,
+    injuryDetails: {
+      tm: "Sep 2, 2025",
+      type: "Physical Discomfort",
+      recoveryTime: "Doubtful",
+    },
+    injuryIcon: FaHospital,
   },
 
   {

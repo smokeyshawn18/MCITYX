@@ -32,8 +32,8 @@ const Home = () => {
       <section className="bg-[#f0f8ff] dark:bg-gray-950 dark:text-white text-gray-800 py-12 lg:py-24">
         <div className="relative container mx-auto px-4 lg:px-8">
           <GoogleAd slot="YOUR_SLOT_ID" />
-          <WelcomePlayer players={players} selectedNames={selectedNames} />
-          <Bye players={players} byeNames={byeNames} />
+          {/* <WelcomePlayer players={players} selectedNames={selectedNames} />
+          <Bye players={players} byeNames={byeNames} /> */}
           <br />
           <LiveMatches />
           <div className="relative h-80 sm:h-96 mb-4">
@@ -50,10 +50,10 @@ const Home = () => {
               </p>
             </div>
           </div>
-          {/* <h2 className="p-4 text-4xl font-extrabold mb-8 text-center dark:text-white text-[#1b3c42] uppercase tracking-widest">
+          <h2 className="p-4 text-4xl font-extrabold mb-8 text-center dark:text-white text-[#1b3c42] uppercase tracking-widest">
             Key Performers this Season
           </h2>
-          <KeyPerformers /> */}
+          <KeyPerformers />
         </div>
 
         <CoachProfile className="mt-4" />
