@@ -3,7 +3,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import { ClerkProvider } from "@clerk/nextjs";
-import AskAI from "@/components/AskAI";
+import InstallPrompt from "@/components/InstallPrompt";
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import Head from "next/head";
 
 export const metadata = {
@@ -277,7 +278,8 @@ export default function RootLayout({ children }) {
         >
           <ScrollToTop />
           <Navbar />
-          <AskAI />
+          <ServiceWorkerRegister />
+          <InstallPrompt />
 
           {/* Skip to main content for accessibility */}
           <a

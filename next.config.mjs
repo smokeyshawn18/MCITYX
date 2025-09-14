@@ -72,11 +72,28 @@ const nextConfig = {
         ],
       },
       {
-        source: "/robots.txt",
+        source: "/sw.js",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=0, must-revalidate",
+          },
+          {
+            key: "Service-Worker-Allowed",
+            value: "/",
+          },
+        ],
+      },
+      {
+        source: "/site.webmanifest",
         headers: [
           {
             key: "Content-Type",
-            value: "text/plain",
+            value: "application/manifest+json",
+          },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
