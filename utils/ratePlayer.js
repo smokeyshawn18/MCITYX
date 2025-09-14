@@ -8,11 +8,16 @@ export function ratePlayer(player) {
 
   // Positions that rely heavily on goals/assists
   const attackingRoles = ["AM", "FW", "CM", "DM", "ST", "LW", "RW"];
+  const defendingRoles = ["CB", "LB", "RB", "LWB", "RWB"];
+
   const isAttacker = attackingRoles.includes(position);
+  const isDefender = defendingRoles.includes(position);
+
+  const matchWeight = isDefender ? 0.7 : 0.7;
 
   // Slightly more generous weights
-  const goalWeight = isAttacker ? 0.9 : 0.5;
-  const assistWeight = isAttacker ? 0.8 : 0.7;
+  const goalWeight = isAttacker ? 0.8 : 0.5;
+  const assistWeight = isAttacker ? 0.7 : 0.7;
 
   // Contribution per appearance (avoid NaN)
   const seasonInvolvement =
@@ -41,13 +46,22 @@ export function ratePlayer(player) {
 
   // Weighted total (max ≈ 3.7)
   const rawScore =
-    seasonScore * 1.6 + careerScore * 1.2 + ageScore * 0.6 + injuryPenalty;
+    seasonScore * 1.6 +
+    careerScore * 1.2 +
+    ageScore * 0.6 +
+    injuryPenalty +
+    matchWeight;
 
   // Normalize into 0–4 range
   const normalized = Math.max(0, Math.min(4, rawScore));
 
   // Map to 6.2–10 scale (baseline 6.2 instead of 6.0)
-  const finalScore = 6.2 + (normalized / 4) * (10 - 6.2);
+  const finalScoreUnclamped = 6.2 + (normalized / 4) * (10 - 6.2);
+
+  // Ensure defenders get at least a 7 rating
+  const finalScore = isDefender
+    ? Math.max(7, finalScoreUnclamped)
+    : finalScoreUnclamped;
 
   return parseFloat(finalScore.toFixed(1));
 }
@@ -84,7 +98,7 @@ function rateGoalkeeper(player) {
   const careerConcededScore = Math.max(0, 1 - careerConcededRatio / 3);
 
   // Age peak for goalkeepers: 26-33 = full score
-  let ageScore = 0.4;
+  let ageScore = 0.5;
   if (age >= 26 && age <= 33) ageScore = 1;
   else if (age >= 23 && age <= 36) ageScore = 0.8;
 
@@ -93,7 +107,7 @@ function rateGoalkeeper(player) {
 
   // Weighted total - giving more weight to clean sheets and goals conceded
   const rawScore =
-    seasonCleanSheetRatio * 0.4 +
+    seasonCleanSheetRatio * 0.65 +
     careerCleanSheetRatio * 0.8 +
     seasonConcededScore * 1.2 +
     careerConcededScore * 0.5 +
