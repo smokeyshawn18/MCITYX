@@ -92,46 +92,55 @@ export default function CoachProfile() {
         {/* Right Side Content */}
         <div className="flex-1 flex flex-col gap-8">
           {/* Stats */}
-          <div className="bg-sky-50 dark:bg-gray-800 rounded-2xl p-6 shadow-md">
-            <h3 className="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">
+          <div className="bg-sky-50 dark:bg-gray-800 rounded-xl p-4 shadow-md">
+            <h3 className="text-lg font-bold text-center text-gray-800 dark:text-white mb-4">
               Stats For Man City
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 text-center">
               <div>
-                <p className="text-4xl font-bold text-sky-600 dark:text-sky-400">
+                <p className="text-2xl font-bold text-sky-600 dark:text-sky-400">
                   {totalMatches}
                 </p>
-                <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mt-1">
+                <p className="text-lg text-gray-700 dark:text-gray-300 mt-1">
                   Matches
                 </p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-sky-600 dark:text-sky-400">
+                <p className="text-2xl font-bold text-sky-600 dark:text-sky-400">
                   {wins}
                 </p>
-                <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mt-1">
+                <p className="text-lg text-gray-700 dark:text-gray-300 mt-1">
                   Wins
                 </p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-sky-600 dark:text-sky-400">
+                <p className="text-2xl font-bold text-sky-600 dark:text-sky-400">
+                  {draws}
+                </p>
+                <p className="text-lg text-gray-700 dark:text-gray-300 mt-1">
+                  Draws
+                </p>
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-sky-600 dark:text-sky-400">
                   {losses}
                 </p>
-                <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mt-1">
+                <p className="text-lg text-gray-700 dark:text-gray-300 mt-1">
                   Losses
                 </p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-sky-600 dark:text-sky-400">
+                <p className="text-2xl font-bold text-sky-600 dark:text-sky-400">
                   {ppg}
                 </p>
-                <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mt-1">
-                  Points/Game
+                <p className="text-lg text-gray-700 dark:text-gray-300 mt-1">
+                  Pts/Game
                 </p>
               </div>
             </div>
 
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
                 { label: "Wins", color: "sky", value: wins },
                 { label: "Draws", color: "blue", value: draws },
@@ -139,18 +148,18 @@ export default function CoachProfile() {
               ].map((stat) => (
                 <div
                   key={stat.label}
-                  className={`bg-white dark:bg-gray-900 rounded-xl p-4 shadow-sm`}
+                  className="bg-white dark:bg-gray-900 rounded-lg p-3 shadow-sm"
                 >
                   <p
                     className={`text-lg font-bold text-${stat.color}-500 dark:text-${stat.color}-400`}
                   >
                     {((stat.value / totalMatches) * 100).toFixed(1)}%
                   </p>
-                  <p className="text-sm text-gray-700 dark:text-gray-300 font-semibold mt-1">
+                  <p className="text-lg text-gray-700 dark:text-gray-300 font-semibold mt-1">
                     {stat.label}
                   </p>
                   <div
-                    className={`mt-2 h-2 w-full bg-${stat.color}-200 dark:bg-${stat.color}-700 rounded-full overflow-hidden`}
+                    className={`mt-2 h-1.5 w-full bg-${stat.color}-200 dark:bg-${stat.color}-700 rounded-full overflow-hidden`}
                   >
                     <div
                       className={`h-full bg-${stat.color}-500 dark:bg-${stat.color}-400`}
