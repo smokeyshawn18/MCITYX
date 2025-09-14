@@ -1,6 +1,27 @@
+# *
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /auth/
+Disallow: /admin/
+Disallow: /_next/
 
+# Googlebot
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /auth/
+
+# Bingbot
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /auth/
+
+# Host
 Host: https://mcityx.vercel.app
-Sitemap: https://mcityx.vercel.app/sitemap.xml
 
+# Sitemaps
+Sitemap: https://mcityx.vercel.app/sitemap.xml
+Sitemap: https://mcityx.vercel.app/sitemap-0.xml
+Sitemap: https://mcityx.vercel.app/server-sitemap.xml

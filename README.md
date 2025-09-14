@@ -1,36 +1,200 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MCityX - Manchester City Fan Site
 
-## Getting Started
+![MCityX](https://mcityx.vercel.app/og-image.png)
 
-First, run the development server:
+Your ultimate Manchester City fan destination with latest news, live results, player stats, transfer rumors, fixtures, and exclusive City content.
 
+## 🚀 Features
+
+- **Live Match Updates**: Real-time Premier League, Champions League, FA Cup, and Carabao Cup fixtures
+- **Player Statistics**: Comprehensive player profiles, ratings, and performance data
+- **Transfer News**: Latest Manchester City transfer rumors and updates
+- **Match Results**: Detailed match statistics and results
+- **News Hub**: Breaking news and exclusive content from the Etihad
+- **Responsive Design**: Optimized for mobile and desktop
+- **Dark Mode**: Beautiful dark theme support
+- **PWA Ready**: Installable progressive web app
+
+## �� SEO Optimization
+
+This project is fully optimized for search engines with advanced SEO features:
+
+### Core SEO Features
+- ✅ Next.js App Router with optimized metadata
+- ✅ Dynamic sitemaps with next-sitemap
+- ✅ Structured data (JSON-LD) for rich snippets
+- ✅ Open Graph and Twitter Card optimization
+- ✅ Comprehensive robots.txt configuration
+- ✅ Web App Manifest (PWA)
+- ✅ Server-side sitemap generation
+- ✅ Breadcrumb navigation with schema markup
+- ✅ FAQ structured data
+- ✅ Security.txt and humans.txt
+- ✅ Performance optimizations
+
+### Search Rankings
+Optimized for these search terms:
+- "mcityx"
+- "man city fan site"
+- "man city schedule"
+- "man city stats"
+- "manchester city news"
+- "man city results"
+- "premier league fixtures"
+- "champions league schedule"
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15
+- **Styling**: Tailwind CSS
+- **Icons**: React Icons, Lucide React
+- **Authentication**: Clerk
+- **Database**: Supabase
+- **Deployment**: Vercel
+- **Analytics**: Google Analytics 4
+- **SEO**: Next-sitemap, structured data
+
+## 📦 Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/mcityx.git
+cd mcityx
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+3. Copy environment variables:
+```bash
+cp .env.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Fill in your environment variables in `.env.local`
 
-## Learn More
+5. Run the development server:
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔧 Configuration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Environment Variables
 
-## Deploy on Vercel
+Copy `.env.example` to `.env.local` and configure:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```env
+# Google Analytics
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Google Search Console
+NEXT_PUBLIC_GSC_VERIFICATION_CODE=your-verification-code
+
+# API Keys
+FOOTBALL_DATA_API_KEY=your-api-key
+NEWS_API_KEY=your-news-api-key
+
+# Social Media
+NEXT_PUBLIC_TWITTER_HANDLE=@MCityX
+NEXT_PUBLIC_FACEBOOK_PAGE=https://facebook.com/MCityX
+```
+
+### SEO Configuration
+
+The site is pre-configured with advanced SEO:
+
+- **Sitemap**: Automatically generated at `/sitemap.xml`
+- **Robots.txt**: Comprehensive crawler instructions
+- **Meta Tags**: Optimized for all pages
+- **Structured Data**: Rich snippets for search results
+- **Performance**: Optimized images and fonts
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Configure environment variables
+4. Deploy automatically
+
+### Manual Build
+
+```bash
+# Build for production
+npm run build
+
+# Generate sitemap
+npm run postbuild
+
+# Start production server
+npm start
+```
+
+## 📊 Analytics & Monitoring
+
+### Google Analytics
+- Page views and user behavior tracking
+- Conversion tracking
+- Custom events for football-related actions
+
+### Google Search Console
+- Search performance monitoring
+- Index coverage reports
+- Rich results testing
+
+### Performance Monitoring
+- Core Web Vitals tracking
+- Lighthouse score monitoring
+- User experience metrics
+
+## 🔒 Security
+
+- Content Security Policy (CSP)
+- HTTPS enforcement
+- Secure headers configuration
+- Regular security audits
+
+## 📱 Progressive Web App (PWA)
+
+- Installable on mobile devices
+- Offline functionality
+- Push notifications (planned)
+- Native app-like experience
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📞 Support
+
+- **Email**: hello@mcityx.com
+- **Twitter**: [@MCityX](https://twitter.com/MCityX)
+- **Facebook**: [MCityX](https://facebook.com/MCityX)
+
+## 🙏 Acknowledgments
+
+- Manchester City FC for the inspiration
+- Pep Guardiola for the magic
+- The fans for the passion
+- Open source community for the tools
+
+---
+
+**Made with ❤️ for Manchester City fans worldwide**

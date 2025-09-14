@@ -1,0 +1,18 @@
+/* TEAM */
+Developer: MCityX Team
+Contact: hello@mcityx.com
+Location: Manchester, England
+
+/* SITE */
+Last update: 2024
+Standards: HTML5, CSS3, ES6+
+Components: Next.js, React, Tailwind CSS
+Software: VS Code, Git, Vercel
+
+/* THANKS */
+Manchester City FC: For the inspiration
+Pep Guardiola: For the magic
+The fans: For the passion
+
+/* SITEMAP */
+https://mcityx.vercel.app/sitemap.xml
