@@ -1,6 +1,6 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -85,8 +85,8 @@ const nextConfig = {
     if (!dev) {
       config.optimization = {
         ...config.optimization,
-        moduleIds: 'deterministic',
-        chunkIds: 'deterministic',
+        moduleIds: "deterministic",
+        chunkIds: "deterministic",
         minimize: true,
         concatenateModules: true,
         flagIncludedChunks: true,
