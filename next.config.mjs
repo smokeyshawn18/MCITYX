@@ -5,6 +5,9 @@ const nextConfig = {
   compress: true,
   reactStrictMode: true,
 
+  // Bundle optimization
+  // swcMinify: true, // Removed - Next.js 15 uses SWC by default
+
   // Image optimization for SEO
   images: {
     remotePatterns: [
@@ -36,6 +39,7 @@ const nextConfig = {
     formats: ["image/webp", "image/avif"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60,
   },
 
   // Headers for SEO and Security
@@ -157,13 +161,46 @@ const nextConfig = {
           name: "vendors",
           chunks: "all",
           priority: 10,
+          enforce: true,
         },
         react: {
           test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
           name: "react",
           chunks: "all",
           priority: 20,
+          enforce: true,
         },
+        clerk: {
+          test: /[\\/]node_modules[\\/]@clerk[\\/]/,
+          name: "clerk",
+          chunks: "all",
+          priority: 15,
+        },
+        ui: {
+          test: /[\\/]node_modules[\\/](@radix-ui|@headlessui|framer-motion)[\\/]/,
+          name: "ui",
+          chunks: "all",
+          priority: 12,
+        },
+        utils: {
+          test: /[\\/]node_modules[\\/](date-fns|clsx|tailwind-merge|zod)[\\/]/,
+          name: "utils",
+          chunks: "all",
+          priority: 11,
+        },
+      };
+    }
+
+    // Production optimizations
+    if (!dev) {
+      config.optimization = {
+        ...config.optimization,
+        minimize: true,
+        concatenateModules: true,
+        flagIncludedChunks: true,
+        sideEffects: true,
+        providedExports: true,
+        usedExports: true,
       };
     }
 

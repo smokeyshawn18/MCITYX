@@ -5,6 +5,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { ClerkProvider } from "@clerk/nextjs";
 import InstallPrompt from "@/components/InstallPrompt";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
+
 import Head from "next/head";
 
 export const metadata = {
