@@ -543,7 +543,13 @@ export const players = [
       assists: 1,
       appearances: 6,
     },
-    injured: false,
+    injured: true,
+    injuryDetails: {
+      tm: "Sep 12, 2025",
+      type: "Ankle Injury",
+      recoveryTime: "Late October 2025",
+    },
+    injuryIcon: FaHospital,
   },
   {
     name: "Rico Lewis",
@@ -563,7 +569,7 @@ export const players = [
       assists: 1,
       appearances: 4,
     },
-    injured: true,
+    injured: false,
     injuryDetails: {
       tm: "Sep 2, 2025",
       type: "Physical Discomfort",
