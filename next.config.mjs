@@ -64,6 +64,12 @@ const nextConfig = {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
           },
+          // Fix redirect chains
+          {
+            key: "X-Robots-Tag",
+            value:
+              "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+          },
         ],
       },
       {
@@ -111,26 +117,57 @@ const nextConfig = {
         source: "/home",
         destination: "/",
         permanent: true,
+        statusCode: 301,
       },
       {
         source: "/fixtures",
         destination: "/schedule",
         permanent: true,
+        statusCode: 301,
       },
       {
         source: "/players",
         destination: "/player-card",
         permanent: true,
+        statusCode: 301,
       },
       {
         source: "/stats",
         destination: "/player-card",
         permanent: true,
+        statusCode: 301,
       },
       {
         source: "/matches",
         destination: "/schedule",
         permanent: true,
+        statusCode: 301,
+      },
+      // Fix common URL variations
+      {
+        source: "/index.html",
+        destination: "/",
+        permanent: true,
+        statusCode: 301,
+      },
+      {
+        source: "/index.php",
+        destination: "/",
+        permanent: true,
+        statusCode: 301,
+      },
+      // Handle trailing slashes consistently
+      {
+        source: "/news/",
+        destination: "/news",
+        permanent: true,
+        statusCode: 301,
+      },
+      {
+        source: "/schedule/",
+        destination: "/schedule",
+        permanent: true,
+        statusCode: 301,
       },
     ];
   },

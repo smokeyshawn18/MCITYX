@@ -1,11 +1,8 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
-
-const middleware = clerkMiddleware((auth, request) => {
+export default function middleware(request) {
   const { pathname } = request.nextUrl;
-  const url = request.nextUrl.clone();
 
-  // Handle canonical URL enforcement before Clerk
+  // Handle canonical URL enforcement
+  const url = request.nextUrl.clone();
 
   // Force HTTPS in production
   if (process.env.NODE_ENV === "production" && url.protocol === "http:") {
@@ -19,7 +16,7 @@ const middleware = clerkMiddleware((auth, request) => {
     return Response.redirect(url, 301);
   }
 
-  // Handle trailing slashes - remove them for consistency (except root)
+  // Handle trailing slashes - remove them for consistency
   if (pathname !== "/" && pathname.endsWith("/")) {
     url.pathname = pathname.slice(0, -1);
     return Response.redirect(url, 301);
@@ -31,15 +28,12 @@ const middleware = clerkMiddleware((auth, request) => {
     return Response.redirect(url, 301);
   }
 
-  // Continue with Clerk authentication
   return NextResponse.next();
-});
-
-export default middleware;
+}
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
+    // Skip Next.js internals and all static files
     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
     // Always run for API routes
     "/(api|trpc)(.*)",

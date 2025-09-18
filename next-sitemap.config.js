@@ -8,6 +8,62 @@ module.exports = {
   priority: 0.7,
   sitemapPath: "/sitemap.xml",
 
+  // Robot.txt settings
+  robotsTxtOptions: {
+    policies: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api/", "/auth/", "/admin/", "/_next/"],
+      },
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+        disallow: ["/api/", "/auth/"],
+      },
+      {
+        userAgent: "Bingbot",
+        allow: "/",
+        disallow: ["/api/", "/auth/"],
+      },
+    ],
+    additionalSitemaps: ["https://mcityx.vercel.app/server-sitemap.xml"],
+  },
+
+  // Exclude problematic paths
+  exclude: [
+    "/api/*",
+    "/auth/*",
+    "/admin/*",
+    "/_next/*",
+    "/404",
+    "/500",
+    "/manifest.json",
+    "/robots.txt",
+    "/sw.js",
+    "/offline.html",
+  ],
+
+  // Transform function to ensure consistent URLs
+  transform: async (config, path) => {
+    // Skip if path should be excluded
+    if (
+      config.exclude &&
+      config.exclude.some((pattern) =>
+        new RegExp(pattern.replace("*", ".*")).test(path)
+      )
+    ) {
+      return null;
+    }
+
+    return {
+      loc: path,
+      changefreq: config.changefreq,
+      priority: config.priority,
+      lastmod: new Date().toISOString(),
+    };
+  },
+
   // Additional paths to include
   additionalPaths: async (config) => {
     const result = [];

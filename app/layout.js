@@ -268,6 +268,13 @@ export default function RootLayout({ children }) {
 
           {/* Canonical URL */}
           <link rel="canonical" href="https://mcityx.vercel.app" />
+
+          {/* Additional SEO headers */}
+          <meta httpEquiv="Content-Language" content="en" />
+          <meta
+            name="robots"
+            content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+          />
         </Head>
 
         <body

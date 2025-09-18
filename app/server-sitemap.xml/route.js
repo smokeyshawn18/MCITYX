@@ -2,6 +2,8 @@ import { getServerSideSitemap } from "next-sitemap";
 import { NextResponse } from "next/server";
 
 export async function GET(request) {
+  const siteUrl = "https://mcityx.vercel.app";
+
   // Get dynamic data for sitemap
   const players = [
     "haaland",
@@ -44,10 +46,33 @@ export async function GET(request) {
   // Generate sitemap entries
   const fields = [];
 
+  // Static pages with proper canonicalization
+  const staticPages = [
+    { url: "/", priority: 1.0 },
+    { url: "/news", priority: 0.9 },
+    { url: "/schedule", priority: 0.9 },
+    { url: "/results", priority: 0.8 },
+    { url: "/player-card", priority: 0.8 },
+    { url: "/trophy-cabinet", priority: 0.7 },
+    { url: "/history", priority: 0.6 },
+    { url: "/profile", priority: 0.5 },
+    { url: "/settings", priority: 0.5 },
+    { url: "/lineup/create", priority: 0.6 },
+  ];
+
+  staticPages.forEach(({ url, priority }) => {
+    fields.push({
+      loc: `${siteUrl}${url}`,
+      lastmod: new Date().toISOString(),
+      changefreq: "daily",
+      priority,
+    });
+  });
+
   // Player pages
   players.forEach((player) => {
     fields.push({
-      loc: `https://mcityx.vercel.app/player/${player}`,
+      loc: `${siteUrl}/player/${player}`,
       lastmod: new Date().toISOString(),
       changefreq: "weekly",
       priority: 0.6,
