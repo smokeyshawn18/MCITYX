@@ -9,6 +9,7 @@ import WelcomePlayer from "@/components/Welcome";
 import { players } from "@/data/players";
 import Bye from "@/components/Bye";
 import GoogleAd from "@/components/GoogleAd";
+import Standings from "@/components/Standings";
 
 const Home = () => {
   const selectedNames = [
@@ -35,7 +36,7 @@ const Home = () => {
           {/* <WelcomePlayer players={players} selectedNames={selectedNames} />
           <Bye players={players} byeNames={byeNames} /> */}
           <br />
-          <LiveMatches />
+
           <div className="relative h-80 sm:h-96 mb-4">
             <Image
               src={heroImage}
@@ -50,6 +51,8 @@ const Home = () => {
               </p>
             </div>
           </div>
+          <Standings />
+          <LiveMatches />
           <h2 className="p-4 text-4xl font-extrabold mb-8 text-center dark:text-white text-[#1b3c42] uppercase tracking-widest">
             Key Performers this Season
           </h2>

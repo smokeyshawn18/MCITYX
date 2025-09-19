@@ -1,22 +1,12 @@
 "use client";
 
 import { useMemo } from "react";
-import {
-  FaFutbol,
-  FaHandsHelping,
-  FaFireAlt,
-  FaTshirt,
-  FaRunning,
-  FaCalendarAlt,
-} from "react-icons/fa";
-import { MdStars } from "react-icons/md";
-import { CiMedicalCross } from "react-icons/ci";
-import { players } from "@/data/players";
 import Image from "next/image";
+import { FaFutbol, FaHandsHelping, FaMedal } from "react-icons/fa";
+import { players } from "@/data/players";
 import { calculateAge } from "@/utils/playerAge";
 import { ratePlayer } from "@/utils/ratePlayer";
 
-// Set of hidden player names
 const HIDDEN_NAMES = new Set([
   "İlkay Gündoğan",
   "Manuel Akanji",
@@ -27,138 +17,185 @@ const HIDDEN_NAMES = new Set([
   "Ederson Moraes",
 ]);
 
-const Keyperformer = () => {
-  // Get active players (not hidden)
+const KeyPerformersCompact = () => {
   const activePlayers = useMemo(
-    () => players.filter((player) => !HIDDEN_NAMES.has(player.name)),
+    () => players.filter((p) => !HIDDEN_NAMES.has(p.name)),
     []
   );
 
-  // Get top 3 goal scorers
-  const topScorers = useMemo(() => {
-    return [...activePlayers]
-      .sort((a, b) => b.seasonStats.goals - a.seasonStats.goals)
-      .slice(0, 3);
-  }, [activePlayers]);
+  const topGoalScorers = useMemo(
+    () =>
+      [...activePlayers]
+        .sort((a, b) => b.seasonStats.goals - a.seasonStats.goals)
+        .slice(0, 3),
+    [activePlayers]
+  );
+
+  const topAssistProviders = useMemo(
+    () =>
+      [...activePlayers]
+        .sort((a, b) => b.seasonStats.assists - a.seasonStats.assists)
+        .slice(0, 3),
+    [activePlayers]
+  );
+
+  const topValuablePlayers = useMemo(
+    () => [...activePlayers].sort((a, b) => b.value - a.value).slice(0, 3),
+    [activePlayers]
+  );
+
+  const colorThemes = {
+    TopScorer: {
+      badge: "bg-teal-600",
+      highlight: "bg-teal-200 dark:bg-teal-800",
+      border: "border-teal-200",
+    },
+    AssistLeader: {
+      badge: "bg-blue-600",
+      highlight: "bg-blue-200 dark:bg-blue-800",
+      border: "border-blue-200",
+    },
+    MVP: {
+      badge: "bg-amber-600",
+      highlight: "bg-amber-200 dark:bg-amber-800",
+      border: "border-amber-200",
+    },
+  };
+
+  const PlayerCard = ({ player, category }) => {
+    const age = calculateAge(player.age);
+    const rating = ratePlayer(player);
+    const theme = colorThemes[category];
+
+    return (
+      <div
+        className={`relative bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border ${theme.border}`}
+      >
+        {/* Badge */}
+        <div
+          className={`absolute top-4 right-4 px-3 py-1 text-sm font-semibold rounded-full ${theme.badge} text-white tracking-wide`}
+        >
+          {category === "TopScorer"
+            ? "Top Scorer"
+            : category === "AssistLeader"
+            ? "Assist Leader"
+            : "MVP"}
+        </div>
+
+        {/* Player Image */}
+        <div className="relative w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-gray-100 dark:border-gray-700 mb-4">
+          <Image
+            src={player.image}
+            alt={player.name}
+            fill
+            className="object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+
+        {/* Name & Position */}
+        <h3 className="text-xl font-semibold text-center text-gray-900 dark:text-white tracking-tight">
+          {player.name}
+        </h3>
+        <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-1">
+          {player.position} • {age} years
+        </p>
+
+        {/* Stats */}
+        <div className="grid grid-cols-2 gap-4 mt-4 text-center">
+          <div
+            className={`rounded-lg p-3 ${
+              category === "TopScorer"
+                ? theme.highlight
+                : "bg-gray-50 dark:bg-gray-800"
+            }`}
+          >
+            <p className="text-lg font-bold text-gray-900 dark:text-white">
+              {player.seasonStats.goals}
+            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">Goals</p>
+          </div>
+          <div
+            className={`rounded-lg p-3 ${
+              category === "AssistLeader"
+                ? theme.highlight
+                : "bg-gray-50 dark:bg-gray-800"
+            }`}
+          >
+            <p className="text-lg font-bold text-gray-900 dark:text-white">
+              {player.seasonStats.assists}
+            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">Assists</p>
+          </div>
+          <div
+            className={`rounded-lg p-3 ${
+              category === "MVP"
+                ? theme.highlight
+                : "bg-gray-50 dark:bg-gray-800"
+            }`}
+          >
+            <p className="text-lg font-bold text-gray-900 dark:text-white">
+              ${player.value}M
+            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">Value</p>
+          </div>
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
+            <p className="text-lg font-bold text-gray-900 dark:text-white">
+              {rating}
+            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">Rating</p>
+          </div>
+        </div>
+
+        {/* Country */}
+        <div className="relative w-10 h-6 mx-auto mt-4 rounded-sm overflow-hidden border border-gray-200 dark:border-gray-700">
+          <Image
+            src={player.country}
+            alt="Country flag"
+            fill
+            className="object-cover"
+          />
+        </div>
+      </div>
+    );
+  };
+
+  const Section = ({ title, icon, playersList, category }) => (
+    <section className="mb-16">
+      <h2 className="text-3xl font-bold mb-8 flex items-center gap-3 text-gray-900 dark:text-white">
+        {icon} {title}
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {playersList.map((p) => (
+          <PlayerCard key={p.name} player={p} category={category} />
+        ))}
+      </div>
+    </section>
+  );
 
   return (
-    <div className="bg-gradient-to-br from-sky-50 to-blue-100 dark:from-gray-900 dark:to-gray-800 rounded-xl shadow-lg p-6 max-w-6xl mx-auto overflow-x-auto">
-      <h2 className="text-3xl font-extrabold text-sky-800 dark:text-sky-200 mb-6 flex items-center justify-center md:justify-start">
-        <FaFireAlt className="mr-3 text-amber-500 text-2xl" />
-        Top Goal Scorers
-      </h2>
-
-      <table className="min-w-full table-auto  border-spacing-y-2 border-spacing-x-0  border border-transparent">
-        <thead className="bg-sky-200 dark:bg-sky-800 font-extrabold text-sky-900 dark:text-sky-200 uppercase rounded-lg">
-          <tr>
-            {[
-              "#",
-              "Player",
-              "Position",
-              "Age",
-              "Apps",
-              "Goals",
-              "Assists",
-              "Value",
-              "Rating",
-              "Country",
-            ].map((header) => (
-              <th
-                key={header}
-                className={`p-3 text-left ${
-                  ["Goals", "Assists", "Apps", "Value"].includes(header)
-                    ? "text-right"
-                    : ""
-                } ${header === "#" ? "w-8" : "w-auto"}`}
-              >
-                {header}
-              </th>
-            ))}
-          </tr>
-        </thead>
-
-        <tbody>
-          {topScorers.map((player, index) => {
-            const age = calculateAge(player.age);
-            const rating = ratePlayer(player);
-
-            return (
-              <tr
-                key={player.name}
-                className={`bg-white dark:bg-gray-900 rounded-lg shadow-sm hover:shadow-md transition mb-2`}
-              >
-                {/* Rank */}
-                <td className="pl-4 pr-2 py-3 font-extrabold text-sky-700 dark:text-sky-400 text-center">
-                  {index + 1}
-                </td>
-
-                {/* Player + Image */}
-                <td className="flex items-center space-x-3 p-3 font-semibold text-gray-900 dark:text-white max-w-[180px] truncate">
-                  <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-sky-300 dark:border-sky-600 shadow-lg flex-shrink-0">
-                    <Image
-                      src={player.image}
-                      alt={player.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <span title={player.name} className="truncate">
-                    {player.name}
-                  </span>
-                </td>
-
-                {/* Position */}
-                <td className="p-3 font-semibold text-sky-700 dark:text-sky-400">
-                  {player.position}
-                </td>
-
-                {/* Age */}
-                <td className="p-3 font-semibold text-sky-700 dark:text-sky-400">
-                  {age}
-                </td>
-                {/* Apps */}
-                <td className="p-3 font-extrabold text-blue-800 dark:text-blue-400 text-right">
-                  {player.seasonStats.appearances}
-                </td>
-
-                {/* Goals */}
-                <td className="p-3 font-extrabold text-black dark:text-amber-400 text-right">
-                  {player.seasonStats.goals}
-                </td>
-
-                {/* Assists */}
-                <td className="p-3 font-extrabold text-green-600 dark:text-green-400 text-right">
-                  {player.seasonStats.assists}
-                </td>
-
-                {/* Value */}
-                <td className="p-3 font-extrabold text-gray-900 dark:text-white text-right">
-                  ${player.value}M
-                </td>
-
-                {/* Rating */}
-                <td className="p-3 font-extrabold text-green-800 dark:text-yellow-300 text-center">
-                  {rating}
-                </td>
-
-                {/* Country */}
-                <td className="p-3 text-center">
-                  <div className="relative w-6 h-4 rounded overflow-hidden mx-auto">
-                    <Image
-                      src={player.country}
-                      alt="Country"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-950 py-12 px-6 lg:px-12">
+      <div className="max-w-7xl mx-auto">
+        <Section
+          title="Top Goal Scorers"
+          icon={<FaFutbol className="text-teal-600" />}
+          playersList={topGoalScorers}
+          category="TopScorer"
+        />
+        <Section
+          title="Top Assist Providers"
+          icon={<FaHandsHelping className="text-blue-600" />}
+          playersList={topAssistProviders}
+          category="AssistLeader"
+        />
+        <Section
+          title="Most Valuable Players"
+          icon={<FaMedal className="text-amber-600" />}
+          playersList={topValuablePlayers}
+          category="MVP"
+        />
+      </div>
     </div>
   );
 };
 
-export default Keyperformer;
+export default KeyPerformersCompact;
