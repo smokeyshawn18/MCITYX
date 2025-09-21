@@ -1,76 +1,65 @@
-// app/api/standings/route.js (or /pages/api/standings.js if using pages)
-/* eslint-disable import/no-anonymous-default-export */
 import { NextResponse } from "next/server";
 
 /**
- * Normalize football-data.org table for easier consumption
+ * Normalize API-Football standings
  */
-function normalizeTable(table = []) {
-  return table.map((row) => ({
-    position: row.position,
-    playedGames: row.playedGames,
+function normalizeTable(standings = []) {
+  return standings.map((row) => ({
+    rank: row.rank,
     points: row.points,
-    won: row.won ?? row.wins ?? 0,
-    draw: row.draw ?? row.draws ?? 0,
-    lost: row.lost ?? row.losses ?? 0,
-    goalsFor: row.goalsFor,
-    goalsAgainst: row.goalsAgainst,
-    goalDifference: row.goalDifference,
+    playedGames: row.all.played,
+    won: row.all.win,
+    draw: row.all.draw,
+    lost: row.all.lose,
+    goalsFor: row.all.goals.for,
+    goalsAgainst: row.all.goals.against,
+    goalsDiff: row.goalsDiff,
     team: {
-      id: row.team?.id ?? null,
-      name: row.team?.name ?? row.team?.shortName ?? "",
-      crest: row.team?.crest ?? null,
+      id: row.team.id,
+      name: row.team.name,
+      crest: row.team.logo,
     },
   }));
 }
 
 /**
- * Fetch and normalize standings for a given competition code
+ * Fetch standings for a given league + season
  */
-async function fetchStandingsForCompetition(code) {
-  const API_URL = `https://api.football-data.org/v4/competitions/${code}/standings`;
+async function fetchStandings(leagueId, season) {
+  const API_URL = `https://v3.football.api-sports.io/standings?league=${leagueId}&season=${season}`;
   const resp = await fetch(API_URL, {
-    headers: { "X-Auth-Token": process.env.FOOTBALL_DATA_API_KEY },
-    next: { revalidate: 300 }, // optional caching
+    headers: {
+      "x-apisports-key": process.env.NEXT_PUBLIC_API_FOOTBALL_KEY,
+    },
+    next: { revalidate: 300 },
   });
 
   if (!resp.ok) {
     const text = await resp.text().catch(() => null);
-    const err = new Error(
-      `Failed to fetch ${code} standings: ${resp.status} ${resp.statusText} ${
-        text ?? ""
-      }`
-    );
-    err.status = resp.status;
-    throw err;
+
+    throw new Error(`Failed to fetch league ${leagueId}`);
   }
 
   const data = await resp.json();
 
-  // Pick "TOTAL" table if available
-  const tableObj =
-    (data.standings && data.standings.find((s) => s.type === "TOTAL")) ||
-    (data.standings && data.standings[0]) ||
-    null;
-
-  const normalized = tableObj?.table ? normalizeTable(tableObj.table) : [];
+  const league = data.response[0]?.league ?? null;
+  const standings = league?.standings?.[0] ?? [];
 
   return {
-    competition: data.competition?.name ?? code,
-    season: data.season ?? null,
-    stage: tableObj?.stage ?? null,
-    type: tableObj?.type ?? null,
-    table: normalized,
-    raw: tableObj ?? null,
+    league: league?.name ?? leagueId,
+    country: league?.country ?? null,
+    season: league?.season ?? season,
+    table: normalizeTable(standings),
+    raw: league,
   };
 }
 
 export async function GET() {
   try {
-    // Fetch PL and CL in parallel
+    // PL = 39, CL = 2, season = 2024
     const [premierLeague, championsLeague] = await Promise.all([
-      fetchStandingsForCompetition("PL"),
-      fetchStandingsForCompetition("CL"),
+      fetchStandings(39, 2024), // Premier League
+      fetchStandings(2, 2024), // Champions League
     ]);
 
     return NextResponse.json(
