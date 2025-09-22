@@ -51,8 +51,8 @@ const Home = () => {
               </p>
             </div>
           </div>
-          <Standings />
-          <LiveMatches />
+          {/* <Standings />
+          <LiveMatches /> */}
           <h2 className="p-4 text-4xl font-extrabold mb-8 text-center dark:text-white text-[#1b3c42] uppercase tracking-widest">
             Key Performers this Season
           </h2>
