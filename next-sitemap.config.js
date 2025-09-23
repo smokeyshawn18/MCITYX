@@ -4,33 +4,12 @@ module.exports = {
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   sitemapSize: 5000,
+  sitemapPath: "/sitemap.xml",
   changefreq: "daily",
   priority: 0.7,
-  sitemapPath: "/sitemap.xml",
+  autoLastmod: true,
 
-  // Robot.txt settings
-  robotsTxtOptions: {
-    policies: [
-      {
-        userAgent: "*",
-        allow: "/",
-        disallow: ["/api/", "/auth/", "/admin/", "/_next/"],
-      },
-      {
-        userAgent: "Googlebot",
-        allow: "/",
-        disallow: ["/api/", "/auth/"],
-      },
-      {
-        userAgent: "Bingbot",
-        allow: "/",
-        disallow: ["/api/", "/auth/"],
-      },
-    ],
-    additionalSitemaps: ["https://mcityx.vercel.app/server-sitemap.xml"],
-  },
-
-  // Exclude problematic paths
+  // Exclude internal and non-public paths
   exclude: [
     "/api/*",
     "/auth/*",
@@ -42,33 +21,12 @@ module.exports = {
     "/robots.txt",
     "/sw.js",
     "/offline.html",
+    "/server-sitemap.xml", // Exclude the server sitemap from the main sitemap
   ],
 
-  // Transform function to ensure consistent URLs
-  transform: async (config, path) => {
-    // Skip if path should be excluded
-    if (
-      config.exclude &&
-      config.exclude.some((pattern) =>
-        new RegExp(pattern.replace("*", ".*")).test(path)
-      )
-    ) {
-      return null;
-    }
-
-    return {
-      loc: path,
-      changefreq: config.changefreq,
-      priority: config.priority,
-      lastmod: new Date().toISOString(),
-    };
-  },
-
-  // Additional paths to include
+  // Add dynamic paths to the sitemap
   additionalPaths: async (config) => {
     const result = [];
-
-    // Add dynamic player pages
     const players = [
       "haaland",
       "de-bruyne",
@@ -81,7 +39,6 @@ module.exports = {
       "cancelo",
       "dias",
     ];
-
     players.forEach((player) => {
       result.push({
         loc: `/player/${player}`,
@@ -91,7 +48,6 @@ module.exports = {
       });
     });
 
-    // Add competition pages
     const competitions = [
       "premier-league",
       "champions-league",
@@ -110,12 +66,8 @@ module.exports = {
     return result;
   },
 
-  // Exclude certain paths
-  exclude: ["/api/*", "/auth/*", "/admin/*", "/_next/*", "/404", "/500"],
-
-  // Transform function for custom metadata
+  // Customize priority and change frequency for specific pages
   transform: async (config, path) => {
-    // Custom priority and changefreq based on path
     const pathPriority = {
       "/": 1.0,
       "/schedule": 0.9,
@@ -134,15 +86,19 @@ module.exports = {
       "/player-card": "weekly",
     };
 
+    // Use default values if not found in custom maps
+    const priority = pathPriority[path] || config.priority;
+    const changefreq = pathChangefreq[path] || config.changefreq;
+
     return {
       loc: path,
-      changefreq: pathChangefreq[path] || config.changefreq,
-      priority: pathPriority[path] || config.priority,
-      lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
+      changefreq,
+      priority,
+      lastmod: new Date().toISOString(),
     };
   },
 
-  // Robots.txt configuration
+  // Configure the robots.txt file
   robotsTxtOptions: {
     policies: [
       {
@@ -162,7 +118,7 @@ module.exports = {
       },
     ],
     additionalSitemaps: [
-      "https://mcityx.vercel.app/sitemap-0.xml",
+      "https://mcityx.vercel.app/sitemap.xml",
       "https://mcityx.vercel.app/server-sitemap.xml",
     ],
   },
