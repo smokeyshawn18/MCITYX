@@ -16,10 +16,10 @@ export const players = [
       appearances: 365,
     },
     seasonStats: {
-      goals: 16,
+      goals: 18,
 
-      assists: 2,
-      appearances: 12,
+      assists: 3,
+      appearances: 13,
     },
     injured: false,
     injuryDetails: {
@@ -73,7 +73,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 3,
-      appearances: 10,
+      appearances: 11,
     },
     injured: false,
   },
@@ -116,7 +116,7 @@ export const players = [
     seasonStats: {
       goals: 5,
       assists: 3,
-      appearances: 9,
+      appearances: 10,
     },
     injured: false,
   },
@@ -215,7 +215,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 3,
-      appearances: 12,
+      appearances: 13,
     },
     injured: false,
     injuryDetails: {
@@ -241,8 +241,8 @@ export const players = [
     },
     seasonStats: {
       goals: 5,
-      assists: 3,
-      appearances: 11,
+      assists: 4,
+      appearances: 12,
     },
     injured: false,
   },
@@ -316,7 +316,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 8,
+      appearances: 9,
     },
     injured: false,
     injuryDetails: {
@@ -368,7 +368,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 5,
+      appearances: 6,
     },
     injured: false,
     injuryDetails: {
@@ -441,7 +441,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 11,
+      appearances: 12,
     },
     injured: false,
     injuryDetails: {
@@ -468,7 +468,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 1,
-      appearances: 7,
+      appearances: 8,
     },
     injured: false,
     injuryDetails: {
@@ -492,9 +492,9 @@ export const players = [
       appearances: 234,
     },
     seasonStats: {
-      goals: 0,
+      goals: 1,
       assists: 1,
-      appearances: 8,
+      appearances: 9,
     },
     injured: false,
   },
@@ -522,7 +522,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 6,
+      appearances: 7,
     },
   },
   {
@@ -567,7 +567,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 1,
-      appearances: 6,
+      appearances: 7,
     },
     injured: false,
     injuryDetails: {
@@ -580,7 +580,7 @@ export const players = [
 
   {
     name: "Nico O'Rielly",
-    position: "CM",
+    position: "LB",
     number: 75,
     value: 18,
     age: "2005-03-21",
@@ -595,7 +595,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 8,
+      appearances: 9,
     },
     injured: false,
   },
@@ -616,7 +616,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 1,
-      appearances: 9,
+      appearances: 10,
     },
     injured: false,
     injuryDetails: {
@@ -667,9 +667,9 @@ export const players = [
       appearances: 479,
     },
     seasonStats: {
-      goalsConceded: 10,
+      goalsConceded: 11,
       cleanSheets: 7,
-      appearances: 12,
+      appearances: 13,
     },
     injured: false,
   },
