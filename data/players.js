@@ -18,7 +18,7 @@ export const players = [
     seasonStats: {
       goals: 21,
 
-      assists: 3,
+      assists: 4,
       appearances: 15,
     },
     injured: false,
