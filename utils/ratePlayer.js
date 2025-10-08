@@ -12,13 +12,16 @@ export function ratePlayer(player) {
   // Goalkeeper path
   if (position === "GK") return rateGoalkeeper(player, ageYears);
 
-  const attackers = ["AM", "FW", "CM", "ST", "DM", "LW", "RW"];
+  // Position groups
+  const attackers = ["ST", "FW", "LW", "RW", "AM"];
+  const midfielders = ["CM", "DM", "CAM"];
   const defenders = ["CB", "LB", "RB", "LWB", "RWB"];
 
   const isAttacker = attackers.includes(position);
+  const isMidfielder = midfielders.includes(position);
   const isDefender = defenders.includes(position);
 
-  // Per-game contribution (goals + assists)
+  // Per-game G+A
   const season =
     seasonStats.appearances > 0
       ? (seasonStats.goals + seasonStats.assists) / seasonStats.appearances
@@ -28,13 +31,20 @@ export function ratePlayer(player) {
       ? (careerStats.goals + careerStats.assists) / careerStats.appearances
       : 0;
 
-  // Weighted performance (season matters more)
-  const perf = season * 0.65 + career * 0.35;
-  const perfScore = Math.min(1, perf / 0.7); // cap at ~0.7 G+A per game
+  // Base performance (season weighted more)
+  let perf = season * 0.7 + career * 0.2;
 
-  // Age factor (prime: 24–29)
+  // ⚽ Position-based impact multipliers
+  if (isDefender) perf *= 1.8; // defenders scoring → big impact
+  else if (isMidfielder) perf *= 1;
+  else perf *= 0.5; // attackers normal
+
+  // Cap performance to avoid huge spikes
+  const perfScore = Math.min(1, perf / 0.8); // 0.8 G+A per game ≈ elite
+
+  // Age factor (prime 24–29, flexible band)
   const ageScore =
-    ageYears >= 23 && ageYears <= 29
+    ageYears >= 24 && ageYears <= 29
       ? 1
       : ageYears >= 21 && ageYears <= 32
       ? 0.85
@@ -43,14 +53,26 @@ export function ratePlayer(player) {
   // Injury penalty
   const injuryPenalty = injured ? -0.15 : 0;
 
-  // Final score 0–1
-  const score = perfScore * 0.65 + ageScore * 0.25 + 0.1 + injuryPenalty;
+  // Defensive reliability bonus (if data exists)
+  const defenseReliability =
+    isDefender && seasonStats.tackles && seasonStats.interceptions
+      ? Math.min(
+          1,
+          (seasonStats.tackles + seasonStats.interceptions) /
+            (seasonStats.appearances * 3)
+        ) * 0.15 // max +0.15 bonus
+      : 0;
 
-  // Map to rating
-  let rating = 4.6 + Math.max(0, Math.min(1, score)) * 3.65;
+  // Combine all
+  const score =
+    perfScore * 0.5 + ageScore * 0.3 + 0.1 + injuryPenalty + defenseReliability;
+
+  // Rating map 4.8–9.8
+  let rating = 4.8 + Math.max(0, Math.min(1, score)) * 4.8;
 
   // Enforce baselines
   if (isDefender) rating = Math.max(6.8, rating);
+  else if (isMidfielder) rating = Math.max(6.0, rating);
   else if (isAttacker) rating = Math.max(5.5, rating);
 
   return +rating.toFixed(1);
@@ -59,7 +81,6 @@ export function ratePlayer(player) {
 function rateGoalkeeper(player, ageYears) {
   const { seasonStats, careerStats, injured } = player;
 
-  // Clean sheets per game
   const seasonCS =
     seasonStats.appearances > 0
       ? seasonStats.cleanSheets / seasonStats.appearances
@@ -69,7 +90,6 @@ function rateGoalkeeper(player, ageYears) {
       ? careerStats.cleanSheets / careerStats.appearances
       : 0;
 
-  // Goals conceded per game (lower = better)
   const seasonGC =
     seasonStats.appearances > 0
       ? seasonStats.goalsConceded / seasonStats.appearances
@@ -79,14 +99,12 @@ function rateGoalkeeper(player, ageYears) {
       ? careerStats.goalsConceded / careerStats.appearances
       : 2;
 
-  // Performance score
   const csScore = seasonCS * 0.7 + careerCS * 0.3;
   const gcScore =
     Math.max(0, 1 - seasonGC / 3) * 0.7 + Math.max(0, 1 - careerGC / 3) * 0.3;
 
-  const perf = csScore * 0.5 + gcScore * 0.5;
+  const perf = csScore * 0.6 + gcScore * 0.4;
 
-  // Age factor for GKs (prime 26–34)
   const ageScore =
     ageYears >= 26 && ageYears <= 34
       ? 1
@@ -98,8 +116,7 @@ function rateGoalkeeper(player, ageYears) {
 
   const score = perf * 0.65 + ageScore * 0.25 + 0.1 + injuryPenalty;
 
-  // GK rating baseline → 6.9–10
-  let rating = 5.5 + Math.max(0, Math.min(1, score)) * 3.1;
+  let rating = 5.8 + Math.max(0, Math.min(1, score)) * 3.6;
 
   return +rating.toFixed(1);
 }
