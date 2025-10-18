@@ -16,10 +16,10 @@ export const players = [
       appearances: 365,
     },
     seasonStats: {
-      goals: 24,
+      goals: 26,
 
       assists: 4,
-      appearances: 16,
+      appearances: 17,
     },
     injured: false,
     injuryDetails: {
@@ -73,7 +73,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 3,
-      appearances: 15,
+      appearances: 16,
     },
     injured: false,
   },
@@ -116,7 +116,7 @@ export const players = [
     seasonStats: {
       goals: 5,
       assists: 3,
-      appearances: 12,
+      appearances: 13,
     },
     injured: false,
   },
@@ -189,7 +189,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 1,
+      appearances: 2,
     },
     injured: false,
     injuryDetails: {
@@ -215,7 +215,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 3,
-      appearances: 17,
+      appearances: 18,
     },
     injured: false,
     injuryDetails: {
@@ -242,7 +242,7 @@ export const players = [
     seasonStats: {
       goals: 5,
       assists: 5,
-      appearances: 16,
+      appearances: 17,
     },
     injured: false,
   },
@@ -254,11 +254,11 @@ export const players = [
     age: "1996-06-22",
     injury: "Torn ACL",
     country: "/assets/images/spain.png",
-    injured: false,
+    injured: true,
     injuryDetails: {
-      type: "Cruciate Ligament Injury",
-      recoveryTime: "Out for a Season!",
-      tm: "Sept 22, 2024",
+      type: "Muscle Injury",
+      recoveryTime: "Unknown",
+      tm: "Oct 5, 2025",
     },
     injuryIcon: FaHospital,
     image: "/assets/images/rodriedit.png",
@@ -290,7 +290,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 1,
-      appearances: 6,
+      appearances: 7,
     },
     injured: false,
     injuryDetails: {
@@ -316,7 +316,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 10,
+      appearances: 11,
     },
     injured: false,
     injuryDetails: {
@@ -441,7 +441,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 16,
+      appearances: 17,
     },
     injured: false,
     injuryDetails: {
@@ -467,8 +467,8 @@ export const players = [
     },
     seasonStats: {
       goals: 2,
-      assists: 1,
-      appearances: 9,
+      assists: 2,
+      appearances: 10,
     },
     injured: false,
     injuryDetails: {
@@ -494,7 +494,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 1,
-      appearances: 10,
+      appearances: 11,
     },
     injured: false,
   },
@@ -522,7 +522,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 8,
+      appearances: 9,
     },
   },
   {
@@ -567,7 +567,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 1,
-      appearances: 7,
+      appearances: 8,
     },
     injured: false,
     injuryDetails: {
@@ -594,8 +594,8 @@ export const players = [
     },
     seasonStats: {
       goals: 0,
-      assists: 1,
-      appearances: 11,
+      assists: 2,
+      appearances: 12,
     },
     injured: false,
   },
@@ -616,7 +616,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 1,
-      appearances: 13,
+      appearances: 14,
     },
     injured: false,
     injuryDetails: {
@@ -668,8 +668,8 @@ export const players = [
     },
     seasonStats: {
       goalsConceded: 13,
-      cleanSheets: 9,
-      appearances: 17,
+      cleanSheets: 10,
+      appearances: 18,
     },
     injured: false,
   },
