@@ -139,7 +139,7 @@ export const players = [
       assists: 1,
       appearances: 8,
     },
-    injured: true,
+    injured: false,
     injuryDetails: {
       tm: "Sep 10, 2025",
       type: "Knee Injury",
@@ -543,7 +543,7 @@ export const players = [
       assists: 1,
       appearances: 6,
     },
-    injured: true,
+    injured: false,
     injuryDetails: {
       tm: "Sep 12, 2025",
       type: "Ankle Injury",
