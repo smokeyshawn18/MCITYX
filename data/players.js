@@ -31,7 +31,7 @@ export const players = [
   },
 
   {
-    name: "King Kev (Napoli)",
+    name: "Kevin De Bruyne (Napoli)",
     position: "AM",
     value: 20,
     age: "1991-06-28",
@@ -39,14 +39,14 @@ export const players = [
     number: 17,
     image: "/assets/images/kdb.jpg",
     careerStats: {
-      goals: 185,
-      assists: 314,
-      appearances: 760,
+      goals: 186,
+      assists: 313,
+      appearances: 752,
     },
     seasonStats: {
-      goals: 0,
-      assists: 0,
-      appearances: 0,
+      goals: 9,
+      assists: 3,
+      appearances: 15,
     },
     injured: false,
     injuryDetails: {
@@ -148,7 +148,7 @@ export const players = [
     injuryIcon: FaHospital,
   },
   {
-    name: "Jack Grealish",
+    name: "Jack Grealish (Everton)",
     position: "LW",
     value: 28,
     number: 10,
@@ -161,9 +161,9 @@ export const players = [
       appearances: 447,
     },
     seasonStats: {
-      goals: 0,
-      assists: 0,
-      appearances: 0,
+      goals: 1,
+      assists: 4,
+      appearances: 10,
     },
     injured: false,
     injuryDetails: {
