@@ -20,14 +20,14 @@ export const manualMatches = [
   // },
   {
     id: "99905",
-    round: "Round-3",
+    round: "Round-4",
     homeTeam: {
-      name: "Huddersfield",
-      crest: "/assets/images/huddersfield.png",
+      name: "Swansea",
+      crest: "/assets/images/swansea.png",
     },
     awayTeam: { name: "Man City", crest: "/assets/images/logo.svg" },
     competition: { name: "Carabao Cup", emblem: "/assets/images/carabao.png" },
-    utcDate: "2025-09-25T18:45:00Z",
+    utcDate: "2025-10-30T01:30:00Z",
     status: "TIMED",
   },
 ];

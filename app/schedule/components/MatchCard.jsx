@@ -66,7 +66,7 @@ const MatchCard = ({ match, formatDate, getDaysToGo }) => {
               <span className="text-white font-bold text-sm">VS</span>
             </div>
             <div
-              className={`px-3 py-1 rounded-full text-lg font-semibold ${countdown.color} text-white`}
+              className={`px-3 py-1 rounded-full text-sm font-semibold ${countdown.color} text-white`}
             >
               {countdown.text}
             </div>
