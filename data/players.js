@@ -32,7 +32,7 @@ export const players = [
 
   {
     name: "Kevin De Bruyne (Napoli)",
-    position: "AM",
+    position: "CM",
     value: 20,
     age: "1991-06-28",
     country: "/assets/images/napoli.png",
