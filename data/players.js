@@ -116,7 +116,7 @@ export const players = [
     seasonStats: {
       goals: 5,
       assists: 3,
-      appearances: 14,
+      appearances: 15,
     },
     injured: false,
   },
@@ -135,7 +135,7 @@ export const players = [
       appearances: 235,
     },
     seasonStats: {
-      goals: 1,
+      goals: 2,
       assists: 1,
       appearances: 11,
     },
@@ -277,7 +277,7 @@ export const players = [
   {
     name: "Rayan Cherki",
     number: 10,
-    position: "RW",
+    position: "AM",
     value: 45,
     age: "2003-08-17",
     country: "/assets/images/france.svg",
@@ -288,8 +288,8 @@ export const players = [
       appearances: 187,
     },
     seasonStats: {
-      goals: 2,
-      assists: 1,
+      goals: 3,
+      assists: 2,
       appearances: 10,
     },
     injured: false,
@@ -342,7 +342,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 1,
-      appearances: 10,
+      appearances: 11,
     },
     injured: false,
     injuryDetails: {
@@ -367,8 +367,8 @@ export const players = [
     },
     seasonStats: {
       goals: 0,
-      assists: 2,
-      appearances: 12,
+      assists: 3,
+      appearances: 13,
     },
     injured: false,
     injuryDetails: {
