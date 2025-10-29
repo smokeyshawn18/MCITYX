@@ -31,7 +31,7 @@ export const players = [
   },
 
   {
-    name: "Kevin De Bruyne (Napoli)",
+    name: "King Kev (Napoli)",
     position: "CM",
     value: 20,
     age: "1991-06-28",
@@ -48,11 +48,11 @@ export const players = [
       assists: 3,
       appearances: 15,
     },
-    injured: false,
+    injured: true,
     injuryDetails: {
-      tm: "Sept 18, 2024",
-      type: "Groin Injury",
-      recoveryTime: "A Few Days",
+      tm: "Oct 25, 2025",
+      type: "Shoulder Injury",
+      recoveryTime: "Doubtful",
     },
     injuryIcon: FaHospital,
   },
@@ -137,7 +137,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 1,
-      appearances: 10,
+      appearances: 11,
     },
     injured: false,
     injuryDetails: {
@@ -148,7 +148,7 @@ export const players = [
     injuryIcon: FaHospital,
   },
   {
-    name: "Jack Grealish (Everton)",
+    name: "Jack Grealish",
     position: "LW",
     value: 28,
     number: 10,
@@ -240,9 +240,9 @@ export const players = [
       appearances: 249,
     },
     seasonStats: {
-      goals: 5,
+      goals: 6,
       assists: 5,
-      appearances: 19,
+      appearances: 20,
     },
     injured: false,
   },
@@ -290,7 +290,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 1,
-      appearances: 9,
+      appearances: 10,
     },
     injured: false,
     injuryDetails: {
@@ -316,7 +316,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 11,
+      appearances: 12,
     },
     injured: false,
     injuryDetails: {
@@ -522,7 +522,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 11,
+      appearances: 12,
     },
   },
   {
@@ -540,8 +540,8 @@ export const players = [
     },
     seasonStats: {
       goals: 0,
-      assists: 1,
-      appearances: 6,
+      assists: 2,
+      appearances: 7,
     },
     injured: false,
     injuryDetails: {
@@ -567,7 +567,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 2,
-      appearances: 9,
+      appearances: 10,
     },
     injured: false,
     injuryDetails: {
@@ -616,7 +616,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 1,
-      appearances: 16,
+      appearances: 17,
     },
     injured: false,
     injuryDetails: {
@@ -729,9 +729,9 @@ export const players = [
       appearances: 29,
     },
     seasonStats: {
-      goalsConceded: 4,
+      goalsConceded: 5,
       cleanSheets: 2,
-      appearances: 4,
+      appearances: 5,
     },
     injured: false,
   },
