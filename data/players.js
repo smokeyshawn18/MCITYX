@@ -115,7 +115,7 @@ export const players = [
     },
     seasonStats: {
       goals: 5,
-      assists: 3,
+      assists: 4,
       appearances: 16,
     },
     injured: false,
@@ -137,7 +137,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 1,
-      appearances: 11,
+      appearances: 12,
     },
     injured: false,
     injuryDetails: {
@@ -215,7 +215,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 3,
-      appearances: 20,
+      appearances: 21,
     },
     injured: false,
     injuryDetails: {
@@ -254,7 +254,7 @@ export const players = [
     age: "1996-06-22",
     injury: "Torn ACL",
     country: "/assets/images/spain.png",
-    injured: true,
+    injured: false,
     injuryDetails: {
       type: "Muscle Injury",
       recoveryTime: "Unknown",
@@ -270,7 +270,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 1,
-      appearances: 12,
+      appearances: 13,
     },
   },
 
@@ -468,7 +468,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 3,
-      appearances: 12,
+      appearances: 13,
     },
     injured: false,
     injuryDetails: {
@@ -541,7 +541,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 2,
-      appearances: 7,
+      appearances: 8,
     },
     injured: false,
     injuryDetails: {
@@ -593,7 +593,7 @@ export const players = [
       appearances: 20,
     },
     seasonStats: {
-      goals: 0,
+      goals: 1,
       assists: 2,
       appearances: 14,
     },
