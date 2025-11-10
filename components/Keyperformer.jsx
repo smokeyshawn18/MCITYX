@@ -31,7 +31,7 @@ const KeyPerformersCompact = () => {
     [activePlayers]
   );
 
-  const totalGA = (player) => {
+  const topGoalAssistProviders = (player) => {
     const goals = player.seasonStats.goals || 0;
     const assists = player.seasonStats.assists || 0;
     return goals + assists;
