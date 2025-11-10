@@ -13,9 +13,9 @@ export function ratePlayer(player) {
   if (position === "GK") return rateGoalkeeper(player, ageYears);
 
   // Position groups
-  const attackers = ["ST", "FW"];
-  const midfielders = ["CM", "DM", "AM"];
-  const defenders = ["CB", "LB", "RB", "LWB", "RWB", "LW", "RW"];
+  const attackers = ["ST", "FW", "AM"];
+  const midfielders = ["CM", "DM", "LW", "RW"];
+  const defenders = ["CB", "LB", "RB", "LWB", "RWB"];
 
   const isAttacker = attackers.includes(position);
   const isMidfielder = midfielders.includes(position);
