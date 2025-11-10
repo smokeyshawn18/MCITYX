@@ -501,7 +501,7 @@ export const players = [
   {
     name: "Nico Gonzalez",
     number: 14,
-    position: "DM",
+    position: "CDM",
     value: 40,
     age: "2002-01-03",
     injury: "Torn ACL",

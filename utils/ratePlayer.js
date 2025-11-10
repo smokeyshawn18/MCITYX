@@ -15,7 +15,7 @@ export function ratePlayer(player) {
   // Position groups
   const attackers = ["ST", "FW", "AM"];
   const midfielders = ["CM", "DM", "LW", "RW"];
-  const defenders = ["CB", "LB", "RB", "LWB", "RWB"];
+  const defenders = ["CB", "LB", "RB", "LWB", "RWB", "CDM"];
 
   const isAttacker = attackers.includes(position);
   const isMidfielder = midfielders.includes(position);
