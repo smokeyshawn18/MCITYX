@@ -31,6 +31,12 @@ const KeyPerformersCompact = () => {
     [activePlayers]
   );
 
+  const totalGA = (player) => {
+    const goals = player.seasonStats.goals || 0;
+    const assists = player.seasonStats.assists || 0;
+    return goals + assists;
+  };
+
   const topAssistProviders = useMemo(
     () =>
       [...activePlayers]
@@ -186,6 +192,12 @@ const KeyPerformersCompact = () => {
           icon={<FaHandsHelping className="text-blue-600" />}
           playersList={topAssistProviders}
           category="AssistLeader"
+        />
+        <Section
+          title="Top Goal Assist Providers"
+          icon={<FaHandsHelping className="text-blue-600" />}
+          playersList={topGoalAssistProviders}
+          category="GoalAssistLeader"
         />
         <Section
           title="Most Valuable Players"

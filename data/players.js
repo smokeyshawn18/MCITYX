@@ -59,7 +59,7 @@ export const players = [
 
   {
     name: "Bernardo Silva",
-    position: "AM",
+    position: "RW",
     value: 32,
     number: 20,
     country: "/assets/images/portugal.webp",
@@ -123,7 +123,7 @@ export const players = [
   {
     name: "Omar Marmoush",
     number: 7,
-    position: "ST",
+    position: "LW",
     value: 75,
     age: "1999-02-07",
     country: "/assets/images/eg.webp",
@@ -277,7 +277,7 @@ export const players = [
   {
     name: "Rayan Cherki",
     number: 10,
-    position: "AM",
+    position: "RW",
     value: 45,
     age: "2003-08-17",
     country: "/assets/images/france.svg",
