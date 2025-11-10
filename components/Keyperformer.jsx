@@ -56,7 +56,6 @@ const KeyPerformersCompact = () => {
     () => [...activePlayers].sort((a, b) => b.value - a.value).slice(0, 3),
     [activePlayers]
   );
-
   const colorThemes = {
     TopScorer: {
       badge: "bg-teal-600",
@@ -72,6 +71,11 @@ const KeyPerformersCompact = () => {
       badge: "bg-amber-600",
       highlight: "bg-amber-200 dark:bg-amber-800",
       border: "border-amber-200",
+    },
+    GoalAssistLeader: {
+      badge: "bg-purple-600",
+      highlight: "bg-purple-200 dark:bg-purple-800",
+      border: "border-purple-200",
     },
   };
 
