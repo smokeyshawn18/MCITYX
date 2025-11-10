@@ -31,11 +31,18 @@ const KeyPerformersCompact = () => {
     [activePlayers]
   );
 
-  const topGoalAssistProviders = (player) => {
-    const goals = player.seasonStats.goals || 0;
-    const assists = player.seasonStats.assists || 0;
-    return goals + assists;
-  };
+  const topGoalAssistProviders = useMemo(
+    () =>
+      [...activePlayers]
+        .sort(
+          (a, b) =>
+            b.seasonStats.goals +
+            b.seasonStats.assists -
+            (a.seasonStats.goals + a.seasonStats.assists)
+        )
+        .slice(0, 3),
+    [activePlayers]
+  );
 
   const topAssistProviders = useMemo(
     () =>
