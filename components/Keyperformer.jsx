@@ -56,6 +56,7 @@ const KeyPerformersCompact = () => {
     () => [...activePlayers].sort((a, b) => b.value - a.value).slice(0, 3),
     [activePlayers]
   );
+
   const colorThemes = {
     TopScorer: {
       badge: "bg-teal-600",
@@ -83,6 +84,7 @@ const KeyPerformersCompact = () => {
     const age = calculateAge(player.age);
     const rating = ratePlayer(player);
     const theme = colorThemes[category];
+    const totalGA = player.seasonStats.goals + player.seasonStats.assists;
 
     return (
       <div
@@ -96,6 +98,8 @@ const KeyPerformersCompact = () => {
             ? "Top Scorer"
             : category === "AssistLeader"
             ? "Assist Leader"
+            : category === "GoalAssistLeader"
+            ? "G/A Leader"
             : "MVP"}
         </div>
 
@@ -119,48 +123,92 @@ const KeyPerformersCompact = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-2 gap-4 mt-4 text-center">
-          <div
-            className={`rounded-lg p-3 ${
-              category === "TopScorer"
-                ? theme.highlight
-                : "bg-gray-50 dark:bg-gray-800"
-            }`}
-          >
-            <p className="text-lg font-bold text-gray-900 dark:text-white">
-              {player.seasonStats.goals}
-            </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Goals</p>
-          </div>
-          <div
-            className={`rounded-lg p-3 ${
-              category === "AssistLeader"
-                ? theme.highlight
-                : "bg-gray-50 dark:bg-gray-800"
-            }`}
-          >
-            <p className="text-lg font-bold text-gray-900 dark:text-white">
-              {player.seasonStats.assists}
-            </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Assists</p>
-          </div>
-          <div
-            className={`rounded-lg p-3 ${
-              category === "MVP"
-                ? theme.highlight
-                : "bg-gray-50 dark:bg-gray-800"
-            }`}
-          >
-            <p className="text-lg font-bold text-gray-900 dark:text-white">
-              ${player.value}M
-            </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Value</p>
-          </div>
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
-            <p className="text-lg font-bold text-gray-900 dark:text-white">
-              {rating}
-            </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Rating</p>
-          </div>
+          {category === "GoalAssistLeader" ? (
+            <>
+              <div className={`${theme.highlight} rounded-lg p-3`}>
+                <p className="text-lg font-bold text-gray-900 dark:text-white">
+                  {totalGA}
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">G/A</p>
+              </div>
+              <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
+                <p className="text-lg font-bold text-gray-900 dark:text-white">
+                  {player.seasonStats.matches}
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  Matches
+                </p>
+              </div>
+            </>
+          ) : (
+            <>
+              <div
+                className={`rounded-lg p-3 ${
+                  category === "TopScorer"
+                    ? theme.highlight
+                    : "bg-gray-50 dark:bg-gray-800"
+                }`}
+              >
+                <p className="text-lg font-bold text-gray-900 dark:text-white">
+                  {player.seasonStats.goals}
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  Goals
+                </p>
+              </div>
+
+              <div
+                className={`rounded-lg p-3 ${
+                  category === "AssistLeader"
+                    ? theme.highlight
+                    : "bg-gray-50 dark:bg-gray-800"
+                }`}
+              >
+                <p className="text-lg font-bold text-gray-900 dark:text-white">
+                  {player.seasonStats.assists}
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  Assists
+                </p>
+              </div>
+
+              <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 col-span-2">
+                <p className="text-lg font-bold text-gray-900 dark:text-white">
+                  {player.seasonStats.matches}
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  Matches
+                </p>
+              </div>
+            </>
+          )}
+
+          {category === "MVP" && (
+            <>
+              <div
+                className={`rounded-lg p-3 ${
+                  category === "MVP"
+                    ? theme.highlight
+                    : "bg-gray-50 dark:bg-gray-800"
+                }`}
+              >
+                <p className="text-lg font-bold text-gray-900 dark:text-white">
+                  ${player.value}M
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  Value
+                </p>
+              </div>
+              <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
+                <p className="text-lg font-bold text-gray-900 dark:text-white">
+                  {rating}
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  Rating
+                </p>
+              </div>
+            </>
+          )}
         </div>
 
         {/* Country */}
@@ -205,8 +253,8 @@ const KeyPerformersCompact = () => {
           category="AssistLeader"
         />
         <Section
-          title="Top Goal Assist Providers"
-          icon={<FaHandsHelping className="text-blue-600" />}
+          title="Top Goal + Assist Leaders"
+          icon={<FaHandsHelping className="text-purple-600" />}
           playersList={topGoalAssistProviders}
           category="GoalAssistLeader"
         />
