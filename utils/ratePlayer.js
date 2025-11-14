@@ -36,8 +36,8 @@ export function ratePlayer(player) {
 
   // ⚽ Position-based impact multipliers
   if (isDefender) perf *= 1.8; // defenders scoring → big impact
-  else if (isMidfielder) perf *= 1;
-  else perf *= 0.5; // attackers normal
+  else if (isMidfielder) perf *= 0.9;
+  else perf *= 0.55; // attackers normal
 
   // Cap performance to avoid huge spikes
   const perfScore = Math.min(1, perf / 0.8); // 0.8 G+A per game ≈ elite
@@ -99,7 +99,7 @@ function rateGoalkeeper(player, ageYears) {
       ? careerStats.goalsConceded / careerStats.appearances
       : 2;
 
-  const csScore = seasonCS * 0.7 + careerCS * 0.3;
+  const csScore = seasonCS * 0.5 + careerCS * 0.2;
   const gcScore =
     Math.max(0, 1 - seasonGC / 3) * 0.7 + Math.max(0, 1 - careerGC / 3) * 0.3;
 
@@ -114,7 +114,7 @@ function rateGoalkeeper(player, ageYears) {
 
   const injuryPenalty = injured ? -0.15 : 0;
 
-  const score = perf * 0.65 + ageScore * 0.25 + 0.1 + injuryPenalty;
+  const score = perf * 0.45 + ageScore * 0.25 + 0.1 + injuryPenalty;
 
   let rating = 5.8 + Math.max(0, Math.min(1, score)) * 3.6;
 

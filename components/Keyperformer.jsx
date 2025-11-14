@@ -17,16 +17,61 @@ const HIDDEN_NAMES = new Set([
   "Ederson Moraes",
 ]);
 
+// ⭐ Reusable Stat Box
+const StatBox = ({ value, label, highlight }) => (
+  <div
+    className={`rounded-lg p-3 ${
+      highlight ? highlight : "bg-gray-50 dark:bg-gray-800"
+    }`}
+  >
+    <p className="text-lg font-bold text-gray-900 dark:text-white">{value}</p>
+    <p className="text-xs text-gray-500 dark:text-gray-400">{label}</p>
+  </div>
+);
+
+const colorThemes = {
+  TopScorer: {
+    badge: "bg-teal-600",
+    highlight: "bg-teal-200 dark:bg-teal-800",
+    border: "border-teal-200",
+  },
+  AssistLeader: {
+    badge: "bg-blue-600",
+    highlight: "bg-blue-200 dark:bg-blue-800",
+    border: "border-blue-200",
+  },
+  GoalAssistLeader: {
+    badge: "bg-purple-600",
+    highlight: "bg-purple-200 dark:bg-purple-800",
+    border: "border-purple-200",
+  },
+  MVP: {
+    badge: "bg-amber-600",
+    highlight: "bg-amber-200 dark:bg-amber-800",
+    border: "border-amber-200",
+  },
+};
+
 const KeyPerformersCompact = () => {
+  /* 📌 Only visible players */
   const activePlayers = useMemo(
     () => players.filter((p) => !HIDDEN_NAMES.has(p.name)),
     []
   );
 
+  /* 📌 Leaderboards */
   const topGoalScorers = useMemo(
     () =>
       [...activePlayers]
         .sort((a, b) => b.seasonStats.goals - a.seasonStats.goals)
+        .slice(0, 3),
+    [activePlayers]
+  );
+
+  const topAssistProviders = useMemo(
+    () =>
+      [...activePlayers]
+        .sort((a, b) => b.seasonStats.assists - a.seasonStats.assists)
         .slice(0, 3),
     [activePlayers]
   );
@@ -44,47 +89,21 @@ const KeyPerformersCompact = () => {
     [activePlayers]
   );
 
-  const topAssistProviders = useMemo(
-    () =>
-      [...activePlayers]
-        .sort((a, b) => b.seasonStats.assists - a.seasonStats.assists)
-        .slice(0, 3),
-    [activePlayers]
-  );
-
   const topValuablePlayers = useMemo(
     () => [...activePlayers].sort((a, b) => b.value - a.value).slice(0, 3),
     [activePlayers]
   );
 
-  const colorThemes = {
-    TopScorer: {
-      badge: "bg-teal-600",
-      highlight: "bg-teal-200 dark:bg-teal-800",
-      border: "border-teal-200",
-    },
-    AssistLeader: {
-      badge: "bg-blue-600",
-      highlight: "bg-blue-200 dark:bg-blue-800",
-      border: "border-blue-200",
-    },
-    MVP: {
-      badge: "bg-amber-600",
-      highlight: "bg-amber-200 dark:bg-amber-800",
-      border: "border-amber-200",
-    },
-    GoalAssistLeader: {
-      badge: "bg-purple-600",
-      highlight: "bg-purple-200 dark:bg-purple-800",
-      border: "border-purple-200",
-    },
-  };
-
   const PlayerCard = ({ player, category }) => {
+    const theme = colorThemes[category];
     const age = calculateAge(player.age);
     const rating = ratePlayer(player);
-    const theme = colorThemes[category];
-    const totalGA = player.seasonStats.goals + player.seasonStats.assists;
+    const isGK = player.position === "GK";
+
+    const season = player.seasonStats || {};
+    const career = player.careerStats || {};
+
+    const totalGA = (season.goals ?? 0) + (season.assists ?? 0);
 
     return (
       <div
@@ -92,16 +111,24 @@ const KeyPerformersCompact = () => {
       >
         {/* Badge */}
         <div
-          className={`absolute top-4 right-4 px-3 py-1 text-sm font-semibold rounded-full ${theme.badge} text-white tracking-wide`}
+          className={`absolute top-4 right-4 px-3 py-1 text-sm font-semibold rounded-full ${theme.badge} text-white`}
         >
-          {category === "TopScorer"
-            ? "Top Scorer"
-            : category === "AssistLeader"
-            ? "Assist Leader"
-            : category === "GoalAssistLeader"
-            ? "G/A Leader"
-            : "MVP"}
+          {
+            {
+              TopScorer: "Top Scorer",
+              AssistLeader: "Assist Leader",
+              GoalAssistLeader: "G/A Leader",
+              MVP: "MVP",
+            }[category]
+          }
         </div>
+
+        {/* Injury Badge */}
+        {player.injured && (
+          <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 text-xs rounded-full font-semibold">
+            Injured
+          </div>
+        )}
 
         {/* Player Image */}
         <div className="relative w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-gray-100 dark:border-gray-700 mb-4">
@@ -109,93 +136,111 @@ const KeyPerformersCompact = () => {
             src={player.image}
             alt={player.name}
             fill
-            className="object-cover transition-transform duration-300 hover:scale-110"
+            className="object-cover"
           />
         </div>
 
-        {/* Name & Position */}
-        <h3 className="text-xl font-semibold text-center text-gray-900 dark:text-white tracking-tight">
+        {/* Name + Position */}
+        <h3 className="text-xl font-semibold text-center text-gray-900 dark:text-white">
           {player.name}
         </h3>
         <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-1">
           {player.position} • {age} years
         </p>
 
-        {/* Stats */}
+        {/* STATS */}
         <div className="grid grid-cols-2 gap-4 mt-4 text-center">
-          {category === "GoalAssistLeader" ? (
+          {/* GK Stats */}
+          {isGK ? (
             <>
-              <div className={`${theme.highlight} rounded-lg p-3`}>
-                <p className="text-lg font-bold text-gray-900 dark:text-white">
-                  {totalGA}
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">G/A</p>
-              </div>
+              <StatBox
+                value={season.goalsConceded ?? career.goalsConceded ?? 0}
+                label="Goals Conceded"
+                highlight={undefined}
+              />
+              <StatBox
+                value={season.cleanSheets ?? career.cleanSheets ?? 0}
+                label="Clean Sheets"
+                highlight={undefined}
+              />
+              <StatBox
+                value={season.appearances ?? career.appearances ?? 0}
+                label="Appearances"
+                highlight={undefined}
+              />
+              <StatBox
+                value={`$${player.value}M`}
+                label="Value"
+                highlight={undefined}
+              />
+              <StatBox value={rating} label="Rating" />
             </>
           ) : (
             <>
-              <div
-                className={`rounded-lg p-3 ${
-                  category === "TopScorer"
-                    ? theme.highlight
-                    : "bg-gray-50 dark:bg-gray-800"
-                }`}
-              >
-                <p className="text-lg font-bold text-gray-900 dark:text-white">
-                  {player.seasonStats.goals}
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Goals
-                </p>
-              </div>
+              <StatBox
+                value={`$${player.value}M`}
+                label="Value"
+                highlight={undefined}
+              />
+              <StatBox value={rating} label="Rating" />
+              {/* Goals */}
+              <StatBox
+                value={season.goals ?? career.goals ?? 0}
+                label="Goals"
+                highlight={
+                  category === "TopScorer" ? theme.highlight : undefined
+                }
+              />
 
-              <div
-                className={`rounded-lg p-3 ${
-                  category === "AssistLeader"
-                    ? theme.highlight
-                    : "bg-gray-50 dark:bg-gray-800"
-                }`}
-              >
-                <p className="text-lg font-bold text-gray-900 dark:text-white">
-                  {player.seasonStats.assists}
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Assists
-                </p>
-              </div>
+              {/* Assists */}
+              <StatBox
+                value={season.assists ?? career.assists ?? 0}
+                label="Assists"
+                highlight={
+                  category === "AssistLeader" ? theme.highlight : undefined
+                }
+              />
+
+              {/* G/A */}
+              {category === "GoalAssistLeader" && (
+                <StatBox
+                  value={totalGA}
+                  label="G/A"
+                  highlight={theme.highlight}
+                />
+              )}
+
+              {/* Appearances */}
+              <StatBox
+                value={season.appearances ?? career.appearances ?? 0}
+                label="Appearances"
+              />
             </>
           )}
 
+          {/* MVP EXTRAS */}
           {category === "MVP" && (
             <>
-              <div
-                className={`rounded-lg p-3 ${
-                  category === "MVP"
-                    ? theme.highlight
-                    : "bg-gray-50 dark:bg-gray-800"
-                }`}
-              >
-                <p className="text-lg font-bold text-gray-900 dark:text-white">
-                  ${player.value}M
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Value
-                </p>
-              </div>
-              <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
-                <p className="text-lg font-bold text-gray-900 dark:text-white">
-                  {rating}
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Rating
-                </p>
-              </div>
+              <StatBox
+                value={`$${player.value}M`}
+                label="Value"
+                highlight={theme.highlight}
+              />
+              <StatBox value={rating} label="Rating" />
             </>
           )}
         </div>
 
+        {/* Injury Details */}
+        {player.injured && (
+          <div className="mt-4 text-center text-xs text-red-500 dark:text-red-400">
+            <p>{player.injuryDetails?.type}</p>
+            <p>Return: {player.injuryDetails?.recoveryTime}</p>
+          </div>
+        )}
+
         {/* Country */}
-        <div className="relative w-10 h-6 mx-auto mt-4 rounded-sm overflow-hidden border border-gray-200 dark:border-gray-700">
+        <div className="relative w-10 h-6 mx-auto mt-4 rounded-sm overflow-hidden border border-gray-300 dark:border-gray-700">
           <Image
             src={player.country}
             alt="Country flag"
@@ -212,9 +257,10 @@ const KeyPerformersCompact = () => {
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3 text-gray-900 dark:text-white">
         {icon} {title}
       </h2>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {playersList.map((p) => (
-          <PlayerCard key={p.name} player={p} category={category} />
+        {playersList.map((player) => (
+          <PlayerCard key={player.name} player={player} category={category} />
         ))}
       </div>
     </section>
@@ -229,18 +275,21 @@ const KeyPerformersCompact = () => {
           playersList={topGoalScorers}
           category="TopScorer"
         />
+
         <Section
           title="Top Assist Providers"
           icon={<FaHandsHelping className="text-blue-600" />}
           playersList={topAssistProviders}
           category="AssistLeader"
         />
+
         <Section
           title="Top Goal + Assist Leaders"
-          icon={<FaHandsHelping className="text-purple-600" />}
+          icon={<FaFutbol className="text-purple-600" />}
           playersList={topGoalAssistProviders}
           category="GoalAssistLeader"
         />
+
         <Section
           title="Most Valuable Players"
           icon={<FaMedal className="text-amber-600" />}
