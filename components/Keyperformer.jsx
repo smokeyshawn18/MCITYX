@@ -85,7 +85,6 @@ const KeyPerformersCompact = () => {
     const rating = ratePlayer(player);
     const theme = colorThemes[category];
     const totalGA = player.seasonStats.goals + player.seasonStats.assists;
-    const matches = player.seasonStats.matches;
 
     return (
       <div
@@ -132,14 +131,6 @@ const KeyPerformersCompact = () => {
                 </p>
                 <p className="text-xs text-gray-500 dark:text-gray-400">G/A</p>
               </div>
-              <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
-                <p className="text-lg font-bold text-gray-900 dark:text-white">
-                  {matches}
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Matches
-                </p>
-              </div>
             </>
           ) : (
             <>
@@ -170,15 +161,6 @@ const KeyPerformersCompact = () => {
                 </p>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
                   Assists
-                </p>
-              </div>
-
-              <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 col-span-2">
-                <p className="text-lg font-bold text-gray-900 dark:text-white">
-                  {matches}
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Matches
                 </p>
               </div>
             </>
