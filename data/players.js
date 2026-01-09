@@ -16,10 +16,10 @@ export const players = [
       appearances: 365,
     },
     seasonStats: {
-      goals: 41,
+      goals: 42,
 
       assists: 7,
-      appearances: 33,
+      appearances: 36,
     },
     injured: false,
     injuryDetails: {
@@ -73,7 +73,7 @@ export const players = [
     seasonStats: {
       goals: 3,
       assists: 4,
-      appearances: 32,
+      appearances: 35,
     },
     injured: false,
   },
@@ -116,7 +116,7 @@ export const players = [
     seasonStats: {
       goals: 13,
       assists: 6,
-      appearances: 30,
+      appearances: 33,
     },
     injured: false,
   },
@@ -137,7 +137,7 @@ export const players = [
     seasonStats: {
       goals: 4,
       assists: 1,
-      appearances: 23,
+      appearances: 24,
     },
     injured: false,
     injuryDetails: {
@@ -213,9 +213,9 @@ export const players = [
       appearances: 261,
     },
     seasonStats: {
-      goals: 6,
+      goals: 7,
       assists: 7,
-      appearances: 34,
+      appearances: 37,
     },
     injured: false,
     injuryDetails: {
@@ -242,9 +242,35 @@ export const players = [
     seasonStats: {
       goals: 9,
       assists: 8,
-      appearances: 30,
+      appearances: 33,
     },
     injured: false,
+  },
+  {
+    name: "Antoine Semenyo",
+    number: 42,
+    position: "LW",
+    value: 65,
+    age: "2000-01-07",
+    country: "/assets/images/ghana.png",
+    image: "/assets/images/semenyo.webp",
+    careerStats: {
+      goals: 31,
+      assists: 14,
+      appearances: 136,
+    },
+    seasonStats: {
+      goals: 10,
+      assists: 3,
+      appearances: 26,
+    },
+    injured: false,
+    injuryDetails: {
+      tm: "Sep 2, 2025",
+      type: "Physical Discomfort",
+      recoveryTime: "Doubtful",
+    },
+    injuryIcon: FaHospital,
   },
   {
     name: "Rodri",
@@ -270,7 +296,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 1,
-      appearances: 13,
+      appearances: 16,
     },
   },
 
@@ -290,7 +316,7 @@ export const players = [
     seasonStats: {
       goals: 6,
       assists: 9,
-      appearances: 25,
+      appearances: 28,
     },
     injured: false,
     injuryDetails: {
@@ -316,7 +342,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 19,
+      appearances: 22,
     },
     injured: false,
     injuryDetails: {
@@ -368,7 +394,7 @@ export const players = [
     seasonStats: {
       goals: 3,
       assists: 4,
-      appearances: 27,
+      appearances: 29,
     },
     injured: false,
     injuryDetails: {
@@ -441,7 +467,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 0,
-      appearances: 32,
+      appearances: 34,
     },
     injured: false,
     injuryDetails: {
@@ -468,7 +494,7 @@ export const players = [
     seasonStats: {
       goals: 3,
       assists: 3,
-      appearances: 24,
+      appearances: 25,
     },
     injured: false,
     injuryDetails: {
@@ -494,7 +520,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 4,
-      appearances: 26,
+      appearances: 29,
     },
     injured: false,
   },
@@ -522,7 +548,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 0,
-      appearances: 25,
+      appearances: 27,
     },
   },
   {
@@ -541,7 +567,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 2,
-      appearances: 14,
+      appearances: 17,
     },
     injured: false,
     injuryDetails: {
@@ -567,7 +593,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 2,
-      appearances: 15,
+      appearances: 16,
     },
     injured: false,
     injuryDetails: {
@@ -595,7 +621,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 4,
-      appearances: 28,
+      appearances: 31,
     },
     injured: false,
   },
@@ -667,9 +693,9 @@ export const players = [
       appearances: 479,
     },
     seasonStats: {
-      goalsConceded: 30,
-      cleanSheets: 11,
-      appearances: 32,
+      goalsConceded: 32,
+      cleanSheets: 12,
+      appearances: 35,
     },
     injured: false,
   },
