@@ -19,7 +19,7 @@ export const players = [
       goals: 42,
 
       assists: 7,
-      appearances: 37,
+      appearances: 38,
     },
     injured: false,
     injuryDetails: {
@@ -72,8 +72,8 @@ export const players = [
     },
     seasonStats: {
       goals: 3,
-      assists: 4,
-      appearances: 36,
+      assists: 5,
+      appearances: 37,
     },
     injured: false,
   },
@@ -116,7 +116,7 @@ export const players = [
     seasonStats: {
       goals: 13,
       assists: 6,
-      appearances: 33,
+      appearances: 34,
     },
     injured: false,
   },
@@ -137,7 +137,7 @@ export const players = [
     seasonStats: {
       goals: 5,
       assists: 1,
-      appearances: 25,
+      appearances: 26,
     },
     injured: false,
     injuryDetails: {
@@ -215,7 +215,7 @@ export const players = [
     seasonStats: {
       goals: 8,
       assists: 7,
-      appearances: 38,
+      appearances: 39,
     },
     injured: false,
     injuryDetails: {
@@ -242,7 +242,7 @@ export const players = [
     seasonStats: {
       goals: 9,
       assists: 10,
-      appearances: 34,
+      appearances: 35,
     },
     injured: false,
   },
@@ -260,9 +260,9 @@ export const players = [
       appearances: 136,
     },
     seasonStats: {
-      goals: 11,
+      goals: 12,
       assists: 4,
-      appearances: 27,
+      appearances: 28,
     },
     injured: false,
     injuryDetails: {
@@ -275,7 +275,7 @@ export const players = [
   {
     name: "Rodri",
     number: 16,
-    position: "DM",
+    position: "CDM",
     value: 90,
     age: "1996-06-22",
     injury: "Torn ACL",
@@ -296,7 +296,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 1,
-      appearances: 17,
+      appearances: 18,
     },
   },
 
@@ -314,9 +314,9 @@ export const players = [
       appearances: 187,
     },
     seasonStats: {
-      goals: 6,
+      goals: 7,
       assists: 10,
-      appearances: 29,
+      appearances: 30,
     },
     injured: false,
     injuryDetails: {
@@ -342,7 +342,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 23,
+      appearances: 24,
     },
     injured: false,
     injuryDetails: {
@@ -520,7 +520,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 4,
-      appearances: 29,
+      appearances: 30,
     },
     injured: false,
   },
@@ -566,8 +566,8 @@ export const players = [
     },
     seasonStats: {
       goals: 0,
-      assists: 2,
-      appearances: 18,
+      assists: 3,
+      appearances: 19,
     },
     injured: false,
     injuryDetails: {
@@ -593,7 +593,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 3,
-      appearances: 17,
+      appearances: 18,
     },
     injured: false,
     injuryDetails: {
@@ -621,7 +621,7 @@ export const players = [
     seasonStats: {
       goals: 3,
       assists: 4,
-      appearances: 32,
+      appearances: 33,
     },
     injured: false,
   },
@@ -756,8 +756,8 @@ export const players = [
     },
     seasonStats: {
       goalsConceded: 6,
-      cleanSheets: 3,
-      appearances: 7,
+      cleanSheets: 4,
+      appearances: 8,
     },
     injured: false,
   },
