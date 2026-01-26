@@ -51,9 +51,9 @@ const trophies = [
 ];
 
 export default function CoachProfile() {
-  const wins = 406;
+  const wins = 407;
   const draws = 71;
-  const losses = 89;
+  const losses = 90;
   const totalTrophies = trophies.reduce((sum, t) => sum + t.count, 0);
   const totalMatches = wins + draws + losses;
   const ppg = ((wins * 3 + draws) / totalMatches).toFixed(2);
