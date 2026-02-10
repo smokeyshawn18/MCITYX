@@ -47,7 +47,7 @@ const MatchCard = ({ match, formatDate, getDaysToGo }) => {
           <div className="flex-1 text-center">
             <div className="w-16 h-16 mx-auto mb-3 bg-gray-50 dark:bg-gray-800 rounded-xl p-2 group-hover:scale-105 transition-transform duration-200">
               <Image
-                src={homeTeam.crest || "/placeholder.svg"}
+                src={homeTeam.crest || ""}
                 alt={homeTeam.name}
                 width={48}
                 height={48}

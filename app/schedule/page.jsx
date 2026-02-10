@@ -37,9 +37,18 @@ const Schedule = () => {
           throw new Error(data.message || "Failed to fetch");
         }
 
+        // Filter for upcoming matches (status: "NS" = Not Started)
         const upcoming = Array.isArray(data?.matches)
-          ? data.matches.filter((m) => m.status === "TIMED")
+          ? data.matches.filter(
+              (m) => m.status === "NS" || m.status === "TIMED",
+            )
           : [];
+
+        console.log("📥 API Response received:", {
+          totalMatches: data?.matches?.length || 0,
+          upcomingMatches: upcoming.length,
+          firstMatch: upcoming[0],
+        });
 
         // Sort by date
         upcoming.sort((a, b) => new Date(a.utcDate) - new Date(b.utcDate));
@@ -47,30 +56,38 @@ const Schedule = () => {
         // Categorize matches for prem or champ
         const filteredMatches = upcoming.filter((match) => {
           const compName = match.competition.name.toLowerCase();
-          if (tabKey === "prem") {
-            return (
-              compName.includes("premier") ||
-              compName.includes("pl") ||
-              compName.includes("epl")
-            );
-          } else if (tabKey === "champ") {
-            return (
-              compName.includes("champions") ||
-              compName.includes("ucl") ||
-              compName.includes("cl")
+          const matchesTab =
+            tabKey === "prem"
+              ? compName.includes("premier") ||
+                compName.includes("pl") ||
+                compName.includes("epl")
+              : tabKey === "champ"
+                ? compName.includes("champions") ||
+                  compName.includes("ucl") ||
+                  compName.includes("cl")
+                : false;
+
+          if (!matchesTab) {
+            console.log(
+              `❌ Filtered out: ${match.homeTeam.name} vs ${match.awayTeam.name} (${compName})`,
             );
           }
-          return false;
+
+          return matchesTab;
         });
+
+        console.log(`✅ ${filteredMatches.length} matches for ${tabKey}`);
 
         setApiMatches((prev) => ({ ...prev, [tabKey]: filteredMatches }));
         setApiDataFetched((fetched) => ({ ...fetched, [tabKey]: true }));
 
-        toast.success(
-          `Loaded ${filteredMatches.length} upcoming ${
-            tabKey === "prem" ? "Premier League" : "Champions League"
-          } matches!`
-        );
+        if (filteredMatches.length > 0) {
+          toast.success(
+            `Loaded ${filteredMatches.length} upcoming ${
+              tabKey === "prem" ? "Premier League" : "Champions League"
+            } matches!`,
+          );
+        }
       } catch (error) {
         console.error("API Error:", error);
         setApiMatches((prev) => ({ ...prev, [tabKey]: [] }));
@@ -78,13 +95,13 @@ const Schedule = () => {
         toast.error(
           `Could not get the ${
             tabKey === "prem" ? "Premier League" : "Champions League"
-          } matches.`
+          } matches.`,
         );
       } finally {
         setApiLoading((loading) => ({ ...loading, [tabKey]: false }));
       }
     },
-    [apiDataFetched]
+    [apiDataFetched],
   );
 
   // Fetch API data when user switches tabs
@@ -106,11 +123,11 @@ const Schedule = () => {
         return manualMatches.filter((m) => m.competition.name.includes("Fifa"));
       case "fa":
         return manualMatches.filter((m) =>
-          m.competition.name.includes("FA Cup")
+          m.competition.name.includes("FA Cup"),
         );
       case "carabao":
         return manualMatches.filter((m) =>
-          m.competition.name.includes("Carabao")
+          m.competition.name.includes("Carabao"),
         );
       case "prem":
       case "champ":
@@ -127,7 +144,7 @@ const Schedule = () => {
   // Memoized date formatter
   const memoizedFormatDate = useCallback(
     (date) => formatDate(date, timeFormat),
-    [timeFormat]
+    [timeFormat],
   );
 
   // Handle tab selection change

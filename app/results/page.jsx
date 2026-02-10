@@ -37,11 +37,12 @@ export default function Results() {
         const data = await res.json();
 
         if (data.matches && Array.isArray(data.matches)) {
+          // Filter for finished matches (status: "FT" = Full Time)
           const finishedMatches = data.matches.filter(
-            (m) => m.status === "FINISHED"
+            (m) => m.status === "FT" || m.status === "FINISHED",
           );
           finishedMatches.sort(
-            (a, b) => new Date(b.utcDate) - new Date(a.utcDate)
+            (a, b) => new Date(b.utcDate) - new Date(a.utcDate),
           );
           setMatches(finishedMatches);
         } else {
