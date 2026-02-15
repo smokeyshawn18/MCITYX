@@ -16,10 +16,10 @@ export const players = [
       appearances: 365,
     },
     seasonStats: {
-      goals: 44,
+      goals: 45,
 
       assists: 9,
-      appearances: 45,
+      appearances: 46,
     },
     injured: false,
     injuryDetails: {
@@ -73,7 +73,7 @@ export const players = [
     seasonStats: {
       goals: 4,
       assists: 7,
-      appearances: 42,
+      appearances: 43,
     },
     injured: false,
   },
@@ -115,8 +115,8 @@ export const players = [
     },
     seasonStats: {
       goals: 13,
-      assists: 6,
-      appearances: 40,
+      assists: 7,
+      appearances: 50,
     },
     injured: false,
   },
@@ -137,7 +137,7 @@ export const players = [
     seasonStats: {
       goals: 8,
       assists: 1,
-      appearances: 33,
+      appearances: 35,
     },
     injured: false,
     injuryDetails: {
@@ -215,7 +215,7 @@ export const players = [
     seasonStats: {
       goals: 9,
       assists: 7,
-      appearances: 45,
+      appearances: 47,
     },
     injured: false,
     injuryDetails: {
@@ -260,9 +260,9 @@ export const players = [
       appearances: 136,
     },
     seasonStats: {
-      goals: 14,
-      assists: 4,
-      appearances: 33,
+      goals: 15,
+      assists: 5,
+      appearances: 35,
     },
     injured: false,
     injuryDetails: {
@@ -296,7 +296,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 1,
-      appearances: 23,
+      appearances: 25,
     },
   },
 
@@ -316,7 +316,7 @@ export const players = [
     seasonStats: {
       goals: 10,
       assists: 10,
-      appearances: 37,
+      appearances: 39,
     },
     injured: false,
     injuryDetails: {
@@ -353,6 +353,32 @@ export const players = [
     injuryIcon: FaHospital,
   },
   {
+    name: "Marc Guehi",
+    position: "CB",
+    number: 15,
+    value: 22,
+    country: "/assets/images/eng.png",
+    age: "2000-07-13",
+    image: "/assets/images/guehi.jpeg",
+    careerStats: {
+      goals: 8,
+      assists: 6,
+      appearances: 188,
+    },
+    seasonStats: {
+      goals: 5,
+      assists: 6,
+      appearances: 41,
+    },
+    injured: false,
+    injuryDetails: {
+      tm: "Feb 20, 2025",
+      type: "Foot Injury",
+      recoveryTime: "Doubtful!",
+    },
+    injuryIcon: FaHospital,
+  },
+  {
     name: "John Stones",
     position: "CB",
     number: 5,
@@ -368,7 +394,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 1,
-      appearances: 17,
+      appearances: 18,
     },
     injured: false,
     injuryDetails: {
@@ -467,7 +493,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 0,
-      appearances: 35,
+      appearances: 36,
     },
     injured: false,
     injuryDetails: {
@@ -520,7 +546,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 5,
-      appearances: 35,
+      appearances: 36,
     },
     injured: false,
   },
@@ -548,7 +574,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 0,
-      appearances: 30,
+      appearances: 32,
     },
   },
   {
@@ -567,7 +593,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 3,
-      appearances: 24,
+      appearances: 26,
     },
     injured: false,
     injuryDetails: {
@@ -593,7 +619,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 3,
-      appearances: 20,
+      appearances: 21,
     },
     injured: false,
     injuryDetails: {
@@ -619,9 +645,9 @@ export const players = [
       appearances: 20,
     },
     seasonStats: {
-      goals: 3,
+      goals: 4,
       assists: 5,
-      appearances: 40,
+      appearances: 42,
     },
     injured: false,
   },
@@ -694,8 +720,8 @@ export const players = [
     },
     seasonStats: {
       goalsConceded: 40,
-      cleanSheets: 14,
-      appearances: 41,
+      cleanSheets: 15,
+      appearances: 42,
     },
     injured: false,
   },
@@ -756,8 +782,8 @@ export const players = [
     },
     seasonStats: {
       goalsConceded: 7,
-      cleanSheets: 4,
-      appearances: 9,
+      cleanSheets: 5,
+      appearances: 10,
     },
     injured: false,
   },
