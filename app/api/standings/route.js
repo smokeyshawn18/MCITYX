@@ -155,7 +155,7 @@ export async function GET() {
                 team: {
                   id: 50,
                   name: "Manchester City",
-                  crest: "/assets/images/manchester-city-logo.png",
+                  crest: "/assets/images/mcitylogo.png",
                 },
               },
               {
