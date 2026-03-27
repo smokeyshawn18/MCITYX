@@ -20,7 +20,7 @@ const trophies = [
   },
   {
     name: "EFL Cup",
-    count: 4,
+    count: 5,
     icon: <FaTrophy className="text-blue-400 w-6 h-6" />,
     years: "2017–18, 2018–19, 2019–20, 2020–21",
   },
@@ -51,7 +51,7 @@ const trophies = [
 ];
 
 export default function CoachProfile() {
-  const wins = 414;
+  const wins = 415;
   const draws = 75;
   const losses = 92;
   const totalTrophies = trophies.reduce((sum, t) => sum + t.count, 0);
