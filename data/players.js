@@ -116,14 +116,14 @@ export const players = [
     seasonStats: {
       goals: 13,
       assists: 7,
-      appearances: 47,
+      appearances: 48,
     },
     injured: false,
   },
   {
     name: "Omar Marmoush",
     number: 7,
-    position: "LW",
+    position: "ST",
     value: 75,
     age: "1999-02-07",
     country: "/assets/images/eg.webp",
@@ -135,9 +135,9 @@ export const players = [
       appearances: 235,
     },
     seasonStats: {
-      goals: 10,
+      goals: 11,
       assists: 3,
-      appearances: 41,
+      appearances: 42,
     },
     injured: false,
     injuryDetails: {
@@ -213,9 +213,9 @@ export const players = [
       appearances: 261,
     },
     seasonStats: {
-      goals: 9,
+      goals: 10,
       assists: 7,
-      appearances: 52,
+      appearances: 53,
     },
     injured: false,
     injuryDetails: {
@@ -262,7 +262,7 @@ export const players = [
     seasonStats: {
       goals: 17,
       assists: 5,
-      appearances: 43,
+      appearances: 44,
     },
     injured: false,
     injuryDetails: {
@@ -296,7 +296,7 @@ export const players = [
     seasonStats: {
       goals: 2,
       assists: 1,
-      appearances: 32,
+      appearances: 33,
     },
   },
 
@@ -592,8 +592,8 @@ export const players = [
     },
     seasonStats: {
       goals: 0,
-      assists: 5,
-      appearances: 32,
+      assists: 6,
+      appearances: 33,
     },
     injured: false,
     injuryDetails: {
@@ -781,9 +781,9 @@ export const players = [
       appearances: 29,
     },
     seasonStats: {
-      goalsConceded: 8,
-      cleanSheets: 5=6,
-      appearances: 12,
+      goalsConceded: 9,
+      cleanSheets: 6,
+      appearances: 13,
     },
     injured: false,
   },
