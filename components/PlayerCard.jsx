@@ -22,6 +22,8 @@ const HIDDEN_NAMES = new Set([
   "James McAtee",
   "C. Echeverri",
   "Ederson Moraes",
+  "Oscar Bobb",
+  "Stefan Ortega",
 ]);
 
 const TABS = [
@@ -126,6 +128,16 @@ export default function PlayerCard({ player }) {
             : player.seasonStats.assists,
         icon: (
           <Handshake className="text-green-600 dark:text-green-300 text-xl" />
+        ),
+      },
+      {
+        label: "G/A",
+        value:
+          player.seasonStats.appearances > 0
+            ? player.seasonStats.goals + player.seasonStats.assists
+            : "0.00",
+        icon: (
+          <FaMedal className="text-purple-500 dark:text-purple-300 text-xl" />
         ),
       },
     ];

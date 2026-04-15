@@ -17,7 +17,7 @@ const byeNames = [
 
 // Filter out players that are in byeNames list
 const activePlayers = players.filter(
-  (player) => !byeNames.includes(player.name)
+  (player) => !byeNames.includes(player.name),
 );
 
 const totalValue = activePlayers
@@ -30,15 +30,15 @@ const filterByGroup = (group, playerList) => {
   switch (group) {
     case "Forwards":
       return playerList.filter((p) =>
-        ["LW", "RW", "CF", "ST", "SS", "FW"].includes(p.position)
+        ["LW", "RW", "CF", "ST", "SS", "FW"].includes(p.position),
       );
     case "Midfielders":
       return playerList.filter((p) =>
-        ["CM", "CDM", "CAM", "LM", "RM", "AM", "DM", "MF"].includes(p.position)
+        ["CM", "CDM", "CAM", "LM", "RM", "AM", "DM", "MF"].includes(p.position),
       );
     case "Defenders":
       return playerList.filter((p) =>
-        ["CB", "LB", "RB", "LWB", "RWB", "DF"].includes(p.position)
+        ["CB", "LB", "RB", "LWB", "RWB", "DF"].includes(p.position),
       );
     case "Goalkeepers":
       return playerList.filter((p) => p.position === "GK");
@@ -47,12 +47,28 @@ const filterByGroup = (group, playerList) => {
   }
 };
 
+const sortByGA = (players) => {
+  return [...players].sort((a, b) => {
+    const aGA =
+      a.seasonStats.appearances > 0
+        ? (a.seasonStats.goals + a.seasonStats.assists) /
+          a.seasonStats.appearances
+        : 0;
+    const bGA =
+      b.seasonStats.appearances > 0
+        ? (b.seasonStats.goals + b.seasonStats.assists) /
+          b.seasonStats.appearances
+        : 0;
+    return bGA - aGA; // Sort descending
+  });
+};
+
 const PlayerSection = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   // Filter active players based on search
   const filteredPlayers = activePlayers.filter((player) =>
-    player.name.toLowerCase().includes(searchTerm.toLowerCase())
+    player.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const groups = ["Forwards", "Midfielders", "Defenders", "Goalkeepers"];
@@ -82,7 +98,8 @@ const PlayerSection = () => {
       </div>
 
       {groups.map((group) => {
-        const groupPlayers = filterByGroup(group, filteredPlayers);
+        const groupPlayers = sortByGA(filterByGroup(group, filteredPlayers));
+
         if (groupPlayers.length === 0) return null;
 
         return (
@@ -90,6 +107,7 @@ const PlayerSection = () => {
             <h2 className="text-2xl font-bold dark:text-white text-sky-800 mb-6 text-center underline uppercase">
               {group}
             </h2>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {groupPlayers.map((player, index) => (
                 <PlayerCard key={index} player={player} />

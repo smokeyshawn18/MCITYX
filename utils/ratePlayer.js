@@ -100,7 +100,7 @@ function rateGoalkeeper(player, ageYears) {
       ? careerStats.goalsConceded / careerStats.appearances
       : 2;
 
-  const csScore = seasonCS * 0.3 + careerCS * 0.2;
+  const csScore = seasonCS * 0.5 + careerCS * 0.3;
   const gcScore =
     Math.max(0, 1 - seasonGC / 3) * 0.6 + Math.max(0, 1 - careerGC / 3) * 0.3;
 
@@ -108,9 +108,9 @@ function rateGoalkeeper(player, ageYears) {
 
   const ageScore =
     ageYears >= 26 && ageYears <= 34
-      ? 1
+      ? 0.59
       : ageYears >= 23 && ageYears <= 37
-        ? 0.85
+        ? 0.95
         : 0.65;
 
   const injuryPenalty = injured ? -0.15 : 0;

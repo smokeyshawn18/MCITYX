@@ -191,7 +191,7 @@ export const players = [
       assists: 0,
       appearances: 4,
     },
-    injured: true,
+    injured: false,
     injuryDetails: {
       tm: "Aug 10, 2025",
       type: "Achilles Tendon Injury",

@@ -27,6 +27,8 @@ const Home = () => {
     "James McAtee",
     "C. Echeverri",
     "Ederson Moraes",
+    "Oscar Bobb",
+    "Stefan Ortega",
   ];
   return (
     <>
