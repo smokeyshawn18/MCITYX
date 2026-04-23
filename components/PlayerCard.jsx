@@ -133,9 +133,9 @@ export default function PlayerCard({ player }) {
       {
         label: "G/A",
         value:
-          player.seasonStats.appearances > 0
+          activeTab === "season"
             ? player.seasonStats.goals + player.seasonStats.assists
-            : "0.00",
+            : careerStats.goals + careerStats.assists,
         icon: (
           <FaMedal className="text-purple-500 dark:text-purple-300 text-xl" />
         ),
