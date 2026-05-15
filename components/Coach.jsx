@@ -51,7 +51,7 @@ const trophies = [
 ];
 
 export default function CoachProfile() {
-  const wins = 420;
+  const wins = 421;
   const draws = 75;
   const losses = 92;
   const totalTrophies = trophies.reduce((sum, t) => sum + t.count, 0);
