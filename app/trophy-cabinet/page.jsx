@@ -36,7 +36,7 @@ const TrophyCabinet = () => {
     {
       name: "FA Cup",
       image: "/assets/images/fa-cup.jpg",
-      wins: 7,
+      wins: 8,
       years: [
         "1903/04",
         "1933/34",
@@ -45,6 +45,7 @@ const TrophyCabinet = () => {
         "2010/11",
         "2018/19",
         "2021/22",
+        "2025/26",
       ],
       gradient: "from-red-400 to-red-600",
     },

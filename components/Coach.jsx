@@ -14,7 +14,7 @@ const trophies = [
   },
   {
     name: "FA Cup",
-    count: 2,
+    count: 3,
     icon: <FaMedal className="text-red-500 w-6 h-6" />,
     years: "2018–19, 2022–23",
   },
@@ -51,8 +51,8 @@ const trophies = [
 ];
 
 export default function CoachProfile() {
-  const wins = 422;
-  const draws = 75;
+  const wins = 423;
+  const draws = 76;
   const losses = 92;
   const totalTrophies = trophies.reduce((sum, t) => sum + t.count, 0);
   const totalMatches = wins + draws + losses;
