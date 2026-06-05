@@ -272,6 +272,32 @@ export const players = [
     injuryIcon: FaHospital,
   },
   {
+    name: "Rayan Cherki",
+    number: 10,
+    position: "RW",
+    value: 65,
+    age: "2003-08-17",
+    country: "/assets/images/france.svg",
+    image: "/assets/images/rayan.webp",
+    careerStats: {
+      goals: 41,
+      assists: 64,
+      appearances: 245,
+    },
+    seasonStats: {
+      goals: 1,
+      assists: 0,
+      appearances: 1,
+    },
+    injured: false,
+    injuryDetails: {
+      type: "Muscle Injury",
+      recoveryTime: "November 2025!",
+      tm: "Aug 31, 2025",
+    },
+    injuryIcon: FaHospital,
+  },
+  {
     name: "Rodri",
     number: 16,
     position: "CDM",
@@ -299,32 +325,6 @@ export const players = [
     },
   },
 
-  {
-    name: "Rayan Cherki",
-    number: 10,
-    position: "RW",
-    value: 65,
-    age: "2003-08-17",
-    country: "/assets/images/france.svg",
-    image: "/assets/images/rayan.webp",
-    careerStats: {
-      goals: 41,
-      assists: 64,
-      appearances: 245,
-    },
-    seasonStats: {
-      goals: 0,
-      assists: 0,
-      appearances: 0,
-    },
-    injured: false,
-    injuryDetails: {
-      type: "Muscle Injury",
-      recoveryTime: "November 2025!",
-      tm: "Aug 31, 2025",
-    },
-    injuryIcon: FaHospital,
-  },
   {
     name: "Nathan Ake",
     number: 6,
