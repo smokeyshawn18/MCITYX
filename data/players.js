@@ -18,7 +18,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 0,
+      appearances: 1,
     },
     injured: false,
     injuryDetails: {
@@ -72,7 +72,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 0,
+      appearances: 1,
     },
     injured: false,
   },
@@ -136,7 +136,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 1,
+      appearances: 2,
     },
     injured: false,
     injuryDetails: {
@@ -188,7 +188,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 1,
+      appearances: 2,
     },
     injured: false,
     injuryDetails: {
@@ -240,8 +240,8 @@ export const players = [
     },
     seasonStats: {
       goals: 0,
-      assists: 0,
-      appearances: 1,
+      assists: 2,
+      appearances: 2,
     },
     injured: false,
   },
@@ -419,7 +419,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 1,
+      appearances: 2,
     },
     injured: false,
     injuryDetails: {
@@ -492,7 +492,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 0,
+      appearances: 1,
     },
     injured: false,
     injuryDetails: {
@@ -646,7 +646,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 0,
+      appearances: 1,
     },
     injured: false,
   },
@@ -719,8 +719,8 @@ export const players = [
     },
     seasonStats: {
       goalsConceded: 0,
-      cleanSheets: 1,
-      appearances: 1,
+      cleanSheets: 2,
+      appearances: 2,
     },
     injured: false,
   },
@@ -775,14 +775,14 @@ export const players = [
 
     image: "/assets/images/james-trafford.webp",
     careerStats: {
-      goalsConceded: 76,
-      cleanSheets: 10,
-      appearances: 46,
+      goalsConceded: 88,
+      cleanSheets: 18,
+      appearances: 63,
     },
     seasonStats: {
-      goalsConceded: 12,
-      cleanSheets: 8,
-      appearances: 17,
+      goalsConceded: 0,
+      cleanSheets: 1,
+      appearances: 1,
     },
     injured: false,
   },
