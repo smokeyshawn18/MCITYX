@@ -74,7 +74,7 @@ export function ratePlayer(player) {
   // Enforce baselines
   if (isDefender) rating = Math.max(6.8, rating);
   else if (isMidfielder) rating = Math.max(6.0, rating);
-  else if (isAttacker) rating = Math.max(5.5, rating);
+  else if (isAttacker) rating = Math.max(5.7, rating);
 
   return +rating.toFixed(1);
 }
@@ -100,7 +100,7 @@ function rateGoalkeeper(player, ageYears) {
       ? careerStats.goalsConceded / careerStats.appearances
       : 2;
 
-  const csScore = seasonCS * 0.5 + careerCS * 0.3;
+  const csScore = seasonCS * 0.4 + careerCS * 0.3;
   const gcScore =
     Math.max(0, 1 - seasonGC / 3) * 0.6 + Math.max(0, 1 - careerGC / 3) * 0.3;
 
