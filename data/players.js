@@ -214,7 +214,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 1,
+      appearances: 2,
     },
     injured: false,
     injuryDetails: {
@@ -287,7 +287,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 0,
-      appearances: 1,
+      appearances: 2,
     },
     injured: false,
     injuryDetails: {
@@ -367,7 +367,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 0,
+      appearances: 1,
     },
     injured: false,
     injuryDetails: {
@@ -429,52 +429,7 @@ export const players = [
     },
     injuryIcon: FaHospital,
   },
-  {
-    name: "James McAtee",
-    position: "AM",
-    number: 87,
-    value: 20,
-    age: "2002-10-18",
-    country: "/assets/images/eng.png",
-    image: "/assets/images/james.webp",
-    careerStats: {
-      goals: 21,
-      assists: 8,
-      appearances: 108,
-    },
-    seasonStats: {
-      goals: 0,
-      assists: 0,
-      appearances: 0,
-    },
-    injured: false,
-  },
-  {
-    name: "Manuel Akanji",
-    number: 25,
-    position: "CB",
-    value: 28,
-    age: "1995-07-19",
-    country: "/assets/images/swi.png",
-    image: "/assets/images/akanji.jpg",
-    careerStats: {
-      goals: 20,
-      assists: 9,
-      appearances: 456,
-    },
-    seasonStats: {
-      goals: 0,
-      assists: 0,
-      appearances: 3,
-    },
-    injured: false,
-    injuryDetails: {
-      tm: "Feb 11, 2025",
-      type: "Muscle Injury",
-      recoveryTime: "Early March!",
-    },
-    injuryIcon: FaHospital,
-  },
+
   {
     name: "Ruben Dias",
     number: 3,
@@ -651,59 +606,6 @@ export const players = [
     injured: false,
   },
 
-  {
-    name: "Oscar Bobb",
-    position: "RW",
-    number: 52,
-    country: "/assets/images/norway.webp",
-    value: 30,
-    age: "2003-07-12",
-    image: "/assets/images/bob.jpg",
-    careerStats: {
-      goals: 5,
-      assists: 3,
-      appearances: 39,
-    },
-    seasonStats: {
-      goals: 1,
-      assists: 2,
-      appearances: 22,
-    },
-    injured: false,
-    injuryDetails: {
-      tm: "Aug 14, 2024",
-      type: "Broken Leg",
-      recoveryTime: "Early April 2025",
-    },
-    injuryIcon: FaHospital,
-  },
-
-  {
-    name: "C. Echeverri",
-    position: "AM",
-    number: 30,
-    value: 18,
-    country: "/assets/images/arg.webp",
-    age: "2006-01-02",
-    image: "/assets/images/claudio.webp",
-    careerStats: {
-      goals: 4,
-      assists: 8,
-      appearances: 50,
-    },
-    seasonStats: {
-      goals: 1,
-      assists: 0,
-      appearances: 1,
-    },
-    injured: false,
-    injuryDetails: {
-      tm: "Jan 01, 2025",
-      type: "Will Join the Team at March",
-      recoveryTime: "Early March 2025",
-    },
-    injuryIcon: FaHospital,
-  },
   {
     name: "Gianluigi Donnarumma",
     number: 25,
