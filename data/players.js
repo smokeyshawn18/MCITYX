@@ -16,9 +16,9 @@ export const players = [
       appearances: 426,
     },
     seasonStats: {
-      goals: 0,
+      goals: 2,
       assists: 0,
-      appearances: 1,
+      appearances: 2,
     },
     injured: false,
     injuryDetails: {
@@ -72,7 +72,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
   },
@@ -136,7 +136,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
     injuryDetails: {
@@ -214,7 +214,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
     injuryDetails: {
@@ -241,7 +241,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 2,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
   },
@@ -287,7 +287,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 0,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
     injuryDetails: {
@@ -321,7 +321,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 0,
+      appearances: 1,
     },
   },
 
@@ -341,7 +341,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 1,
+      appearances: 2,
     },
     injured: false,
     injuryDetails: {
@@ -419,7 +419,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
     injuryDetails: {
@@ -547,7 +547,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
     injuryDetails: {
@@ -601,7 +601,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
   },
