@@ -16,9 +16,9 @@ export const players = [
       appearances: 426,
     },
     seasonStats: {
-      goals: 2,
+      goals: 4,
       assists: 0,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
     injuryDetails: {
@@ -27,75 +27,6 @@ export const players = [
       recoveryTime: "Mid March 2025",
     },
     injuryIcon: FaHospital,
-  },
-
-  {
-    name: "King Kev (Napoli)",
-    position: "CM",
-    value: 20,
-    age: "1991-06-28",
-    country: "/assets/images/napoli.png",
-    number: 17,
-    image: "/assets/images/kdb.jpg",
-    careerStats: {
-      goals: 186,
-      assists: 313,
-      appearances: 752,
-    },
-    seasonStats: {
-      goals: 9,
-      assists: 3,
-      appearances: 15,
-    },
-    injured: true,
-    injuryDetails: {
-      tm: "Oct 25, 2025",
-      type: "Shoulder Injury",
-      recoveryTime: "Doubtful",
-    },
-    injuryIcon: FaHospital,
-  },
-
-  {
-    name: "Bernardo Silva",
-    position: "RW",
-    value: 27,
-    number: 20,
-    country: "/assets/images/portugal.webp",
-    age: "1994-08-10", // YYYY-MM-DD
-    image: "/assets/images/silvab.jpg",
-    careerStats: {
-      goals: 118,
-      assists: 125,
-      appearances: 716,
-    },
-    seasonStats: {
-      goals: 0,
-      assists: 0,
-      appearances: 3,
-    },
-    injured: false,
-  },
-  {
-    name: "İlkay Gündoğan",
-    number: 19,
-    position: "CM",
-    value: 5,
-    age: "1990-10-24",
-    country: "/assets/images/germany.png",
-    image: "/assets/images/gundo.jpeg",
-
-    careerStats: {
-      goals: 110,
-      assists: 92,
-      appearances: 697,
-    },
-    seasonStats: {
-      goals: 2,
-      assists: 1,
-      appearances: 4,
-    },
-    injured: false,
   },
 
   {
@@ -136,7 +67,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 3,
+      appearances: 4,
     },
     injured: false,
     injuryDetails: {
@@ -188,7 +119,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
     injuryDetails: {
@@ -214,7 +145,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 3,
+      appearances: 4,
     },
     injured: false,
     injuryDetails: {
@@ -287,7 +218,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 0,
-      appearances: 3,
+      appearances: 4,
     },
     injured: false,
     injuryDetails: {
@@ -321,7 +252,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 1,
+      appearances: 2,
     },
   },
 
@@ -367,7 +298,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
     injuryDetails: {
@@ -419,7 +350,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 3,
+      appearances: 4,
     },
     injured: false,
     injuryDetails: {
@@ -601,7 +532,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 3,
+      appearances: 4,
     },
     injured: false,
   },
