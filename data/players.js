@@ -67,7 +67,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 4,
+      appearances: 5,
     },
     injured: false,
     injuryDetails: {
@@ -118,8 +118,8 @@ export const players = [
     },
     seasonStats: {
       goals: 0,
-      assists: 0,
-      appearances: 3,
+      assists: 1,
+      appearances: 5,
     },
     injured: false,
     injuryDetails: {
@@ -144,8 +144,8 @@ export const players = [
     },
     seasonStats: {
       goals: 0,
-      assists: 0,
-      appearances: 4,
+      assists: 1,
+      appearances: 5,
     },
     injured: false,
     injuryDetails: {
@@ -172,7 +172,28 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 2,
-      appearances: 3,
+      appearances: 4,
+    },
+    injured: false,
+  },
+  {
+    name: "Elliot Anderson",
+    position: "DM",
+    number: 88,
+    value: 75,
+    age: "2000-05-28",
+
+    country: "/assets/images/eng.png",
+    image: "/assets/images/elliot.webp",
+    careerStats: {
+      goals: 6,
+      assists: 14,
+      appearances: 154,
+    },
+    seasonStats: {
+      goals: 0,
+      assists: 1,
+      appearances: 5,
     },
     injured: false,
   },
@@ -218,7 +239,7 @@ export const players = [
     seasonStats: {
       goals: 1,
       assists: 0,
-      appearances: 4,
+      appearances: 5,
     },
     injured: false,
     injuryDetails: {
@@ -252,7 +273,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 2,
+      appearances: 3,
     },
   },
 
@@ -272,7 +293,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 2,
+      appearances: 3,
     },
     injured: false,
     injuryDetails: {
@@ -298,7 +319,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 3,
+      appearances: 5,
     },
     injured: false,
     injuryDetails: {
@@ -350,7 +371,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 4,
+      appearances: 6,
     },
     injured: false,
     injuryDetails: {
@@ -378,7 +399,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 2,
+      appearances: 4,
     },
     injured: false,
     injuryDetails: {
@@ -431,7 +452,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 1,
+      appearances: 2,
     },
     injured: false,
   },
@@ -478,7 +499,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 3,
+      appearances: 4,
     },
     injured: false,
     injuryDetails: {
@@ -532,7 +553,7 @@ export const players = [
     seasonStats: {
       goals: 0,
       assists: 0,
-      appearances: 4,
+      appearances: 5,
     },
     injured: false,
   },
